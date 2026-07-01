@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>innoshine - 商业尽调分析报告</title>
+<script>
+// 手机 UA 嗅探 → 自动跳转 _m.html
+(function(){
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari/i.test(ua);
+  if (isMobile && !/iPad/.test(ua) && window.innerWidth < 768) {
+    var path = window.location.pathname;
+    // 路径转 _m.html
+    var mPath = path.replace(/\.html?$/, '_m.html');
+    if (mPath === path) mPath = path + '_m.html';
+    // 防递归：检查 _m.html 已存在再跳转
+    var test = new Image();
+    test.onerror = function(){};  // 404 不跳转
+    test.onload = function(){ window.location.replace(mPath); };
+    test.src = mPath.split('/').pop();
+    // 简化方案：直接尝试跳转（404 后用户回退即可）
+    var finalPath = mPath;
+    fetch(finalPath, {method:'HEAD'}).then(function(r){
+      if (r.ok) window.location.replace(finalPath);
+    }).catch(function(){});
+  }
+})();
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a202c;background:#fafaf9;line-height:1.9;font-size:19px;max-width:1200px;margin:0 auto;padding:24px}
+h1{font-size:30px;color:#1a365d;margin:28px 0 16px;border-bottom:3px solid #d69e2e;padding-bottom:12px;font-weight:700}
+h2{font-size:24px;color:#1a365d;margin:30px 0 14px;font-weight:700}
+h3{font-size:20px;color:#2d3748;margin:22px 0 10px;font-weight:600}
+h4{font-size:18px;color:#2d3748;margin:18px 0 8px;font-weight:600}
+p{margin-bottom:14px;font-size:18px}
+strong{color:#1a365d}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:16px;table-layout:fixed;word-break:keep-all}
+th{background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;padding:11px 14px;text-align:left;font-size:15px;font-weight:600;word-break:keep-all;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid #e2e8f0;font-size:15px;word-break:keep-all;vertical-align:middle}
+table td:first-child, table th:first-child{white-space:nowrap;font-weight:600;min-width:120px}
+table td:nth-child(n){overflow-wrap:break-word}
+tr:hover td{background:#fef5e7}
+table.card-table{background:#fafaf9;border-radius:10px;overflow:hidden}
+blockquote{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-left:4px solid #d69e2e;padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0;color:#744210;font-size:17px}
+.nav{background:linear-gradient(135deg,#1a365d,#2c5282);padding:14px 20px;margin:-24px -24px 28px;border-radius:0 0 12px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.nav a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;margin-right:14px;padding:4px 10px;border-radius:6px;transition:all 0.2s}
+.nav a:hover{color:#fff;background:rgba(255,255,255,0.15);text-decoration:none}
+ul,ol{margin:14px 0 14px 28px}
+li{margin-bottom:8px;font-size:18px}
+code{background:#f7fafc;padding:3px 8px;border-radius:4px;font-size:15px;color:#c53030}
+pre{background:#1a202c;color:#e2e8f0;padding:18px;border-radius:8px;margin:18px 0;overflow-x:auto}
+pre code{background:none;color:inherit;font-size:15px}
+a{color:#3182ce;text-decoration:none}
+a:hover{color:#1a365d;text-decoration:underline}
+hr{border:none;border-top:1px solid #e2e8f0;margin:32px 0}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="index.html">🏠 主页</a>
+<a href="summary.html">📊 储备项目汇总</a>
+<a href="projects/acquisition-listed-co.html">🏢 拟收购上市公司研究</a>
+<a href="projects/hongyuan.html">宏远创信</a>
+<a href="projects/innoshine.html">元旭半导体</a>
+<a href="projects/jngd.html">晶能光电</a>
+<a href="projects/kedu.html">柯渡医学</a>
+<a href="projects/unicom-idc.html">联通云IDC</a>
+<a href="projects/xinhong.html">信鸿医疗</a>
+<a href="projects/xunchao.html">迅巢科技</a>
+<a href="projects/zhongfu.html">中复碳芯</a>
+<a href="#" style="float:right;background:rgba(255,255,255,0.15)" onclick="window.location=window.location.pathname.replace(/\.html?$/, '_m.html');return false">📱 手机版</a>
+</div>
+<h1>元旭半导体科技股份有限公司 商业尽调分析报告（主报告）</h1>
+<p><strong>报告版本</strong>: v1.0（基于 BP 自述 + 天眼查工商穿透）
+<strong>分析日期</strong>: 2026年6月29日
+<strong>尽调材料</strong>: Innoshine BP_2026.6.16.pdf（含技术参数/财务预测/产品路线图/团队信息）+ 天眼查工商数据（2026-06-18 VIP 浏览器逐户穿透）
+<strong>分析方法</strong>: 纵横分析法 + 多源数据交叉验证
+<strong>分析框架</strong>: 行业 → 纵向演变 → 横向对标 → 估值 → 结论
+<strong>⚠️ 命名差异</strong>：BP 自述英文名 &quot;Innoshine&quot;，但工商域名/邮箱均为 &quot;Novoshine&quot;</p>
+<hr />
+<h2>报告导读</h2>
+<p>本报告对元旭半导体科技股份有限公司（以下简称&quot;元旭半导体&quot;或&quot;公司&quot;）进行系统性的商业尽调分析。</p>
+<p><strong>核心结论</strong>：元旭半导体是国内稀缺的 Micro-LED 并行光引擎器件平台标的，定位 AI Scale-up 短距光互联（µLight Engine）——将 Micro-LED 显示侧的全链条工程能力（NPSS 衬底 + GaN 外延 + 阵列芯片 + MOG 玻璃基封装）迁移为光通信并行光源器件。NPSS + MOG + GaN 量子点的&quot;三合一&quot;壁垒赋予公司约 3-5 年的先发窗口期。<strong>但当前最大风险为商业化零验证 + 财务黑箱 + 控制权法律基础不明确</strong>：BP 中 2027E 光互联量产的目标无客户意向函支撑；公司无任何经审计的利润表/现金流量表；席光义直接持股仅 6.559%（+光启未来间接 6.32%≈合计 12.88%），需书面一致行动协议支撑控制权。</p>
+<p><strong>投资亮点</strong>：NPSS+MOG+GaN 量子点的三合一壁垒 + AI 光互联从铜到光的确定产业迁移 + 清华罗毅院士团队的学术背书 + 天津 6,000㎡/月量产基地（2025年3月通线） + 海外 Credo-Hyperlume 收购案（2025.09 $92M）验证 Micro-LED 路线。</p>
+<p><strong>主要风险</strong>：光互联商业化零验证（最大风险）；财务黑箱（无经审计数据）；席光义控制权仅 12.88%（需书面一致行动协议）；席光兴 10.862% 股权冻结至 2028 年（IPO 实质障碍）；CSO 刘暐湘&quot;清华电机系&quot;学历无法独立验证（2022 年校庆以&quot;同事&quot;身份出席）；BP 英文名&quot;Innoshine&quot;与工商域名&quot;Novoshine&quot;不一致；显示业务实际盈利能力未知（利亚德 2024 年亏损 8.89 亿）。</p>
+<hr />
+<h2>第一部分 行业分析：AI 光互联赛道从铜到光的迁移</h2>
+<h3>1.1 行业全景——AI Scale-up 光互联的市场定位</h3>
+<p>AI 大模型训练对 GPU 间互联带宽的需求已突破铜缆物理极限。从 2024 年 xAI Colossus（55 万 GPU 集群，GPU 利用率仅~10%）开始，互联带宽成为集群效率的关键瓶颈。光互联从&quot;可选&quot;快速走向&quot;必选&quot;。</p>
+<pre><code>跨机柜（Scale-out, 100m-2km）  → InP 光模块（800G/1.6T） → 主流，InP 主导
+机柜内（Scale-up, 1-10m）       → 铜缆（DAC/AEC）→ 光互联替代铜缆  🔴 Micro-LED 核心机会
+板级/机箱内（0.1-1m）           → 板载光引擎/AOC               🟡 最早验证窗口
+近封装/芯片级（&lt;0.1m）          → CPO/OIO 光引擎               🟡 中长期
+</code></pre>
+<p><strong>关键判断</strong>：Micro-LED 不是要抢占 InP 的存量市场，而是在 Scale-up 这个新场景中构建差异化——利用&quot;宽而慢&quot;（数百条 2-4G 低速光通道替代少数高速通道）实现高密度、低功耗、低成本。</p>
+<h3>1.2 三类光源技术路线对比</h3>
+<table>
+<thead>
+<tr>
+<th>技术路线</th>
+<th>传输距离</th>
+<th>单通道速率</th>
+<th>通道密度</th>
+<th>能效</th>
+<th>产业链成熟度</th>
+<th>国产化率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>InP</strong>（EML/硅光外置）</td>
+<td>100m-80km</td>
+<td>100-200G PAM4</td>
+<td>4-8通道/器件</td>
+<td>~15 pJ/bit</td>
+<td>极其成熟</td>
+<td>低（受制海外）</td>
+</tr>
+<tr>
+<td><strong>VCSEL</strong></td>
+<td>30-100m</td>
+<td>50-100G PAM4</td>
+<td>1-4通道/VCSEL</td>
+<td>~10 pJ/bit</td>
+<td>成熟</td>
+<td>中</td>
+</tr>
+<tr>
+<td><strong>Micro-LED</strong></td>
+<td>&lt;50m</td>
+<td>2-4G NRZ</td>
+<td><strong>数百通道/阵列</strong></td>
+<td><strong>&lt;5 pJ/bit（目标）</strong></td>
+<td><strong>早期</strong></td>
+<td><strong>高（GaN 国产基础强）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>元旭的优势/劣势</strong>：✅ Scale-up 场景最优区间（&lt;50m）；✅ 通道密度结构性优势；✅ 系统级能效目标领先；✅ 国产替代战略价值高；⚠️ 单通道速率低（靠并行弥补）；❌ 生态未建成（最大劣势）。</p>
+<h3>1.3 海外 Micro-LED 光互联的直接对标</h3>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>路线</th>
+<th>关键事件</th>
+<th>估值</th>
+<th>阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Avicena</strong></td>
+<td>GaN Micro-LED（同路线）</td>
+<td>2026.03 LightBundle 评估套件，三星/美光/SK 战略投资</td>
+<td>未公开</td>
+<td>评估套件阶段</td>
+</tr>
+<tr>
+<td><strong>Hyperlume</strong></td>
+<td>Micro-LED 光互联</td>
+<td>2025.09 被 Credo 收购</td>
+<td>$92M（含其他资产）</td>
+<td>被收购</td>
+</tr>
+<tr>
+<td><strong>Microsoft+MediaTek</strong></td>
+<td>MOSAIC Micro-LED AOC</td>
+<td>~68% 功耗节省，可达 50m，2027 后商业化</td>
+<td>研发项目</td>
+<td>研发</td>
+</tr>
+</tbody>
+</table>
+<p><strong>对元旭的启示</strong>：</p>
+<ul>
+<li>Avicena 是同路线海外先行者——验证了 Micro-LED 光互联的可行性</li>
+<li>Credo（$250 亿市值上市公司）收购 Hyperlume——验证了电芯片巨头愿意为 Micro-LED 光互联支付战略溢价</li>
+<li>Microsoft MOSAIC——验证了巨头对 Micro-LED 光互联的商业化兴趣</li>
+</ul>
+<h3>1.4 行业政策与产业趋势</h3>
+<ul>
+<li><strong>AI 算力需求爆发</strong>：2026 年四大云厂商 CAPEX 指引接近 7,250 亿美元，光互联投资绝对值创新高</li>
+<li><strong>从铜到光的迁移</strong>：2025.01 DeepSeek-R1 推动推理成本↓90%，AI 集群扩张加速互联瓶颈显现</li>
+<li><strong>CPO/OIO 演进路线</strong>：2027+ NPO → CPO → OIO，光引擎向芯片旁移动</li>
+<li><strong>国内政策支持</strong>：天津/潍坊国资已入股（合计 22.67%），享受地方政府产业扶持</li>
+</ul>
+<hr />
+<h2>第二部分 纵向演变：从显示底座到光互联的技术迁移</h2>
+<h3>2.1 公司基本信息（天眼查 2026-06-18 穿透）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>公司全称</strong></td>
+<td>元旭半导体科技股份有限公司</td>
+<td>工商信息</td>
+</tr>
+<tr>
+<td><strong>曾用名</strong></td>
+<td>山东元旭光电股份有限公司（2016-09 至 2021-06）</td>
+<td>工商变更</td>
+</tr>
+<tr>
+<td><strong>成立日期</strong></td>
+<td>2014-05-26</td>
+<td>工商</td>
+</tr>
+<tr>
+<td><strong>注册资本</strong></td>
+<td>11,047.691 万元（实缴 97.3%）</td>
+<td>2024 年报</td>
+</tr>
+<tr>
+<td><strong>注册地</strong></td>
+<td>山东潍坊高新区（无锡/天津为子公司）</td>
+<td>工商</td>
+</tr>
+<tr>
+<td><strong>参保人数</strong></td>
+<td>126 人（2024 年报）</td>
+<td>年报</td>
+</tr>
+<tr>
+<td><strong>企业标签</strong></td>
+<td>专精特新 + 瞪羚 + C 轮</td>
+<td>天眼评分 86</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 三阶段技术能力迁移</h3>
+<h4>第一阶段：Micro-LED 显示底座构建期（~2021-2024）</h4>
+<p><strong>战略价值</strong>：不在于显示业务本身，而在于建立了从材料到封装的全链条工程能力——这是后续向光互联迁移的产业底座。</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>里程碑</th>
+<th>技术意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td>国内首家量产 NPSS（纳米图形化蓝宝石衬底）</td>
+<td>光通信对晶体缺陷要求更高，NPSS 量产是材料底座</td>
+</tr>
+<tr>
+<td>—</td>
+<td>GaN 基 Micro-LED 显示阵列量产</td>
+<td>阵列一致性是光互联多通道并行的核心要求</td>
+</tr>
+<tr>
+<td>—</td>
+<td>全球首发 MOG（Micro-LED on Glass）玻璃基封装</td>
+<td>为光引擎耦合提供低损耗、低成本的封装底座</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>参与国家重点研发计划（课题 2023YFB2806800）</td>
+<td>政策背书降低技术路线被颠覆风险</td>
+</tr>
+</tbody>
+</table>
+<h4>第二阶段：通信能力构建期（~2024-2026）</h4>
+<p><strong>核心工作</strong>：高频 GaN/InGaN 量子点材料通信化改造、单通道高速调制验证、阵列芯片通信制式设计、与 Driver IC/TIA/PD 联合调试。</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>里程碑</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td>4Gbps+ 单通道 Micro-LED 发射芯片验证</td>
+<td>证明 Micro-LED 可用于 GHz 级光通信</td>
+</tr>
+<tr>
+<td>2025-2026</td>
+<td>阵列芯片流片 + 启动客户送样</td>
+<td>从单通道走向多通道并行</td>
+</tr>
+<tr>
+<td>2025-2026</td>
+<td>Micro-LED Tx + Driver/TIA/PD 联合调试</td>
+<td>从分立芯片走向系统级验证</td>
+</tr>
+<tr>
+<td>2026.03</td>
+<td>天津工厂正式量产通线</td>
+<td>6,000㎡/月（2026）量产底座</td>
+</tr>
+</tbody>
+</table>
+<h4>第三阶段：产品化导入期（规划 2026-2028）</h4>
+<table>
+<thead>
+<tr>
+<th>产品代际</th>
+<th>产品名</th>
+<th>时间窗口</th>
+<th>核心交付物</th>
+<th>阶段目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一代</td>
+<td>µLight Chip</td>
+<td>2025-2026</td>
+<td>单通道/2×2/4×4 阵列芯片</td>
+<td>芯片能力验证（当前）</td>
+</tr>
+<tr>
+<td>第二代</td>
+<td>µLight Array</td>
+<td>2026-2027</td>
+<td>20×20 定制化阵列芯片</td>
+<td>本轮融资核心目标</td>
+</tr>
+<tr>
+<td>第三代</td>
+<td>µLight Engine</td>
+<td>2027-2028</td>
+<td>Micro-LED+Driver IC 封装组件</td>
+<td>切入 Scale-up 短距互联批量供应</td>
+</tr>
+<tr>
+<td>第四代</td>
+<td>µLight Engine CPO</td>
+<td>2028+</td>
+<td>面向 CPO/OIO 的共封装</td>
+<td>进入 CPO/OIO 核心器件层</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 财务数据可得性矩阵（重要风险）</h3>
+<table>
+<thead>
+<tr>
+<th>信息维度</th>
+<th>2021-2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>2026E</th>
+<th>2027E-2029E</th>
+<th>数据质量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营收</td>
+<td>❌ 无精确数据</td>
+<td>6,600 万（BP 自述）</td>
+<td>9,300 万（BP 自述）</td>
+<td>15,000 万（预测）</td>
+<td>31,000→100,000 万（预测）</td>
+<td>B/D 级</td>
+</tr>
+<tr>
+<td>利润表</td>
+<td>❌ 无</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>现金流量表</td>
+<td>❌ 无</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>资产负债表</td>
+<td>❌ 无</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌ 未披露</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>股权结构</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>✅ 21 位股东已穿透</strong></td>
+<td>—</td>
+<td>T 级</td>
+</tr>
+<tr>
+<td>子公司</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>✅ 5 家存续</strong></td>
+<td>—</td>
+<td>T 级</td>
+</tr>
+<tr>
+<td>司法风险</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>✅ 股权冻结+诉讼</strong></td>
+<td>—</td>
+<td>T 级</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>关键数据缺口</strong>：(1) 无任何经审计财务数据；(2) 无利润表/现金流量表；(3) 光互联业务无任何客户订单或意向函——商业化假设全部为 BP 预测。</p>
+</blockquote>
+<h3>2.4 收入预测（BP 自述，无审计支撑）</h3>
+<table>
+<thead>
+<tr>
+<th>年度</th>
+<th>Micro-LED 显示（万元）</th>
+<th>Micro-LED 光互联（万元）</th>
+<th>合计（万元）</th>
+<th>YoY</th>
+<th>光互联占比</th>
+<th>置信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024</td>
+<td>6,600</td>
+<td>—</td>
+<td>6,600</td>
+<td>—</td>
+<td>0%</td>
+<td>B 级</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>9,300</td>
+<td>—</td>
+<td>9,300</td>
+<td>+40.9%</td>
+<td>0%</td>
+<td>B 级 + 北方网 2 亿订单确认</td>
+</tr>
+<tr>
+<td>2026E</td>
+<td>15,000</td>
+<td>—</td>
+<td>15,000</td>
+<td>+61.3%</td>
+<td>0%</td>
+<td>D 级（预测）</td>
+</tr>
+<tr>
+<td>2027E</td>
+<td>~28,000</td>
+<td>~3,000</td>
+<td>31,000</td>
+<td>+106.7%</td>
+<td>~10%</td>
+<td>D 级（预测）</td>
+</tr>
+<tr>
+<td>2028E</td>
+<td>~37,500</td>
+<td>~12,500</td>
+<td>50,000</td>
+<td>+61.3%</td>
+<td>~25%</td>
+<td>D 级（预测）</td>
+</tr>
+<tr>
+<td>2029E</td>
+<td>~50,000</td>
+<td>~50,000</td>
+<td>100,000</td>
+<td>+100%</td>
+<td>~50%</td>
+<td>D 级（预测）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2024-2029E CAGR ≈ 72%</strong>——高度依赖光互联第二曲线在 2027 后如期起量。</p>
+<h3>2.5 关键事件时间轴</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2014-05</td>
+<td>席光义+郭文平创立山东元旭光电（潍坊）</td>
+<td>起点，LED 显示主业</td>
+</tr>
+<tr>
+<td>2016-09</td>
+<td>更名为元旭光电</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Pre-A 轮（心契约）</td>
+<td>⚠️ 该管理人 2023-10-26 已注销</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>B 轮（屹唐华创+清控银杏+启迪汇+中科恒远+金点壹）</td>
+<td>清华系+央企入局</td>
+</tr>
+<tr>
+<td>2021-06</td>
+<td>更名为元旭半导体科技股份有限公司</td>
+<td>转型叙事启动</td>
+</tr>
+<tr>
+<td>2021-12</td>
+<td>C 轮（之路海河+华潍新动能）</td>
+<td>天津国资入局</td>
+</tr>
+<tr>
+<td>2022-11</td>
+<td>罗毅院士受聘为首席顾问（潍坊高新区报）</td>
+<td>学术背书</td>
+</tr>
+<tr>
+<td>2025-03</td>
+<td>天津工厂量产通线</td>
+<td>产业化里程碑</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>MOG 发布会 + 2 亿在手订单公开</td>
+<td>商业进展</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>本轮融资 2 亿元</td>
+<td>当前轮次</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第三部分 横向对标：与海外 AI 光互联器件公司的位势</h2>
+<h3>3.1 海外 AI 光互联核心器件公司估值对标</h3>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>路线</th>
+<th>主要产品</th>
+<th>融资/交易</th>
+<th>估值</th>
+<th>商业阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ayar Labs</strong></td>
+<td>硅光</td>
+<td>Optical I/O chiplet/CPO 平台</td>
+<td>2026 融资</td>
+<td><strong>$38 亿</strong></td>
+<td>已有 Design-in 客户</td>
+</tr>
+<tr>
+<td><strong>Lightmatter</strong></td>
+<td>硅光+光子计算</td>
+<td>光互联引擎平台</td>
+<td>2025 报道</td>
+<td><strong>$44 亿</strong></td>
+<td>多轮融资</td>
+</tr>
+<tr>
+<td><strong>Celestial AI</strong></td>
+<td>硅光 Photonic Fabric</td>
+<td>光互联/光内存互联</td>
+<td>2026 被 Marvell 收购</td>
+<td><strong>$32.5 亿</strong></td>
+<td>被收购</td>
+</tr>
+<tr>
+<td><strong>DustPhotonics</strong></td>
+<td>硅光光引擎</td>
+<td>光连接器件</td>
+<td>2025 被 Credo 收购</td>
+<td><strong>$8.74 亿</strong></td>
+<td>已有产品+被收购</td>
+</tr>
+<tr>
+<td><strong>Avicena</strong></td>
+<td><strong>GaN Micro-LED（同路线）</strong></td>
+<td>LightBundle 并行光互联</td>
+<td>战略投资</td>
+<td>未公开</td>
+<td>评估套件阶段</td>
+</tr>
+<tr>
+<td><strong>Hyperlume</strong></td>
+<td><strong>Micro-LED 光互联（同路线）</strong></td>
+<td>Micro-LED 光互联芯片</td>
+<td>2025.09 被 Credo 收购</td>
+<td>未单独披露</td>
+<td>被收购</td>
+</tr>
+<tr>
+<td><strong>元旭半导体</strong></td>
+<td><strong>GaN Micro-LED（同路线）</strong></td>
+<td>Micro-LED 并行光源阵列</td>
+<td><strong>本轮 2 亿元</strong></td>
+<td>未公开</td>
+<td><strong>阵列送样验证中</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>可比性判断</strong>：</p>
+<ul>
+<li>与 Avicena 最可比（同技术同赛道）——但 Avicena 成立 7 年仍处于评估套件阶段，暗示 Micro-LED 路线商业化时间表普遍偏长</li>
+<li>与 Ayar Labs / Lightmatter 差异：技术路线不同（硅光 vs Micro-LED）+ 商业阶段不同（Design-in vs 送样）+ 估值差异（10-50x）</li>
+<li>海外高估值不可线性外推至元旭：融资环境、商业化阶段、生态系统均存在系统性差异</li>
+</ul>
+<h3>3.2 国内 Micro-LED 竞争位势（五维能力矩阵）</h3>
+<table>
+<thead>
+<tr>
+<th>竞争维度</th>
+<th>模组厂（利亚德等）</th>
+<th>LED 芯片厂（三安等）</th>
+<th><strong>元旭半导体</strong></th>
+<th>差异化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>材料能力（衬底+外延）</td>
+<td>弱</td>
+<td>强——LED 外延积累深厚</td>
+<td><strong>非常强</strong>——首家量产 NPSS+GaN 量子点</td>
+<td>🔴 核心壁垒</td>
+</tr>
+<tr>
+<td>芯片阵列能力</td>
+<td>依赖上游</td>
+<td>强——LED 芯片阵列经验</td>
+<td><strong>强</strong>——显示侧阵列已产业化</td>
+<td>🟡 迁移优势</td>
+</tr>
+<tr>
+<td>巨量转移能力</td>
+<td>部分具备</td>
+<td>部分具备</td>
+<td><strong>已产业化</strong>——MOG 量产验证</td>
+<td>🔴 工程化领先</td>
+</tr>
+<tr>
+<td>先进封装（玻璃基/键合）</td>
+<td>缺失</td>
+<td>部分具备</td>
+<td><strong>全球首发 MOG+晶圆键合</strong></td>
+<td>🔴 独特壁垒</td>
+</tr>
+<tr>
+<td>通信链路测试能力</td>
+<td>缺失</td>
+<td>部分具备</td>
+<td><strong>已联合验证</strong>——Tx+Driver/TIA/PD 联调</td>
+<td>🟡 生态尚在构建</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键判断</strong>：国内 LED 芯片厂（三安）在 GaN 外延和阵列方面有深厚基础，但缺乏 Micro-LED 光互联所需的通信级制程和链路测试能力。模组厂高度依赖上游。元旭的差异化在于&quot;五维闭环&quot;——但通信侧（维度 4/5）仍处于验证阶段。</p>
+<h3>3.3 硅光路线的间接竞争</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>硅光（Ayar Labs 等）</th>
+<th>Micro-LED（元旭/Avicena）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通道密度</td>
+<td>中</td>
+<td><strong>高</strong></td>
+</tr>
+<tr>
+<td>功耗</td>
+<td>中（外置激光器+调制器）</td>
+<td><strong>低</strong>（直接调制，&lt;5 pJ/bit）</td>
+</tr>
+<tr>
+<td>工艺成熟度</td>
+<td>较高（CMOS 兼容）</td>
+<td>较低（GaN 体系）</td>
+</tr>
+<tr>
+<td>生态支持</td>
+<td><strong>强</strong>（Intel/TSMC/NVIDIA）</td>
+<td>弱（少数玩家）</td>
+</tr>
+<tr>
+<td>估值参照</td>
+<td>$38-44 亿</td>
+<td>本轮 2 亿元人民币</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判断</strong>：硅光和 Micro-LED 在远期 CPO/OIO 可能竞争，但当前阶段互补而非互斥。Micro-LED 强调并行化/高密度/低成本的结构性优势。</p>
+<h3>3.4 团队横纵对标</h3>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>创始人</th>
+<th>学术资源</th>
+<th>产业经验</th>
+<th>融资阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>源杰科技（688498）</td>
+<td>张欣刚（中科院半导体所博士）</td>
+<td>中科院</td>
+<td>华为+光芯片创业</td>
+<td>已上市</td>
+</tr>
+<tr>
+<td>长光华芯（688048）</td>
+<td>王俊（中科院博士+MIT 博后）</td>
+<td>中科院+MIT</td>
+<td>多家海外光子公司</td>
+<td>已上市</td>
+</tr>
+<tr>
+<td>纵慧芯光</td>
+<td>陈晓迟（斯坦福博士）</td>
+<td>斯坦福</td>
+<td>VCSEL 芯片创业</td>
+<td>C 轮+</td>
+</tr>
+<tr>
+<td><strong>元旭</strong></td>
+<td>席光义+郭文平（清华电子工程博士）</td>
+<td>清华+罗毅院士</td>
+<td>LED 显示 10 年+光通信转型</td>
+<td>本轮 C+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>元旭核心团队验证状态</strong>：</p>
+<ul>
+<li>✅ <strong>席光义</strong>：清华电子工程博士 + 师从罗毅院士 + GaN/HEMT 研究（TEEC、物理学报、央广网多源验证）</li>
+<li>✅ <strong>郭文平</strong>：清华电子工程博士（2006）+ 大连美明+江苏新广联履历（多源验证）</li>
+<li>🔴 <strong>刘暐湘（CSO）</strong>：BP 声称清华电机系，但 2022 年清华校庆以&quot;光峰科技创始人李屹同事&quot;身份出席（非校友身份），构成对清华学历的有力反驳；职业生涯全程在投影/显示行业（光峰科技 688007 专显副总），与半导体/光通信零交集</li>
+<li>✅ <strong>罗毅院士</strong>：中国工程院院士 + DFB 激光通信光源开创者 + 元旭首席顾问（潍坊高新区报+清华官网多源确认）</li>
+</ul>
+<hr />
+<h2>第四部分 估值分析：本轮 2 亿元融资的合理性</h2>
+<h3>4.1 估值参照系</h3>
+<table>
+<thead>
+<tr>
+<th>估值方法</th>
+<th>参照对象</th>
+<th>估值锚点</th>
+<th>适用性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>海外赛道对标</strong></td>
+<td>Ayar Labs/Lightmatter</td>
+<td>$8.7-44 亿（美元）</td>
+<td>弱（系统差异大）</td>
+</tr>
+<tr>
+<td><strong>同技术路线对标</strong></td>
+<td>Avicena/Hyperlume</td>
+<td>未公开/未单独披露</td>
+<td>无法使用</td>
+</tr>
+<tr>
+<td><strong>国内半导体 A-B 轮参照</strong></td>
+<td>早期半导体创业公司</td>
+<td>投前 5-15 亿（人民币）</td>
+<td>中等</td>
+</tr>
+<tr>
+<td><strong>PS 法（显示业务）</strong></td>
+<td>利亚德等 LED 显示公司</td>
+<td>PS 1-3x → 1.5-4.5 亿</td>
+<td>部分适用</td>
+</tr>
+<tr>
+<td><strong>本轮融资反推</strong></td>
+<td>2 亿融资，假设出让 10-20%</td>
+<td>投前 8-18 亿</td>
+<td>需确认出让比例</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>估值最大约束</strong>：(1) 投前估值未在 BP 中披露；(2) 无利润表，无法用 PE/PB；(3) 光互联业务无收入，无法用 PS；(4) 海外对标存在系统性差异。</p>
+</blockquote>
+<h3>4.2 2 亿元资金使用推演（BP 披露比例）</h3>
+<table>
+<thead>
+<tr>
+<th>资金使用项</th>
+<th>比例</th>
+<th>金额（万元）</th>
+<th>覆盖时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>研发及客户联合验证</td>
+<td>30%</td>
+<td>6,000</td>
+<td>2026-2028</td>
+</tr>
+<tr>
+<td>产线建设</td>
+<td>50%</td>
+<td>10,000</td>
+<td>2026-2027</td>
+</tr>
+<tr>
+<td>运营资金</td>
+<td>20%</td>
+<td>4,000</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>4.3 三情景推演</h3>
+<p><strong>乐观情景（概率 15-20%）</strong>：2026H2 阵列客户验证通过 + 2027H1 首个 Design-in + 2028 光互联收入 3,000-5,000 万 → 当前估值无论多高都显得便宜</p>
+<p><strong>基准情景（概率 40-50%）</strong>：2027H2 首个 Design-in（比 BP 晚 6-12 个月）+ 2028 光互联收入 500-1,500 万 + 需启动下一轮融资 → 当前估值需足够低（留有安全边际）</p>
+<p><strong>悲观情景（概率 25-35%）</strong>：2026-2027 客户验证不理想 + 2028 资金耗尽 + 光互联商业化需 3-5 年更长时间 → 投资可能面临较大损失（显示业务+技术团队是被收购的&quot;底价&quot;价值）</p>
+<h3>4.4 建议投资条款框架</h3>
+<table>
+<thead>
+<tr>
+<th>条款</th>
+<th>建议</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>出资方式</strong></td>
+<td>分两期：首期 1 亿（尽调完成后）+ 二期 1 亿（M3 里程碑后）</td>
+<td>降低技术验证期不确定性</td>
+</tr>
+<tr>
+<td><strong>里程碑设置</strong></td>
+<td>M1 客户正面评估（2026H2）/ M2 首个 Design-in（2027H1）/ M3 光互联首单（2027H2）</td>
+<td>三个关键商业化节点</td>
+</tr>
+<tr>
+<td><strong>估值调整/反稀释</strong></td>
+<td>里程碑未达成 → 估值调整或创始人股份补偿</td>
+<td>保护延迟情景下投资人利益</td>
+</tr>
+<tr>
+<td><strong>退出条款</strong></td>
+<td>2029 年前未完成 IPO 或被并购 → 投资人回售权</td>
+<td>锁定退出路径</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第五部分 综合结论与风险提示</h2>
+<h3>5.1 投资亮点</h3>
+<h4>⭐ 亮点1：NPSS+MOG+GaN 量子点的三合一壁垒</h4>
+<ul>
+<li><strong>NPSS 衬底</strong>：国内首家量产，光通信对晶体缺陷要求高于显示，NPSS 量产是材料底座</li>
+<li><strong>MOG 玻璃基封装</strong>：全球首发技术，为光引擎耦合提供低损耗、低成本封装底座</li>
+<li><strong>GaN 量子点外延</strong>：清华独家合作，具有技术先进性</li>
+<li><strong>时间窗口</strong>：3-5 年的先发优势；3 年后三安等 LED 厂+京东方等面板厂追赶将显著压缩壁垒</li>
+</ul>
+<h4>⭐ 亮点2：AI 光互联从铜到光的确定性迁移</h4>
+<ul>
+<li><strong>不是预测而是正在发生的产业趋势</strong>：xAI Colossus 集群 GPU 利用率仅~10% 验证瓶颈</li>
+<li><strong>海外已有多起 AI 光互联核心器件独立融资+并购案例</strong>：Ayar Labs $38 亿、Lightmatter $44 亿、Celestial AI $32.5 亿被 Marvell 收购</li>
+<li><strong>Credo 收购 Hyperlume（2025.09）</strong>：电芯片巨头（$250 亿市值）真金白银押注 Micro-LED</li>
+</ul>
+<h4>⭐ 亮点3：清华罗毅院士团队的学术背书</h4>
+<ul>
+<li>罗毅院士是 DFB 激光通信光源技术开创者，2022-11 受聘为首席顾问（潍坊高新区报确认）</li>
+<li>2025-10-21 MOG 发布会罗毅亲自出席并致辞——参与深度超出挂名顾问</li>
+<li>清华系资本（窄口径 3 家 12.82% + 宽口径含之路海河 21.15%）已入股</li>
+</ul>
+<h4>⭐ 亮点4：天津量产基地 + 6,000㎡/月产能</h4>
+<ul>
+<li>2025-03 天津工厂正式量产通线（北方网+天津工信局双重政府背书）</li>
+<li>2026 产能爬升至 6,000㎡/月</li>
+<li>2025-10 公开宣布&quot;2 亿元在手订单&quot;</li>
+</ul>
+<h3>5.2 风险提示</h3>
+<h4>⚠️ 风险1（最大）：光互联商业化零验证</h4>
+<ul>
+<li>BP 中商业化假设链 5 个环节（技术接受→客户使用→通过验证→2027 量产→2027-2029 收入爬坡），对外部可验证证据的支持<strong>为零</strong></li>
+<li>客户导入最优路径 18-24 个月（送样→评估→Design-in→小批量→批量），2028 前难以有实质性光互联批量收入</li>
+<li>2027 年光互联量产时间表可能过于乐观</li>
+</ul>
+<h4>⚠️ 风险2：财务信息完全不透明</h4>
+<ul>
+<li>无任何经审计财务数据</li>
+<li>利润表/现金流量表/历史融资/股权结构（BP 中）全部缺失</li>
+<li>显示业务实际盈利能力未知——参照行业龙头利亚德 2024 亏损 8.89 亿，显示业务盈利质量存疑</li>
+<li>无法判断 Burn Rate 和 2 亿元的实际可支撑时间（Runway）</li>
+</ul>
+<h4>⚠️ 风险3（穿透后新增）：席光义控制权法律基础不明确</h4>
+<ul>
+<li>席光义直接持股仅 6.559%（+光启未来间接 6.32%）= 合计约 12.88%</li>
+<li>CTO 郭文平直接持股 13.85%（+间接 16.45%）= 合计约 30.31%</li>
+<li>两人 2023-03-24 完成 GP 切换（郭退出光启未来 GP，席接手）——若无书面一致行动协议，创始人阵营约 37.59% 名义持股实质上可能分裂</li>
+<li>清华系 21.15% + 天津/潍坊国资 22.67%，机构合计远超创始人团队</li>
+</ul>
+<h4>⚠️ 风险4：席光兴股权冻结（10.862%，至 2028 年）</h4>
+<ul>
+<li>7 笔股权冻结 + 2 条限高 + 终本案件（已确认升级）</li>
+<li>与席光义的亲属关系为推断（同姓+同期入股），未确认</li>
+<li>构成科创板 IPO 实质障碍，需在 Pre-IPO 前清理</li>
+</ul>
+<h4>⚠️ 风险5：CSO 刘暐湘背景存疑</h4>
+<ul>
+<li>BP 声称&quot;清华电机系&quot;，但 2022 年清华校庆以&quot;光峰科技创始人李屹同事&quot;身份出席（非校友），构成最强反驳</li>
+<li>职业生涯全程在投影/显示行业（光峰科技 688007 专显副总），与半导体/光通信零交集</li>
+<li>元旭 CSO 角色无任何公开报道印证</li>
+</ul>
+<h4>⚠️ 风险6：基金到期退出压力（11.22%）</h4>
+<ul>
+<li>启迪汇（1.87%）2027-04-17 到期</li>
+<li>屹唐华创（9.35%）2027-12 到期</li>
+<li>合计 11.22% 持股将在 1-2 年内寻求退出，可能迫使公司优先安排老股受让而非业务发展</li>
+</ul>
+<h4>⚠️ 风险7：心契约（2.82%）管理人登记已注销</h4>
+<ul>
+<li>Pre-A 轮（2017 年）管理人 2023-10-26 注销</li>
+<li>该部分股权的合规定性和处置方案需明确</li>
+</ul>
+<h3>5.3 投资建议</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>评级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>行业前景</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>AI 光互联从铜到光是确定产业迁移</td>
+</tr>
+<tr>
+<td><strong>技术壁垒</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>NPSS+MOG+GaN 量子点三合一，3-5 年窗口</td>
+</tr>
+<tr>
+<td><strong>商业模式</strong></td>
+<td>⭐⭐⭐</td>
+<td>IDM 一体化但光互联未验证</td>
+</tr>
+<tr>
+<td><strong>盈利能力</strong></td>
+<td>❌ 无法评级</td>
+<td>无经审计数据</td>
+</tr>
+<tr>
+<td><strong>成长性</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>2024-2029E 收入 CAGR 72%（BP 预测）</td>
+</tr>
+<tr>
+<td><strong>财务健康</strong></td>
+<td>❌ 无法评估</td>
+<td>财务黑箱</td>
+</tr>
+<tr>
+<td><strong>估值合理性</strong></td>
+<td>⭐⭐⭐</td>
+<td>投前估值未披露，建议分步出资+里程碑</td>
+</tr>
+<tr>
+<td><strong>投资性价比</strong></td>
+<td>⭐⭐⭐</td>
+<td>赛道好但执行风险高，需 P0 尽调</td>
+</tr>
+</tbody>
+</table>
+<h3>5.4 P0 级尽调必查项</h3>
+<ol>
+<li><strong>2024-2025 年审计报告或管理层报表</strong>——判断显示业务是否真盈利（毛利率&gt;25% 为正面信号）</li>
+<li><strong>工商底档（含历史融资估值和股东协议）</strong>——判断本轮投前估值合理性</li>
+<li><strong>已送样客户的评估反馈（至少 1 家）</strong>——判断光互联商业化实质性进展</li>
+<li><strong>核心专利清单+归属确认</strong>——判断技术壁垒法律保障</li>
+<li><strong>一致行动人协议/股东协议</strong>——席光义控制权的法律基础</li>
+<li><strong>席光兴个人债务详情+股权冻结解决方案</strong>——IPO 实质障碍清理</li>
+<li><strong>心契约（2.82%）管理人注销后的股权处理方案</strong>——合规性确认</li>
+<li><strong>启迪汇+屹唐华创退出安排</strong>——避免对本轮投资的稀释</li>
+</ol>
+<h3>5.5 最终判断</h3>
+<blockquote>
+<p><strong>元旭半导体是 AI 光互联赛道中在国内稀缺的 Micro-LED 全链条能力标的</strong>。NPSS+MOG+GaN 量子点的三合一壁垒、清华罗毅院士团队的学术资源、AI 光互联从铜到光的确定性迁移，构成了正面投资逻辑。</p>
+<p><strong>退出方向</strong>（Issue 21 升级，双主业可跨界）：<strong>双主业可跨界放宽</strong> → <strong>首选注入天保基建（医药主营+芯片第二主业）</strong> 或 <strong>次选注入绿田机械（机械主营+芯片第二主业）</strong>；独立上市为最终兜底。<strong>新收约束</strong>：仅 1 家新收平台，本项目占用 0 个容量（不通过新收直接承接）；但 <strong>Issue 21 放宽双主业跨界约束</strong> 后，我方天保基建可通过双主业架构承接芯片方向（新收绿田机械也可通过机械+芯片双主业承接），<strong>不再需扩大新收范围</strong>。需审计/穿透完成后方可推进（客观事实：本轮为 C+ 轮、席光兴 10.862% 股权冻结至 2028 年、两只基金 11.22% 持股 2027 年到期、无任何经审计利润表/现金流量表）。</p>
+<p><strong>独立上市路径</strong>：<strong>创业板</strong>（科创属性强）→ 预期 24-36 个月 → 核心条件：❌ 无经审计财务数据 + 商业化零验证 + 控制权法律基础不明确 → 独立上市路径存在但需先完成 8 项 P0 级尽调；Issue 21 后不再是首选，仅作最终兜底。</p>
+<p>详见 <code>reports/_reserved-projects/listed_companies_injection_analysis.md § 5.4/§ 6/§ 8.3</code>。<strong>但穿透后的风险显著上升</strong>：(1) 商业化零验证是最大风险；(2) 财务黑箱无法判断真实健康度；(3) 席光义控制权依赖于席光兴的股权稳定性+郭文平的一致行动意愿——若无书面一致行动协议，创始人阵营 41.85% 名义持股可能分裂；(4) 两只基金 11.22% 持股即将到期退出。</p>
+<p><strong>建议路径</strong>：在获取 8 项 P0 级尽调材料（含穿透后新增的 4 项法律/治理核查）之前，无法做出有依据的投资决策。建议以&quot;获取 P0 材料 → 法律尽调（尤重一致行动人/股权冻结）→ 技术/客户独立验证 → 估值建模 → 投决&quot;的路径推进。<strong>若推进，建议分两期出资（首期 1 亿+二期 1 亿）+ 三个里程碑对赌 + 2029 前回售权保护</strong>。</p>
+</blockquote>
+<hr />
+<h2>数据来源与置信度说明</h2>
+<table>
+<thead>
+<tr>
+<th>数据来源</th>
+<th>类型</th>
+<th>可靠性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Innoshine BP_2026.6.16.pdf</td>
+<td>B 级（项目方自述）</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>天眼查工商数据（2026-06-18 VIP 浏览器逐户穿透）</td>
+<td>T 级（工商公示）</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>央广网、北方网、潍坊高新区报、清华官网、物理学报</td>
+<td>C 级（公开媒体）</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>TEEC、启信宝、金锄头文库、pjtime 等</td>
+<td>K 级（独立交叉验证）</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>海外公开报道（WSJ/Wired/Investors.com/Microsoft MOSAIC 等）</td>
+<td>C 级</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>声明</strong>：本报告基于项目方 BP 自述 + 天眼查工商穿透数据 + 公开独立交叉验证，所有数据可追溯至原始文件。⚠️ 财务数据全部为 BP 自述（B 级），无经审计支撑——尽调收资第一优先级。</p>
+
+</body>
+</html>

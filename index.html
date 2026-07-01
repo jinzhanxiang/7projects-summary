@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>储备项目投资分析统一库</title>
+<script>
+// 手机 UA 嗅探 → 自动跳转 index_m.html
+(function(){
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari/i.test(ua);
+  if (isMobile && !/iPad/.test(ua) && window.innerWidth < 768) {
+    fetch('index_m.html', {method:'HEAD'}).then(function(r){
+      if (r.ok) window.location.replace('index_m.html');
+    }).catch(function(){});
+  }
+})();
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a202c;background:#fafaf9;line-height:1.9;font-size:19px}
+.hero{background:linear-gradient(135deg,#fef9e7 0%,#fef5e7 50%,#fdf2f8 100%);color:#1a202c;padding:60px 20px;text-align:center;border-bottom:2px solid #f6e05e}
+.hero h1{font-size:42px;margin-bottom:14px;font-weight:700;background:linear-gradient(135deg,#1a365d,#2c5282);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;color:#4a5568;max-width:700px;margin:0 auto}
+.container{max-width:1200px;margin:32px auto;padding:0 20px}
+.intro{background:#ffffff;border-radius:14px;padding:32px;margin-bottom:28px;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #f7fafc}
+.intro h2{font-size:24px;color:#1a365d;margin-bottom:14px}
+.intro p{font-size:18px;color:#4a5568;margin-bottom:10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px;margin-bottom:32px}
+.card{background:#ffffff;border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.04);border-left:5px solid #1a365d;transition:all 0.2s;border-top:1px solid #f7fafc;border-right:1px solid #f7fafc;border-bottom:1px solid #f7fafc}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(26,54,93,0.12)}
+.card h3{font-size:22px;color:#1a365d;margin-bottom:8px;font-weight:700}
+.card .subtitle{font-size:16px;color:#4a5568;margin-bottom:14px;line-height:1.6}
+.card .meta{display:flex;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid #f1f5f9;font-size:14px;color:#718096;flex-wrap:wrap;gap:6px}
+.card .meta span{background:#fef5e7;padding:4px 10px;border-radius:12px;color:#7b341e}
+.card a.btn{display:inline-block;background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;padding:8px 18px;border-radius:6px;text-decoration:none;font-size:15px;margin-top:14px;transition:all 0.2s}
+.card a.btn:hover{background:linear-gradient(135deg,#2c5282,#1a365d);box-shadow:0 4px 12px rgba(26,54,93,0.3)}
+.summary-cta{background:linear-gradient(135deg,#d69e2e,#b7791f);color:#fff;padding:36px;border-radius:14px;text-align:center;margin-bottom:32px;box-shadow:0 4px 16px rgba(214,158,46,0.25)}
+.summary-cta h2{font-size:28px;margin-bottom:14px;font-weight:700}
+.summary-cta p{font-size:17px;margin-bottom:18px;opacity:0.95}
+.summary-cta a{background:#fff;color:#b7791f;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:17px;display:inline-block;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.summary-cta a:hover{background:#fef5e7;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+.mobile-link{text-align:center;margin:20px 0}
+.mobile-link a{display:inline-block;background:#3182ce;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px}
+.cards-section-title{font-size:22px;color:#1a365d;margin:30px 0 14px;font-weight:700;padding-left:12px;border-left:4px solid #d69e2e}
+.cards-section-title.deal{border-left-color:#9f1239}
+.card.deal{border-left-color:#9f1239;background:linear-gradient(135deg,#fff1f2,#fff5f7)}
+.card.deal:hover{box-shadow:0 8px 20px rgba(159,18,57,0.12)}
+.card.deal h3{color:#9f1239}
+.card.deal .meta span{background:#fce7e7;color:#9f1239}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>储备项目投资分析统一库</h1>
+<p>储备项目 8 个 · 收购上市公司标的研究 1 个 · 当前共 9 项</p>
+</div>
+
+<div class="container">
+<div class="mobile-link">
+<a href="index_m.html">📱 访问手机版（节省流量）</a>
+</div>
+
+<div class="intro">
+<h2>📌 关于本报告库</h2>
+<p><strong>框架定位</strong>：储备项目库 + 收购上市公司标的研究（投资部统一分析框架 · 滚动更新，新增项目自动纳入）</p>
+<p><strong>分析方法</strong>：纵横分析法 + 多源数据交叉验证</p>
+<p><strong>分析框架</strong>：行业 → 纵向演变 → 横向对标 → 估值 → 结论</p>
+<p><strong>数据来源</strong>：项目方一手材料 + 公开行业数据交叉验证（AKShare/Tushare）+ A股年报库</p>
+<p><strong>项目数</strong>：储备 8 + 收购上市公司标的 1 = 9，详见汇总统计页版本历史</p>
+</div>
+
+<div class="summary-cta">
+<h2>📊 8维度横向对比汇总</h2>
+<p>查看储备项目在8个核心维度的横向对比，包含投资优先级排序和综合评分</p>
+<a href="summary.html">查看储备项目汇总分析 →</a>
+</div>
+
+<h3 class="cards-section-title">📂 储备项目（8）</h3>
+<div class="cards">
+
+<div class="card">
+<h3>晶能光电</h3>
+<p class="subtitle">中国硅衬底LED芯片技术开拓者</p>
+<p><strong>上市状态</strong>：拟科创板IPO</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐⭐</p>
+<a href="projects/jngd.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>柯渡医学</h3>
+<p class="subtitle">医疗设备第三方维保双寡头之一</p>
+<p><strong>上市状态</strong>：未上市</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐</p>
+<a href="projects/kedu.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>中复碳芯</h3>
+<p class="subtitle">中国建材集团旗下碳纤维复合材料平台</p>
+<p><strong>上市状态</strong>：未上市</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐</p>
+<a href="projects/zhongfu.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>宏远创信</h3>
+<p class="subtitle">100%民营售电龙头</p>
+<p><strong>上市状态</strong>：未上市</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐</p>
+<a href="projects/hongyuan.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>联通云IDC</h3>
+<p class="subtitle">山西太原1,400机柜高品质IDC资产</p>
+<p><strong>上市状态</strong>：整体出售</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐⭐</p>
+<a href="projects/unicom-idc.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>信鸿医疗</h3>
+<p class="subtitle">天津IVD综合服务+医疗产业孵化</p>
+<p><strong>上市状态</strong>：新三板创新层</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐</p>
+<a href="projects/xinhong.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>迅巢科技</h3>
+<p class="subtitle">物流快递换电场景头部（市占率90%+）</p>
+<p><strong>上市状态</strong>：未上市</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐</p>
+<a href="projects/xunchao.html" class="btn">查看完整报告 →</a>
+</div>
+
+<div class="card">
+<h3>元旭半导体</h3>
+<p class="subtitle">Micro-LED并行光引擎（AI短距光互联）</p>
+<p><strong>上市状态</strong>：本轮融资2亿</p>
+<p><strong>综合评分</strong>：⭐⭐⭐</p>
+<a href="projects/innoshine.html" class="btn">查看完整报告 →</a>
+</div>
+
+</div>
+
+<h3 class="cards-section-title deal">🏢 收购上市公司标的研究（1）</h3>
+<div class="cards">
+
+<div class="card deal">
+<h3>拟收购上市公司研究</h3>
+<p class="subtitle">8维度筛选框架 + 3家上市公司（科华/绿田/爱朋）纵横分析 + 收购优先级</p>
+<p><strong>研究类型</strong>：收购上市公司标的研究</p>
+<p><strong>综合评分</strong>：⭐⭐⭐⭐</p>
+<a href="projects/acquisition-listed-co.html" class="btn" style="background:linear-gradient(135deg,#9f1239,#be123c)">查看研究报告 →</a>
+</div>
+
+</div>
+
+<div class="intro">
+<h2>🎯 关键发现速览</h2>
+<p><strong>📌 核心事实</strong>：联通云IDC业主是山西伽峰通信科技（民营），整体出售退出</p>
+<p><strong>📌 核心事实</strong>：宏远创信是100%民营企业（孙鹏69.6%控股）</p>
+<p><strong>⭐ 明确上市路径</strong>：晶能光电（拟科创板）</p>
+<p><strong>📊 退出预期最明确</strong>：联通云IDC（整体出售路径）+ 晶能光电（IPO路径）</p>
+<p><strong>💡 财务最透明</strong>：晶能光电 + 宏远创信 + 信鸿医疗（审计级数据）</p>
+<p><strong>⚠️ 需补充尽调</strong>：柯渡医学 + 中复碳芯 + 迅巢科技（财务待审计）</p>
+<p><strong>🏢 收购上市公司标的</strong>：拟收购上市公司研究（科华/绿田/爱朋 3 家 8 维度对比）</p>
+</div>
+
+</div>
+</body>
+</html>

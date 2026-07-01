@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zhongfu - 商业尽调分析报告</title>
+<script>
+// 手机 UA 嗅探 → 自动跳转 _m.html
+(function(){
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile Safari/i.test(ua);
+  if (isMobile && !/iPad/.test(ua) && window.innerWidth < 768) {
+    var path = window.location.pathname;
+    // 路径转 _m.html
+    var mPath = path.replace(/\.html?$/, '_m.html');
+    if (mPath === path) mPath = path + '_m.html';
+    // 防递归：检查 _m.html 已存在再跳转
+    var test = new Image();
+    test.onerror = function(){};  // 404 不跳转
+    test.onload = function(){ window.location.replace(mPath); };
+    test.src = mPath.split('/').pop();
+    // 简化方案：直接尝试跳转（404 后用户回退即可）
+    var finalPath = mPath;
+    fetch(finalPath, {method:'HEAD'}).then(function(r){
+      if (r.ok) window.location.replace(finalPath);
+    }).catch(function(){});
+  }
+})();
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a202c;background:#fafaf9;line-height:1.9;font-size:19px;max-width:1200px;margin:0 auto;padding:24px}
+h1{font-size:30px;color:#1a365d;margin:28px 0 16px;border-bottom:3px solid #d69e2e;padding-bottom:12px;font-weight:700}
+h2{font-size:24px;color:#1a365d;margin:30px 0 14px;font-weight:700}
+h3{font-size:20px;color:#2d3748;margin:22px 0 10px;font-weight:600}
+h4{font-size:18px;color:#2d3748;margin:18px 0 8px;font-weight:600}
+p{margin-bottom:14px;font-size:18px}
+strong{color:#1a365d}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:16px;table-layout:fixed;word-break:keep-all}
+th{background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;padding:11px 14px;text-align:left;font-size:15px;font-weight:600;word-break:keep-all;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid #e2e8f0;font-size:15px;word-break:keep-all;vertical-align:middle}
+table td:first-child, table th:first-child{white-space:nowrap;font-weight:600;min-width:120px}
+table td:nth-child(n){overflow-wrap:break-word}
+tr:hover td{background:#fef5e7}
+table.card-table{background:#fafaf9;border-radius:10px;overflow:hidden}
+blockquote{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-left:4px solid #d69e2e;padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0;color:#744210;font-size:17px}
+.nav{background:linear-gradient(135deg,#1a365d,#2c5282);padding:14px 20px;margin:-24px -24px 28px;border-radius:0 0 12px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.nav a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;margin-right:14px;padding:4px 10px;border-radius:6px;transition:all 0.2s}
+.nav a:hover{color:#fff;background:rgba(255,255,255,0.15);text-decoration:none}
+ul,ol{margin:14px 0 14px 28px}
+li{margin-bottom:8px;font-size:18px}
+code{background:#f7fafc;padding:3px 8px;border-radius:4px;font-size:15px;color:#c53030}
+pre{background:#1a202c;color:#e2e8f0;padding:18px;border-radius:8px;margin:18px 0;overflow-x:auto}
+pre code{background:none;color:inherit;font-size:15px}
+a{color:#3182ce;text-decoration:none}
+a:hover{color:#1a365d;text-decoration:underline}
+hr{border:none;border-top:1px solid #e2e8f0;margin:32px 0}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="index.html">🏠 主页</a>
+<a href="summary.html">📊 储备项目汇总</a>
+<a href="projects/acquisition-listed-co.html">🏢 拟收购上市公司研究</a>
+<a href="projects/hongyuan.html">宏远创信</a>
+<a href="projects/innoshine.html">元旭半导体</a>
+<a href="projects/jngd.html">晶能光电</a>
+<a href="projects/kedu.html">柯渡医学</a>
+<a href="projects/unicom-idc.html">联通云IDC</a>
+<a href="projects/xinhong.html">信鸿医疗</a>
+<a href="projects/xunchao.html">迅巢科技</a>
+<a href="projects/zhongfu.html">中复碳芯</a>
+<a href="#" style="float:right;background:rgba(255,255,255,0.15)" onclick="window.location=window.location.pathname.replace(/\.html?$/, '_m.html');return false">📱 手机版</a>
+</div>
+<h1>中复碳芯电缆科技有限公司 商业尽调分析报告（主报告）</h1>
+<p><strong>报告版本</strong>: v1.0（基于尽调材料分析）
+<strong>分析日期</strong>: 2026年6月29日
+<strong>尽调材料</strong>: 中复碳芯企业介绍（2026.3，PPT）、公开行业数据交叉验证（2026.6.29）
+<strong>分析方法</strong>: 纵横分析法 + 多源数据交叉验证
+<strong>分析框架</strong>: 行业 → 纵向演变 → 横向对标 → 估值 → 结论</p>
+<hr />
+<h2>报告导读</h2>
+<p>本报告对中复碳芯电缆科技有限公司（以下简称&quot;中复碳芯&quot;或&quot;公司&quot;）进行系统性的商业尽调分析。</p>
+<p><strong>核心结论</strong>：中复碳芯是中国建材集团旗下碳纤维复合材料制品平台，主营碳纤维复合芯导线（特高压）+风电大梁板（风电）+光伏边框（光伏）三大引擎。公司<strong>当前未上市、未申报、未公开任何上市计划</strong>（明确判断依据见第1.4节）。2024年主营产品（拉挤大梁板）国内市占率约25%，是国内最早将玻纤大梁板用于风电叶片的企业、目前国内最大的无脱大梁板供应商。注册资本9,346万元，<strong>5个生产基地+400余条拉挤大梁板生产线</strong>（连云港1#基地105条+2#基地40条UD+北新24条+酒泉103条+张家口86条+中复连众40条），产能5万公里碳纤维芯棒+2万公里导线+10万吨拉挤制品。</p>
+<p><strong>5年完整财务数据</strong>（企业介绍PPT披露）：</p>
+<ul>
+<li>2021年营收3.07亿元/净利3,001万元 → 2025年（未审）营收14.51亿元/净利1.09亿元</li>
+<li>2021-2025年营收CAGR：约48%</li>
+<li>2021-2025年净利CAGR：约38%</li>
+<li>2025年末资产总额12.12亿元/所有者权益3.73亿元/资产负债率69.2%（较高）</li>
+</ul>
+<p><strong>投资亮点</strong>：央企中国建材集团背书（合计持股约48.54%）+ 碳纤维复合芯导线全球首条1000kV锡林浩特示范工程 + 国内最大无脱大梁板供应商（市占率25%）+ 三引擎协同（特高压+风电+光伏）+ 国家专精特新小巨人 + 三一重能增资入股 + 一带一路20+国家应用。</p>
+<p><strong>主要风险</strong>：①未上市，无强制披露（2022-2024年审计报告未公开）；②资产负债率较高（69.2%，财务杠杆较大）；③兄弟公司中复神鹰2024年亏损1.24亿元（板块承压）；④光伏边框尚未规模化销售；⑤特高压+风电+光伏三大行业周期叠加波动。</p>
+<hr />
+<h2>第一部分 行业分析：碳纤维+电缆+特高压三引擎赛道</h2>
+<h3>1.1 碳纤维芯电缆产业链</h3>
+<pre><code>上游：碳纤维原丝（中复神鹰/光威复材/吉林化纤）
+        ↓
+中游：碳纤维复合芯拉挤制品（**中复碳芯定位**）
+        ↓
+下游：电力（特高压导线）+ 风电（叶片大梁板）+ 光伏（边框）
+</code></pre>
+<h3>1.2 中国碳纤维市场（2024）</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+<th>置信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024年中国碳纤维需求</td>
+<td>约6-7万吨</td>
+<td>行业研报</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>2024年中国碳纤维产量</td>
+<td>约6.5万吨（产能12万吨，利用率55%）</td>
+<td>行业研报</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>2024年风电叶片用碳纤维需求</td>
+<td>1.5-2万吨（海风大叶片渗透加速）</td>
+<td>行业研报</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>2024年T700 12K价格</td>
+<td>70-90元/kg（较2022峰值200+腰斩）</td>
+<td>行业研报</td>
+<td>⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 碳纤维芯导线（ACCC/ACCC-R）市场</h3>
+<ul>
+<li><strong>国内市场容量</strong>：约30-50亿元/年（细分赛道，⭐⭐⭐⭐）</li>
+<li><strong>中复碳芯定位</strong>：&quot;国内目前唯一的碳纤维复合芯导线生产商&quot;（2024-07公司自述）</li>
+<li><strong>替代市场</strong>：钢芯铝绞线（年市场1000亿+），替代率&lt;5%</li>
+<li><strong>关键客户</strong>：国网/南网/大唐/华能，<strong>全球20+国家应用</strong></li>
+</ul>
+<h3>1.4 上市状态明确判断 ⚠️</h3>
+<table>
+<thead>
+<tr>
+<th>判断项</th>
+<th>结论</th>
+<th>信息依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>是否已申报上市</strong></td>
+<td>❌ <strong>未查到任何辅导备案</strong></td>
+<td>截至2026-06，江苏证监局辅导名单未见中复碳芯</td>
+</tr>
+<tr>
+<td><strong>上市计划</strong></td>
+<td>❌ <strong>未公开披露</strong></td>
+<td>2024-07-23《企业观察报》专访未提及上市规划</td>
+</tr>
+<tr>
+<td><strong>承销商/保荐机构</strong></td>
+<td>❌ 未知</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>拟上市板块</strong></td>
+<td>❌ 未知</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>借壳可能性</strong></td>
+<td>❌ 低</td>
+<td>集团5家上市平台均为成熟主业，借壳逻辑弱</td>
+</tr>
+<tr>
+<td><strong>分拆可能性</strong></td>
+<td>🟡 <strong>3-5年内有望申报北交所</strong></td>
+<td>国家级专精特新小巨人+江苏注册地+创新型中小企业三重身份匹配北交所定位</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判断依据</strong>：</p>
+<ol>
+<li>2024-07年刚建成6000万元数字工厂（新增3万吨大梁板产能），<strong>仍处于产能扩张期</strong></li>
+<li>兄弟公司中复神鹰2024年营收15.57亿元、<strong>净利润-1.24亿元</strong>（亏损139%）</li>
+<li>中国建材集团旗下已有5家成熟上市平台，借壳逻辑弱</li>
+<li><strong>结论</strong>：当前<strong>未上市</strong>，3-5年内<strong>有望申报北交所</strong>（情景推演，非公司公告）</li>
+</ol>
+<h3>1.5 行业政策与产业趋势</h3>
+<ul>
+<li><strong>特高压建设</strong>：2025年国网投资6,395亿元（+5.1%），特高压直流+25.7%、交流+4.7%</li>
+<li><strong>风电叶片大型化</strong>：海风12MW+长叶片推动碳纤维大梁板需求</li>
+<li><strong>光伏边框替代</strong>：碳纤维边框渗透率&lt;1%，替代铝合金空间巨大但导入期漫长</li>
+</ul>
+<hr />
+<h2>第二部分 纵向演变：从碳纤维芯棒到三引擎平台</h2>
+<h3>2.1 历史发展时间轴</h3>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2011年12月</strong></td>
+<td>中复碳芯电缆科技有限公司成立</td>
+<td>起点</td>
+</tr>
+<tr>
+<td><strong>2014-2017年</strong></td>
+<td>1000kV锡林浩特碳纤维复合芯导线示范工程投运</td>
+<td><strong>世界首条</strong>碳纤维复合芯导线</td>
+</tr>
+<tr>
+<td><strong>2019年</strong></td>
+<td>国内最早将玻纤大梁板用于风电叶片</td>
+<td><strong>行业先发</strong></td>
+</tr>
+<tr>
+<td><strong>2024年</strong></td>
+<td>数字工厂投产，新增3万吨大梁板产能</td>
+<td>产能扩张</td>
+</tr>
+<tr>
+<td><strong>2024年</strong></td>
+<td>主营产品（拉挤大梁板）国内市占率约25%</td>
+<td><strong>国内最大</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 业务结构演变</h3>
+<table>
+<thead>
+<tr>
+<th>业务板块</th>
+<th>早期定位</th>
+<th>当前定位</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>特高压（导线）</strong></td>
+<td>碳纤维复合芯棒</td>
+<td>1000kV+特高压导线</td>
+<td><strong>升级</strong></td>
+</tr>
+<tr>
+<td><strong>风电（叶片）</strong></td>
+<td>玻纤大梁板</td>
+<td>国内最大无脱大梁板供应商</td>
+<td><strong>领先</strong></td>
+</tr>
+<tr>
+<td><strong>光伏（边框）</strong></td>
+<td>无</td>
+<td>战略布局</td>
+<td><strong>新业务</strong></td>
+</tr>
+<tr>
+<td><strong>航空航天</strong></td>
+<td>探索</td>
+<td>厦门翔安机场航站楼（650kN拉杆）等</td>
+<td><strong>新业务</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 产能与基地布局（5个基地，400余条拉挤生产线）</h3>
+<table>
+<thead>
+<tr>
+<th>基地</th>
+<th>位置</th>
+<th>生产线数</th>
+<th>产能/业务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连云港1#基地</strong></td>
+<td>江苏连云港</td>
+<td><strong>105条拉挤大梁</strong></td>
+<td>碳纤维复合芯棒+导线+拉挤大梁</td>
+</tr>
+<tr>
+<td><strong>连云港2#基地</strong></td>
+<td>江苏连云港</td>
+<td><strong>40条UD块</strong></td>
+<td>拉挤制品（数字工厂）</td>
+</tr>
+<tr>
+<td><strong>北新</strong></td>
+<td>江苏</td>
+<td><strong>24条拉挤大梁</strong></td>
+<td>拉挤制品</td>
+</tr>
+<tr>
+<td><strong>酒泉</strong></td>
+<td>甘肃酒泉</td>
+<td><strong>103条拉挤大梁</strong></td>
+<td>风电大梁板</td>
+</tr>
+<tr>
+<td><strong>张家口</strong></td>
+<td>河北张家口</td>
+<td><strong>86条拉挤大梁</strong></td>
+<td>风电大梁板</td>
+</tr>
+<tr>
+<td><strong>中复连众</strong></td>
+<td>江苏连云港</td>
+<td><strong>40条拉挤大梁</strong></td>
+<td>风电叶片（关联）</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td>—</td>
+<td><strong>400余条</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>总产能</strong>：年产5万公里碳纤维复合芯棒+2万公里各类导线+10万吨拉挤复合材料制品</p>
+<h3>2.4 完整5年财务数据（2021-2025，企业介绍PPT披露）</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>2021年</th>
+<th>2022年</th>
+<th>2023年</th>
+<th>2024年</th>
+<th>2025年（未审）</th>
+<th>CAGR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资产总额（万元）</td>
+<td>47,524.61</td>
+<td>95,973.73</td>
+<td>98,424.53</td>
+<td>109,049.63</td>
+<td><strong>121,188.21</strong></td>
+<td>+26%</td>
+</tr>
+<tr>
+<td>负债总额（万元）</td>
+<td>30,472.96</td>
+<td>71,257.62</td>
+<td>66,307.53</td>
+<td>79,417.08</td>
+<td><strong>83,865.66</strong></td>
+<td>+29%</td>
+</tr>
+<tr>
+<td>所有者权益（万元）</td>
+<td>17,051.65</td>
+<td>24,716.11</td>
+<td>32,117.01</td>
+<td>28,736.87</td>
+<td><strong>37,322.55</strong></td>
+<td>+22%</td>
+</tr>
+<tr>
+<td><strong>资产负债率</strong></td>
+<td><strong>64.13%</strong></td>
+<td><strong>74.26%</strong></td>
+<td><strong>67.37%</strong></td>
+<td><strong>72.82%</strong></td>
+<td><strong>69.20%</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>营业收入（万元）</td>
+<td>30,684.71</td>
+<td>94,496.74</td>
+<td>98,000.38</td>
+<td>86,776.77</td>
+<td><strong>145,071.32</strong></td>
+<td>+48%</td>
+</tr>
+<tr>
+<td>利润总额（万元）</td>
+<td>3,382.74</td>
+<td>9,621.98</td>
+<td>11,251.66</td>
+<td>4,309.52</td>
+<td><strong>12,105.12</strong></td>
+<td>+37%</td>
+</tr>
+<tr>
+<td><strong>净利润（万元）</strong></td>
+<td><strong>3,000.84</strong></td>
+<td><strong>8,667.71</strong></td>
+<td><strong>9,741.18</strong></td>
+<td><strong>4,216.43</strong></td>
+<td><strong>10,920.37</strong></td>
+<td>+38%</td>
+</tr>
+<tr>
+<td><strong>净利率</strong></td>
+<td><strong>9.78%</strong></td>
+<td><strong>9.17%</strong></td>
+<td><strong>9.94%</strong></td>
+<td><strong>4.86%</strong></td>
+<td><strong>7.53%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键观察</strong>：</p>
+<ol>
+<li><strong>营收2022年跳跃增长</strong>：3.07亿（2021）→ 9.45亿（2022），同比+208%，反映风电大梁板业务爆发</li>
+<li><strong>2024年营收/净利下滑</strong>：营收-11.5%、净利-56.7%（行业风电招标节奏调整影响）</li>
+<li><strong>2025年大幅反弹</strong>：营收+67.2%、净利+159%（受益于风电叶片大型化+特高压招标）</li>
+<li><strong>资产负债率持续高位</strong>：64-74%区间，<strong>财务杠杆较大</strong></li>
+</ol>
+<h3>2.5 股东结构（中国建材集团合计持股约48.54%）</h3>
+<table>
+<thead>
+<tr>
+<th>股东</th>
+<th>持股比例</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中建材联合投资有限公司</strong></td>
+<td><strong>31.20%</strong></td>
+<td>央企（中国建材集团下属）</td>
+</tr>
+<tr>
+<td><strong>连云港高投毅达科技创业投资合伙企业（有限合伙）</strong></td>
+<td><strong>17.12%</strong></td>
+<td>江苏地方国资基金</td>
+</tr>
+<tr>
+<td><strong>中国建材集团有限公司</strong></td>
+<td><strong>17.36%</strong></td>
+<td><strong>央企（直接持股）</strong></td>
+</tr>
+<tr>
+<td><strong>连云港市金桥新兴产业基金合伙企业（有限合伙）</strong></td>
+<td><strong>11.64%</strong></td>
+<td>江苏地方国资基金</td>
+</tr>
+<tr>
+<td>哈尔滨玻璃钢研究院有限公司</td>
+<td>6.98%</td>
+<td>央企（中国建材集团下属）</td>
+</tr>
+<tr>
+<td>中国建筑材料科学研究总院有限公司</td>
+<td>5.01%</td>
+<td>央企（中国建材集团下属）</td>
+</tr>
+<tr>
+<td>三一重能股份有限公司</td>
+<td>4.99%</td>
+<td>战略投资人</td>
+</tr>
+<tr>
+<td>唐胜投资集团有限公司</td>
+<td>4.99%</td>
+<td>民营</td>
+</tr>
+<tr>
+<td>连云港新芯投资合伙企业（有限合伙）</td>
+<td>5.70%</td>
+<td>地方基金</td>
+</tr>
+<tr>
+<td>任桂芳</td>
+<td>5.70%</td>
+<td>自然人</td>
+</tr>
+<tr>
+<td><strong>中国建材集团合计</strong></td>
+<td><strong>约48.54%</strong></td>
+<td>实际控制人</td>
+</tr>
+<tr>
+<td><strong>地方国资合计</strong></td>
+<td><strong>约28.76%</strong></td>
+<td>江苏连云港</td>
+</tr>
+<tr>
+<td><strong>战略投资人</strong></td>
+<td><strong>4.99%</strong></td>
+<td>三一重能</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>股东结构清晰</strong>：中国建材集团（央企）合计直接+间接持股约48.54%，构成实际控制；三一重能（A股上市，2024年风电整机龙头）战略入股，强化产业链协同。</p>
+</blockquote>
+<h3>2.6 重要项目案例（5个标志性工程）</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>时间</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>锡林浩特1000kV特高压示范工程</strong></td>
+<td>2019</td>
+<td><strong>世界首条</strong>1000kV碳纤维特高压线路全线供货</td>
+</tr>
+<tr>
+<td><strong>全球最长131m陆上风电叶片</strong></td>
+<td>2024-01-21</td>
+<td>三一重能巴彦淖尔零碳数智产业园下线，使用中复碳芯大梁板</td>
+</tr>
+<tr>
+<td><strong>大同阳高电厂—平城变500kV线路</strong></td>
+<td>2024</td>
+<td>旧线改造工程（碳纤维芯导线）</td>
+</tr>
+<tr>
+<td><strong>江苏省220kV秦淮～滨南～双闸双回线路</strong></td>
+<td>2024</td>
+<td>旧线改造工程</td>
+</tr>
+<tr>
+<td><strong>丹江口水库特大桥</strong></td>
+<td>2024</td>
+<td><strong>世界最大跨度地锚式混合梁斜拉桥</strong>，使用中复碳芯碳纤维拉索</td>
+</tr>
+<tr>
+<td><strong>中建八局凤凰山路跨风河大桥</strong></td>
+<td>2024</td>
+<td><strong>国内首座</strong>3000MPa高强度碳纤维吊杆桥梁工程</td>
+</tr>
+<tr>
+<td><strong>西安丰邑桥</strong></td>
+<td>2024</td>
+<td>公称破断力达27,262kN，<strong>目前世界上最大规格碳纤维拉索</strong></td>
+</tr>
+<tr>
+<td><strong>智利国家电网改造工程</strong></td>
+<td>持续</td>
+<td><strong>一带一路13个国家</strong>应用案例</td>
+</tr>
+</tbody>
+</table>
+<h3>2.7 核心技术指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>行业地位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发明专利</td>
+<td><strong>23项</strong></td>
+<td>高</td>
+</tr>
+<tr>
+<td>实用新型专利</td>
+<td><strong>51项</strong></td>
+<td>高</td>
+</tr>
+<tr>
+<td>高速拉挤速度</td>
+<td><strong>0.8米/分钟</strong></td>
+<td>行业领先</td>
+</tr>
+<tr>
+<td>优等品率</td>
+<td><strong>&gt;95%</strong></td>
+<td>高</td>
+</tr>
+<tr>
+<td>双无脱技术</td>
+<td>无脱模布+无脱模剂</td>
+<td><strong>行业首创</strong></td>
+</tr>
+<tr>
+<td>国家科技进步奖</td>
+<td>2项</td>
+<td>高</td>
+</tr>
+<tr>
+<td>省级科技进步奖</td>
+<td>2项</td>
+<td>—</td>
+</tr>
+<tr>
+<td>国网公司科技进步奖</td>
+<td>1项</td>
+<td>行业认证</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>2025年营收+67.2%，净利润+158.5%</strong>，反映风电大梁板业务高速放量。但2024年净利率仅4.86%（受风电招标节奏影响下滑），2025年回升至7.53%。<strong>资产负债率持续高位（69-74%区间）</strong>，需关注公司现金流和偿债能力。</p>
+</blockquote>
+<h3>2.5 中复碳芯与中复神鹰的关系（关键区分）</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>中复碳芯</th>
+<th>中复神鹰(688295.SH)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位</td>
+<td><strong>下游复合材料制品</strong></td>
+<td><strong>上游碳纤维原丝</strong></td>
+</tr>
+<tr>
+<td>主要产品</td>
+<td>碳纤维芯导线、风电大梁板</td>
+<td>T700/T800级碳纤维原丝</td>
+</tr>
+<tr>
+<td>注册地</td>
+<td>连云港经济技术开发区</td>
+<td>连云港</td>
+</tr>
+<tr>
+<td>上市状态</td>
+<td><strong>未上市</strong></td>
+<td>2022-04-06科创板上市</td>
+</tr>
+<tr>
+<td>2024年净利润</td>
+<td>+4,216万</td>
+<td><strong>-1.24亿元</strong></td>
+</tr>
+<tr>
+<td>共同点</td>
+<td><strong>同属中国建材集团（央企）</strong></td>
+<td><strong>同属中国建材集团（央企）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键判断</strong>：中复碳芯与中复神鹰<strong>法律形式为兄弟公司</strong>（中建材联合投资有限公司下的并列企业），<strong>非中复神鹰控股子公司</strong>。中复碳芯使用中复神鹰SYT45S-48K、SYT49S-24K碳纤维做拉挤制品，存在产业链协同。</p>
+<hr />
+<h2>第三部分 横向对标：碳纤维+电缆+特高压三赛道对比</h2>
+<h3>3.1 同行可比公司（15家财务数据）</h3>
+<h4>3.1.1 碳纤维赛道（5家）</h4>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>代码</th>
+<th>2024营收(亿)</th>
+<th>2024净利(亿)</th>
+<th>净利率</th>
+<th>净利YoY</th>
+<th>市值(亿)</th>
+<th>PE(2024)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中复神鹰</strong></td>
+<td>688295.SH</td>
+<td>15.57</td>
+<td><strong>-1.24</strong></td>
+<td>-8.0%</td>
+<td>-139%</td>
+<td>298.8</td>
+<td>N/A(亏损)</td>
+</tr>
+<tr>
+<td><strong>光威复材</strong></td>
+<td>300699.SZ</td>
+<td>24.50</td>
+<td><strong>7.41</strong></td>
+<td><strong>30.3%</strong></td>
+<td>-15%</td>
+<td>330.5</td>
+<td>44.6</td>
+</tr>
+<tr>
+<td><strong>吉林化纤</strong></td>
+<td>000420.SZ</td>
+<td>38.83</td>
+<td>0.28</td>
+<td>0.7%</td>
+<td>-14%</td>
+<td>120.7</td>
+<td>431.0</td>
+</tr>
+<tr>
+<td><strong>精功科技</strong></td>
+<td>002006.SZ</td>
+<td>17.29</td>
+<td>1.47</td>
+<td>8.5%</td>
+<td>-19%</td>
+<td>108.3</td>
+<td>73.7</td>
+</tr>
+<tr>
+<td><strong>中简科技</strong></td>
+<td>300777.SZ</td>
+<td>8.12</td>
+<td><strong>3.56</strong></td>
+<td><strong>43.8%</strong></td>
+<td>+23%</td>
+<td>185.7</td>
+<td>52.2</td>
+</tr>
+</tbody>
+</table>
+<h4>3.1.2 电缆赛道（4家）</h4>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>代码</th>
+<th>2024营收(亿)</th>
+<th>2024净利(亿)</th>
+<th>净利率</th>
+<th>净利YoY</th>
+<th>市值(亿)</th>
+<th>PE(2024)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中天科技</strong></td>
+<td>600522.SH</td>
+<td>480.61</td>
+<td>28.38</td>
+<td>5.9%</td>
+<td>-9%</td>
+<td>719.1</td>
+<td>25.3</td>
+</tr>
+<tr>
+<td><strong>亨通光电</strong></td>
+<td>600487.SH</td>
+<td>599.84</td>
+<td>27.69</td>
+<td>4.6%</td>
+<td>+29%</td>
+<td>776.3</td>
+<td>28.0</td>
+</tr>
+<tr>
+<td><strong>远东股份</strong></td>
+<td>600869.SH</td>
+<td>260.94</td>
+<td>-3.18</td>
+<td>-1.2%</td>
+<td>-199%</td>
+<td>270.3</td>
+<td>N/A(亏损)</td>
+</tr>
+<tr>
+<td><strong>宝胜股份</strong></td>
+<td>600973.SH</td>
+<td>463.60</td>
+<td>-3.00</td>
+<td>-0.6%</td>
+<td>-1067%</td>
+<td>96.7</td>
+<td>N/A(亏损)</td>
+</tr>
+</tbody>
+</table>
+<h4>3.1.3 特高压赛道（2家）</h4>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>代码</th>
+<th>2024营收(亿)</th>
+<th>2024净利(亿)</th>
+<th>净利率</th>
+<th>净利YoY</th>
+<th>市值(亿)</th>
+<th>PE(2024)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>特变电工</strong></td>
+<td>600089.SH</td>
+<td>979.06</td>
+<td>41.44</td>
+<td>4.2%</td>
+<td>-61%</td>
+<td>1399.6</td>
+<td>33.8</td>
+</tr>
+<tr>
+<td><strong>平高电气</strong></td>
+<td>600312.SH</td>
+<td>124.02</td>
+<td>10.23</td>
+<td>8.3%</td>
+<td>+25%</td>
+<td>289.0</td>
+<td>28.3</td>
+</tr>
+</tbody>
+</table>
+<h4>3.1.4 中国建材集团旗下（4家已上市）</h4>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>代码</th>
+<th>2024营收(亿)</th>
+<th>2024净利(亿)</th>
+<th>净利率</th>
+<th>净利YoY</th>
+<th>市值(亿)</th>
+<th>PE(2024)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中国巨石</strong></td>
+<td>600176.SH</td>
+<td>158.56</td>
+<td>24.45</td>
+<td>15.4%</td>
+<td>-20%</td>
+<td>848.7</td>
+<td>34.7</td>
+</tr>
+<tr>
+<td><strong>中材科技</strong></td>
+<td>002080.SZ</td>
+<td>239.84</td>
+<td>8.92</td>
+<td>3.7%</td>
+<td>-60%</td>
+<td>704.5</td>
+<td>79.0</td>
+</tr>
+<tr>
+<td><strong>宁夏建材</strong></td>
+<td>600449.SH</td>
+<td>86.53</td>
+<td>2.41</td>
+<td>2.8%</td>
+<td>-19%</td>
+<td>63.0</td>
+<td>26.1</td>
+</tr>
+<tr>
+<td><strong>天山股份</strong></td>
+<td>000877.SZ</td>
+<td>870.25</td>
+<td>-7.17</td>
+<td>-0.8%</td>
+<td>-137%</td>
+<td>408.9</td>
+<td>N/A(亏损)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>数据来源</strong>：AKShare A股年报库 ⭐⭐⭐⭐⭐</p>
+<h3>3.2 关键发现</h3>
+<blockquote>
+<p><strong>2024年A股碳纤维+电缆+特高压板块整体业绩承压</strong>：</p>
+<ul>
+<li>碳纤维：5家中2家亏损（中复神鹰、吉林化纤微利）</li>
+<li>电缆：4家中2家亏损（远东股份、宝胜股份）</li>
+<li>特高压：仅平高电气净利+25%增长，其余均下滑</li>
+<li>建材板块：仅中复神鹰、天山股份亏损；中国巨石/中材科技/宁夏建材均下滑</li>
+<li><strong>唯一逆势增长：中简科技(+23%)、亨通光电(+29%)、平高电气(+25%)</strong></li>
+</ul>
+</blockquote>
+<h3>3.3 行业地位与竞争优势</h3>
+<table>
+<thead>
+<tr>
+<th>细分领域</th>
+<th>中复碳芯地位</th>
+<th>量化指标</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>碳纤维复合芯导线</strong></td>
+<td>国内目前唯一的生产商</td>
+<td>全球20+国家应用</td>
+<td>公司自述 ⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>风电无脱大梁板</strong></td>
+<td>国内最大供应商</td>
+<td>国内市占率约25%</td>
+<td>公司自述 ⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>风电叶片</strong></td>
+<td>国内最早将玻纤大梁板用于风电叶片</td>
+<td>2019年开创</td>
+<td>公司自述 ⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>1000kV特高压</strong></td>
+<td><strong>世界首条</strong>碳纤维复合芯导线</td>
+<td>锡林浩特示范工程</td>
+<td>公司自述 ⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>航空航天</strong></td>
+<td>高端定制</td>
+<td>厦门翔安机场航站楼（650kN拉杆）</td>
+<td>公司自述 ⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第四部分 估值分析</h2>
+<h3>4.1 估值基础数据</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前状态</td>
+<td><strong>未上市</strong></td>
+</tr>
+<tr>
+<td>上一轮融资</td>
+<td>三一重能增资（未披露具体金额）</td>
+</tr>
+<tr>
+<td>估值锚点</td>
+<td>2024年营收8.68亿 + 净利润4,216万（净利率4.86%）</td>
+</tr>
+<tr>
+<td>2025年（未审）</td>
+<td>营收14.51亿 + 净利润1.09亿（净利率7.51%）</td>
+</tr>
+</tbody>
+</table>
+<h3>4.2 估值倍数分析</h3>
+<table>
+<thead>
+<tr>
+<th>估值方法</th>
+<th>计算</th>
+<th>倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P/S（基于2024营收）</strong></td>
+<td>假设估值50亿 / 8.68亿 =</td>
+<td><strong>5.76x</strong></td>
+</tr>
+<tr>
+<td><strong>P/E（基于2024净利润）</strong></td>
+<td>假设估值50亿 / 4,216万 =</td>
+<td><strong>118.6x</strong></td>
+</tr>
+<tr>
+<td><strong>P/E（基于2025净利润）</strong></td>
+<td>假设估值50亿 / 1.09亿 =</td>
+<td><strong>45.9x</strong></td>
+</tr>
+<tr>
+<td><strong>P/B（推算净资产）</strong></td>
+<td>假设估值50亿 / 净资产5亿（推算）=</td>
+<td><strong>10.0x</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>4.3 多估值方法交叉验证</h3>
+<h4>方法1：可比公司PE法</h4>
+<ul>
+<li>碳纤维赛道平均PE（剔除亏损）：<strong>150.4倍</strong>（中简+光威主导）</li>
+<li><strong>中复碳芯产品定价权弱（净利率4.86%），不应享受龙头PE</strong></li>
+<li>按中复碳芯业务结构（碳纤维制品+电缆）综合PE 30-40x × 2025净利润1.09亿 = <strong>33-44亿元</strong></li>
+</ul>
+<h4>方法2：可比公司PS法</h4>
+<ul>
+<li>碳纤维赛道平均PS：<strong>~5-10x</strong></li>
+<li>按中复碳芯2025营收14.51亿 × PS 4-6x = <strong>58-87亿元</strong></li>
+</ul>
+<h4>方法3：可比公司PB法</h4>
+<ul>
+<li>行业平均PB：~2-3x</li>
+<li><strong>中复碳芯作为央企背景未上市企业，应享受PB溢价</strong></li>
+<li>按净资产5亿 × PB 5-8x = <strong>25-40亿元</strong></li>
+</ul>
+<h3>4.4 估值综合判断</h3>
+<table>
+<thead>
+<tr>
+<th>情景</th>
+<th>估值区间</th>
+<th>投资逻辑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>保守</strong></td>
+<td>30-50亿元</td>
+<td>行业平均+未上市折价</td>
+</tr>
+<tr>
+<td><strong>中性</strong></td>
+<td>50-80亿元</td>
+<td>央企背书+三引擎协同+专精特新</td>
+</tr>
+<tr>
+<td><strong>乐观</strong></td>
+<td>80-100亿元</td>
+<td>北交所IPO预期+碳纤维+特高景气共振</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>建议合理估值区间：50-80亿元</strong>（对应2025营收14.51亿元的PS 3.4-5.5x，2025净利润1.09亿的PE 46-73x）。当前<strong>未上市、未公开融资估值</strong>，需在尽调阶段核实公司近期融资估值。</p>
+</blockquote>
+<h3>4.5 估值合理性结论</h3>
+<ul>
+<li><strong>PE角度</strong>：45.9x（2025E），高于电缆赛道（25-30x），低于碳纤维赛道（44-431x）</li>
+<li><strong>PS角度</strong>：3.4-5.5x，处于碳纤维+电缆双赛道合理区间</li>
+<li><strong>关键变量</strong>：① 上市路径明确化（北交所预期）；② 财务数据透明度（净利率提升路径）</li>
+</ul>
+<hr />
+<h2>第五部分 综合结论与风险提示</h2>
+<h3>5.1 投资亮点</h3>
+<h4>⭐ 亮点1：央企中国建材集团背书</h4>
+<ul>
+<li>中国建材集团100%为国务院国资委控股</li>
+<li>同集团旗下：中复神鹰(688295.SH，2022科创板)、中国巨石(600176.SH)、中材科技(002080.SZ)</li>
+<li><strong>资本/技术/客户/采购全维度协同</strong></li>
+</ul>
+<h4>⭐ 亮点2：碳纤维复合芯导线行业唯一供应商</h4>
+<ul>
+<li>国内目前唯一的碳纤维复合芯导线生产商</li>
+<li><strong>世界首条1000kV碳纤维复合芯导线（锡林浩特示范工程，2019年）</strong></li>
+<li>替代钢芯铝绞线（年市场1000亿+），替代率&lt;5%，增长空间巨大</li>
+</ul>
+<h4>⭐ 亮点3：风电大梁板国内最大供应商</h4>
+<ul>
+<li>国内最早将玻纤大梁板用于风电叶片（2019年）</li>
+<li>2024年拉挤大梁板国内市占率约25%</li>
+<li>2024年7月新增3万吨大梁板产线投产</li>
+<li>主要客户：金风科技、中复连众、明阳智能、三一重能、中材叶片</li>
+</ul>
+<h4>⭐ 亮点4：三引擎协同（特高压+风电+光伏）</h4>
+<table>
+<thead>
+<tr>
+<th>引擎</th>
+<th>进展</th>
+<th>2024市占率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>特高压</strong></td>
+<td>世界首条碳纤维芯导线</td>
+<td>全球20+国家应用</td>
+</tr>
+<tr>
+<td><strong>风电</strong></td>
+<td>国内最大无脱大梁板供应商</td>
+<td>~25%（拉挤大梁板）</td>
+</tr>
+<tr>
+<td><strong>光伏</strong></td>
+<td>战略布局</td>
+<td>&lt;1%（导入期）</td>
+</tr>
+</tbody>
+</table>
+<h4>⭐ 亮点5：国家级专精特新小巨人</h4>
+<ul>
+<li>国家&quot;专精特新&quot;小巨人</li>
+<li>高新技术企业</li>
+<li>连云港市科技进步一等奖</li>
+<li>创新型中小企业三重身份匹配<strong>北交所定位</strong></li>
+</ul>
+<h3>5.2 风险提示</h3>
+<h4>⚠️ 风险1：当前未上市（财务不透明）</h4>
+<ul>
+<li><strong>未上市、未申报、未公开任何上市计划</strong></li>
+<li>2022-2024年完整审计报告未公开</li>
+<li><strong>建议尽调阶段要求补充完整审计报告</strong></li>
+</ul>
+<h4>⚠️ 风险2：兄弟公司亏损拖累板块</h4>
+<ul>
+<li>中复神鹰2024年营收15.57亿元、<strong>净利润-1.24亿元</strong>（亏损139%）</li>
+<li>集团碳纤维板块整体承压</li>
+<li><strong>影响集团对中复碳芯的资源投入和资本运作支持</strong></li>
+</ul>
+<h4>⚠️ 风险3：产品定价权弱</h4>
+<ul>
+<li>2024年净利率仅4.86%（远低于光威复材30.3%、中简科技43.8%）</li>
+<li>大梁板业务受下游风电整机厂（明阳/金风）压价</li>
+<li>碳纤维芯导线业务受国网招标价压制</li>
+</ul>
+<h4>⚠️ 风险4：三大行业周期叠加</h4>
+<ul>
+<li><strong>特高压</strong>：投资增速放缓（特高压直流+25.7%但绝对值增量有限）</li>
+<li><strong>风电</strong>：陆风平价上网+海风成本压力</li>
+<li><strong>光伏</strong>：行业产能过剩+边框替代导入期漫长</li>
+</ul>
+<h4>⚠️ 风险5：客户集中度高</h4>
+<ul>
+<li>国网/南网集中度高（碳纤维芯导线业务）</li>
+<li>风电整机厂集中度高（大梁板业务）</li>
+<li>下游议价能力强</li>
+</ul>
+<h4>⚠️ 风险6：技术替代风险</h4>
+<ul>
+<li>碳纤维价格腰斩（2022峰值200元/kg → 2024年70-90元/kg）</li>
+<li>上下游议价能力重塑</li>
+<li>Micro LED/Mini LED等新型显示技术对碳纤维复合材料应用边界冲击（间接）</li>
+</ul>
+<h3>5.3 投资建议</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>评级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>行业前景</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>碳纤维+特高压+风电三赛道景气</td>
+</tr>
+<tr>
+<td><strong>商业模式</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>三引擎协同+央企背书+行业唯一</td>
+</tr>
+<tr>
+<td><strong>盈利能力</strong></td>
+<td>⭐⭐⭐</td>
+<td>净利率4.86%（行业中等）</td>
+</tr>
+<tr>
+<td><strong>成长性</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>2024-2025营收+67% 净利润+158%</td>
+</tr>
+<tr>
+<td><strong>财务健康</strong></td>
+<td>⭐⭐⭐</td>
+<td>数据不透明（需补充尽调）</td>
+</tr>
+<tr>
+<td><strong>上市预期</strong></td>
+<td>⭐⭐⭐</td>
+<td>3-5年内有望申报北交所（情景推演）</td>
+</tr>
+<tr>
+<td><strong>投资性价比</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>50-80亿估值合理</td>
+</tr>
+</tbody>
+</table>
+<h3>5.4 最终判断</h3>
+<blockquote>
+<p><strong>中复碳芯是央企中国建材集团旗下碳纤维复合材料平台</strong>，是<strong>国内目前唯一的碳纤维复合芯导线生产商</strong>和<strong>国内最大的风电大梁板供应商</strong>。当前<strong>未上市、未申报、未公开任何上市计划</strong>（明确判断依据）。<strong>新收上限约束</strong>：新收上市公司仅 1 家（共 3 平台 = 我方 2 + 新收 1）。<strong>两方案对比下的退出方向</strong>（爱朋不首选）：</p>
+<ul>
+<li><strong>方案 B 选绿田机械</strong>：本项目边缘匹配（机械装备业务） → <strong>注入绿田机械</strong>，并可通过<strong>双主业承接</strong>（通用动力机械 + 新材料）扩展碳纤维复合材料主业，<strong>可行性中等</strong>（机械装备与新材料关联度中等）</li>
+<li><strong>方案 C 选科华控股</strong>：本项目无法装入科华 → <strong>独立上市</strong>（北交所可推演）</li>
+<li><strong>扩大新收范围</strong>（仅当双主业承接不可行时启动兜底）：电气设备/新材料/复合材料相关上市公司</li>
+</ul>
+<p><strong>独立上市路径</strong>：<strong>北交所</strong>（央企背景 + 国家级专精特新）→ 预期 3-5 年 → 核心条件：兄弟公司中复神鹰亏损拖累 + 资产负债率 69.2% → 独立上市路径清晰，但<strong>注入绿田机械（方案 B，双主业承接）更优</strong>，可缩短退出周期，且免去扩大新收范围带来的新尽调/谈判/控制权风险。</p>
+<p>详见 <code>reports/_reserved-projects/listed_companies_injection_analysis.md § 5.7/§ 6/§ 8.6</code>。<strong>主要风险</strong>：财务不透明、兄弟公司亏损拖累、产品定价权弱、三大行业周期叠加。整体而言，是央企背景的稀缺碳纤维复合材料资产，建议在尽调阶段要求补充完整审计报告、明确上市规划，<strong>估值建议50-80亿元区间</strong>。</p>
+</blockquote>
+<hr />
+<h2>数据来源与置信度说明</h2>
+<table>
+<thead>
+<tr>
+<th>数据来源</th>
+<th>文件</th>
+<th>可靠性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中复碳芯企业介绍</td>
+<td>中复碳芯企业介绍-202603.pptx</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>公开行业数据</td>
+<td>行业研究与公开数据交叉验证（2026.6.29）</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>AKShare A股年报库</td>
+<td>15家可比公司2024年报</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>行业研究</td>
+<td>申万宏源/中金/华泰碳纤维研报（推算）</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>工商信息</td>
+<td>国家企业信用信息公示系统</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

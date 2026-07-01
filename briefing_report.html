@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公司汇报稿 · 投资部项目储备库与上市公司标的汇报</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a202c;background:#fafaf9;line-height:1.8;font-size:16px;max-width:1400px;margin:0 auto;padding:0}
+.hero{background:linear-gradient(135deg,#fef9e7 0%,#fef5e7 50%,#fdf2f8 100%);color:#1a202c;padding:48px 32px;text-align:center;border-bottom:3px solid #f6e05e}
+.hero h1{font-size:36px;margin-bottom:12px;font-weight:700;color:#1a365d}
+.hero .subtitle{font-size:16px;color:#4a5568;max-width:800px;margin:0 auto;line-height:1.7}
+.hero .meta{margin-top:18px;font-size:14px;color:#718096}
+.container{padding:32px}
+.section{margin-bottom:48px}
+.section h2{font-size:24px;color:#1a365d;margin-bottom:20px;font-weight:700;padding-left:14px;border-left:5px solid #d69e2e}
+.section h3{font-size:18px;color:#1a365d;margin:24px 0 12px;font-weight:600;padding-left:10px;border-left:3px solid #3182ce}
+.section h4{font-size:15px;color:#2d3748;margin:18px 0 8px;font-weight:600}
+/* KPI 卡片 */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.kpi{background:#fff;border-radius:12px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,0.04);border-left:5px solid #3182ce}
+.kpi.blue{border-left-color:#3182ce;background:linear-gradient(135deg,#ebf8ff,#bee3f8)}
+.kpi.green{border-left-color:#38a169;background:linear-gradient(135deg,#e6fffa,#b2f5ea)}
+.kpi.yellow{border-left-color:#d69e2e;background:linear-gradient(135deg,#fef5e7,#fdebd0)}
+.kpi.pink{border-left-color:#9f1239;background:linear-gradient(135deg,#fdf2f8,#fbcfe8)}
+.kpi-label{font-size:13px;color:#4a5568;margin-bottom:6px}
+.kpi-value{font-size:28px;font-weight:700;color:#1a365d;margin-bottom:4px}
+.kpi-sub{font-size:12px;color:#718096}
+/* 数据表 */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.03)}
+th{background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;padding:12px 14px;text-align:left;font-size:13px;font-weight:600}
+td{padding:10px 14px;border-bottom:1px solid #e2e8f0;font-size:13px}
+tr:nth-child(even) td{background:#fafaf9}
+tr:hover td{background:#fef5e7}
+/* 项目卡片网格 */
+.project-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.project-card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 6px rgba(0,0,0,0.04);border-top:4px solid #3182ce}
+.project-card .name{font-size:16px;font-weight:700;color:#1a365d;margin-bottom:4px}
+.project-card .pos{font-size:12px;color:#4a5568;margin-bottom:10px;line-height:1.5;min-height:36px}
+.project-card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.project-card .tag{font-size:11px;padding:3px 8px;border-radius:10px;background:#fef5e7;color:#7b341e}
+.project-card .tag.green{background:#c6f6d5;color:#22543d}
+.project-card .tag.orange{background:#fbd38d;color:#7b341e}
+.project-card .tag.gray{background:#e2e8f0;color:#2d3748}
+/* 收购卡片 */
+.deal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0}
+.deal-card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border-top:5px solid #38a169}
+.deal-card.b{border-top-color:#d69e2e}
+.deal-card .dname{font-size:18px;font-weight:700;color:#1a365d;margin-bottom:6px}
+.deal-card .dcode{font-size:12px;color:#718096;margin-bottom:10px}
+.deal-card .drating{display:inline-block;font-size:13px;font-weight:600;padding:4px 12px;border-radius:14px;margin-bottom:12px}
+.deal-card .drating.a{background:#c6f6d5;color:#22543d}
+.deal-card .drating.b{background:#fefcbf;color:#744210}
+.deal-card .dscore{font-size:13px;color:#4a5568;margin-bottom:14px}
+.deal-card .dbiz{font-size:13px;color:#2d3748;line-height:1.6;margin-bottom:14px;padding:10px;background:#fafaf9;border-radius:6px}
+.deal-card ul{list-style:none;padding:0;margin:0}
+.deal-card li{font-size:13px;padding:5px 0;line-height:1.6}
+.deal-card li.ok{color:#22543d}
+.deal-card li.bad{color:#742a2a}
+.deal-card li.note{color:#7b341e;font-style:italic}
+/* 优先级 */
+.priority-card{background:#fff;border-radius:12px;padding:22px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,0.04);border-left:5px solid #3182ce}
+.priority-card.p1{border-left-color:#38a169}
+.priority-card.p2{border-left-color:#d69e2e}
+.priority-card.p3{border-left-color:#c53030}
+.priority-card .ptitle{font-size:18px;font-weight:700;color:#1a365d;margin-bottom:10px}
+.priority-card .pdesc{font-size:14px;color:#4a5568;line-height:1.7}
+/* 链接区 */
+.link-card{background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;padding:24px;border-radius:12px;margin-top:32px;text-align:center}
+.link-card a{color:#fbd38d;text-decoration:none;font-weight:600;margin:0 8px}
+.link-card a:hover{text-decoration:underline}
+/* 可视化条 */
+.viz-bar{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:13px}
+.viz-bar .lbl{width:90px;color:#4a5568}
+.viz-bar .bar{flex:1;background:#edf2f7;border-radius:4px;height:22px;overflow:hidden}
+.viz-bar .fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:11px;font-weight:600;min-width:24px}
+.viz-bar .val{width:60px;text-align:right;color:#1a365d;font-weight:600}
+/* 关键发现 */
+.facts-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-left:4px solid #d69e2e;padding:20px 24px;border-radius:0 10px 10px 0;margin:18px 0}
+.facts-box h4{margin:0 0 10px;color:#744210;font-size:16px}
+.facts-box ul{margin:0;padding-left:20px}
+.facts-box li{margin-bottom:6px;font-size:14px;color:#744210;line-height:1.7}
+/* 风险块 */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.risk-card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,0.03);border-top:3px solid #c53030}
+.risk-card .rname{font-size:14px;font-weight:700;color:#742a2a;margin-bottom:8px}
+.risk-card li{font-size:12.5px;color:#4a5568;margin-bottom:4px;line-height:1.6}
+/* 注释 */
+.note{background:#f7fafc;border-left:3px solid #cbd5e0;padding:12px 16px;margin:14px 0;border-radius:0 6px 6px 0;font-size:13px;color:#4a5568;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>公司汇报稿</h1>
+<p class="subtitle">投资部项目储备库与上市公司标的汇报</p>
+<p class="meta">本汇报稿集中所有公司层面的汇报材料　|　本期：8 个储备项目 + 1 份上市公司标的筛选研究（自选筛选可被并购的 3 家）</p>
+</div>
+
+<div class="container">
+
+<!-- 一、核心数据总览 -->
+<section class="section">
+<h2>一、核心数据总览</h2>
+<div class="kpi-grid">
+<div class="kpi blue">
+<div class="kpi-label">📊 储备项目数</div>
+<div class="kpi-value">8 <span style="font-size:14px;color:#4a5568">个</span></div>
+<div class="kpi-sub">横跨 6 大行业赛道</div>
+</div>
+<div class="kpi green">
+<div class="kpi-label">🏆 综合评分第一</div>
+<div class="kpi-value" style="font-size:22px">晶能光电</div>
+<div class="kpi-sub">⭐⭐⭐⭐⭐ 4.4 / 5.0（净利率断层式领先）</div>
+</div>
+<div class="kpi yellow">
+<div class="kpi-label">🎯 3 平台总接收架构</div>
+<div class="kpi-value" style="font-size:18px">3 <span style="font-size:14px;color:#4a5568">个平台</span>（仅收 1 家）</div>
+<div class="kpi-sub">天保基建 + 天保能源 + 1 家新收（绿田🟢/科华🟡 两方案择优，爱朋🔴不首选）</div>
+</div>
+<div class="kpi pink">
+<div class="kpi-label">🏢 上市公司标的（可被并购）</div>
+<div class="kpi-value" style="font-size:22px">3 <span style="font-size:14px;color:#4a5568">家</span></div>
+<div class="kpi-sub">绿田🟢 + 科华🟡 + 爱朋🟢<sup style="color:#9b2c2c;font-weight:700">⚠不首选（基建医药冲突）</sup></div>
+</div>
+</div>
+
+<div class="facts-box">
+<h4>📌 一句话结论</h4>
+<ul>
+<li><strong>储备项目</strong>：8 个项目按关注优先级排列——P1（4 个）晶能/联通/柯渡/中复 · P2（3 个）信鸿/迅巢/宏远 · P3（1 个）元旭</li>
+<li><strong>上市公司标的（可被并购的）</strong>：自选筛选 3 家，**爱朋不首选**（与基建医药战略冲突）→ 实际择优范围 = 绿田机械🟢（控制权最稳） vs 科华控股🟡（低价筹码，需多方协调）</li>
+<li><strong>退出方向</strong>：各项目退出路径<strong>一事一议</strong>，每个项目的最终选择与理由汇总于下方 § 2.1 项目卡；8 项目匹配分析见 <a href="listed_companies_injection_analysis.md">listed_companies_injection_analysis.md</a>，各项目主报告见 <a href="index.html">reports/{slug}/report_main.md</a></li>
+</ul>
+</div>
+</section>
+
+<!-- 二、储备项目 -->
+<section class="section">
+<h2>二、储备项目一览（8 个）</h2>
+
+<h3>2.1 项目全貌（含退出方向与退出路径）</h3>
+
+<div class="facts-box" style="background:linear-gradient(135deg,#fefcbf,#fef3c7);border-left-color:#d69e2e;padding:14px 18px;margin-bottom:18px">
+<p style="font-size:13px;color:#744210;line-height:1.7;margin:0">📋 <strong>退出方向 5 层级框架</strong>：① 我方两家（基建主营医药+芯片可作第二主业 / 能源主营能源） → ② 3 家拟定择优 1 家（绿田🟢/科华🟡，爱朋🔴不首选）→ ③ 双主业/三平台架构 → ④ 扩大新收范围（极少兜底）→ ⑤ 独立上市（每项目必走分析，晶能除外）。</p>
+</div>
+
+<div class="project-grid">
+
+<div class="project-card" style="border-top-color:#d69e2e">
+<div class="name">晶能光电</div>
+<div class="pos">硅基氮化镓 IDM 一体化大功率 LED</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">注入天保基建</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐⭐ 4.4</td></tr>
+<tr><td style="border:none;padding:3px 0">2025 净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">~22.76%</td></tr>
+<tr><td style="border:none;padding:3px 0">退出依据</td><td style="border:none;padding:3px 0;text-align:right">3 年 IPO 禁令仅剩 1.5 年，<br>对方诉求被并购</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;color:#22543d;font-weight:600">★★★★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 注入天保基建（换股并购谈判中，<strong>晶能除外</strong>，不独立上市）
+</div>
+<div class="meta"><span class="tag green">关注优先级 P1</span><span class="tag orange" style="margin-left:6px">注入天保基建</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#dd6b20">
+<div class="name">柯渡医学</div>
+<div class="pos">医疗设备第三方维保双寡头之一</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">注入天保基建</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐ 3.7</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">6.46%</td></tr>
+<tr><td style="border:none;padding:3px 0">投资规模</td><td style="border:none;padding:3px 0;text-align:right">7-10 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">★★★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 注入天保基建（医药维保双寡头，已锁定）；独立上市（北交所 12-18 月）作为兜底
+</div>
+<div class="meta"><span class="tag green">关注优先级 P1</span><span class="tag orange" style="margin-left:6px">注入天保基建</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#805ad5">
+<div class="name">中复碳芯</div>
+<div class="pos">中国建材集团旗下碳纤维复合材料平台</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">绿田双主业承接 / 独立上市</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐ 3.6</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">7.51%</td></tr>
+<tr><td style="border:none;padding:3px 0">投资规模</td><td style="border:none;padding:3px 0;text-align:right">5-10 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 绿田双主业承接（机械+新材料，可行性高）；独立上市（北交所 3-5 年，央企背景）作为兜底
+</div>
+<div class="meta"><span class="tag green">关注优先级 P2</span><span class="tag orange" style="margin-left:6px">绿田双主业承接 / 独立上市</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#a0aec0">
+<div class="name">宏远创信</div>
+<div class="pos">100% 民营售电龙头</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">注入天保能源</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐ 3.4</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">14.49%</td></tr>
+<tr><td style="border:none;padding:3px 0">投资规模</td><td style="border:none;padding:3px 0;text-align:right">1-3 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;color:#22543d;font-weight:600">★★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 注入天保能源（能源主营已锁定，唯一可行；<strong>审计报告明文限制，不独立上市</strong>）
+</div>
+<div class="meta"><span class="tag orange">关注优先级 P2</span><span class="tag gray" style="margin-left:6px">注入天保能源（审计限制上市）</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#3182ce">
+<div class="name">联通云 IDC</div>
+<div class="pos">山西太原 1,400 机柜高品质 IDC 资产</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">注入天保能源 + 二次 REITs</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐⭐ 4.1</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600;color:#9b2c2c">~86% <span style="font-size:10px;background:#fed7d7;padding:1px 5px;border-radius:6px;margin-left:4px">PPT/未审计</span></td></tr>
+<tr><td style="border:none;padding:3px 0">收购估值</td><td style="border:none;padding:3px 0;text-align:right">2.0-3.5 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:600">★★★★ <span style="font-size:10px;color:#9b2c2c">（待评估）</span></td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 注入天保能源 + 二次 REITs（重资产模式 + 稳定现金流，REITs 放大流动性；<strong>重资产模式不适合 IPO</strong>）
+</div>
+<div class="meta"><span class="tag green">关注优先级 P1</span><span class="tag orange" style="margin-left:6px">注入天保能源 + 二次 REITs（方案 E）</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#319795">
+<div class="name">信鸿医疗</div>
+<div class="pos">天津 IVD 综合服务+医疗产业孵化</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">注入天保基建</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐ 3.6</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">5.29%</td></tr>
+<tr><td style="border:none;padding:3px 0">投资规模</td><td style="border:none;padding:3px 0;text-align:right">1-3 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">★★★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 注入天保基建（医药主营已锁定，天津 IVD 综合）；独立上市（北交所 12-18 月，新三板已挂牌）作为兜底
+</div>
+<div class="meta"><span class="tag green">关注优先级 P2</span><span class="tag orange" style="margin-left:6px">注入天保基建</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#db2777">
+<div class="name">迅巢科技</div>
+<div class="pos">物流快递换电场景头部（市占率 90%+）</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">绿田双主业承接 / 独立上市</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;color:#d69e2e;font-weight:700">⭐⭐⭐⭐ 3.6</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;font-weight:600">17.91%</td></tr>
+<tr><td style="border:none;padding:3px 0">投资规模</td><td style="border:none;padding:3px 0;text-align:right">1-2 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;color:#7b341e;font-weight:600">★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 绿田双主业承接（机械+海外渠道+换电，可行性高）；独立上市（北交所/创业板 24-36 月，EBITDA 拐点 2026E）作为兜底
+</div>
+<div class="meta"><span class="tag green">关注优先级 P2</span><span class="tag gray" style="margin-left:6px">绿田双主业承接 / 独立上市</span></div>
+</div>
+
+<div class="project-card" style="border-top-color:#9f1239">
+<div class="name">元旭半导体</div>
+<div class="pos">Micro-LED 并行光引擎（AI 短距光互联）</div>
+<table style="margin:8px 0;font-size:12px;box-shadow:none">
+<tr><td style="border:none;padding:3px 0">退出方向</td><td style="border:none;padding:3px 0;text-align:right">注入天保基建（医药 + 芯片双主业）</td></tr>
+<tr><td style="border:none;padding:3px 0">综合评分</td><td style="border:none;padding:3px 0;text-align:right;font-weight:700">⭐⭐⭐ 3.2</td></tr>
+<tr><td style="border:none;padding:3px 0">净利率</td><td style="border:none;padding:3px 0;text-align:right;color:#742a2a;font-weight:600">❌ 无审计</td></tr>
+<tr><td style="border:none;padding:3px 0">投资规模</td><td style="border:none;padding:3px 0;text-align:right">2 亿</td></tr>
+<tr><td style="border:none;padding:3px 0">退出确定性</td><td style="border:none;padding:3px 0;text-align:right;color:#7b341e;font-weight:600">★★</td></tr>
+</table>
+<div style="font-size:11px;color:#4a5568;background:#f7fafc;padding:8px 10px;border-radius:6px;margin:8px 0;line-height:1.6">
+<strong style="color:#2c5282">退出路径</strong>：✅ 注入天保基建（医药主营 + 芯片第二主业）；独立上市（创业板 24-36 月）作为最终兜底，需先完成 8 项 P0 尽调
+</div>
+<div class="meta"><span class="tag gray">关注优先级 P3（信息待补）</span><span class="tag orange" style="margin-left:6px">注入天保基建（医药+芯片双主业，待审计/穿透）</span></div>
+</div>
+
+</div>
+
+<h3>2.2 净利率排名（条形图）</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px">
+<div class="viz-bar"><div class="lbl">联通云 IDC <span style="color:#9b2c2c;font-size:11px;background:#fed7d7;padding:1px 6px;border-radius:8px;margin-left:4px">PPT/未审计 ⚠</span></div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#c53030,#9b2c2c);width:100%">86%</div></div><div class="val">~86%</div></div>
+<div class="viz-bar"><div class="lbl">晶能光电</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#3182ce,#2c5282);width:26.5%">23%</div></div><div class="val">~22.76%</div></div>
+<div class="viz-bar"><div class="lbl">迅巢科技</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#38a169,#2f855a);width:20.8%">18%</div></div><div class="val">17.91%</div></div>
+<div class="viz-bar"><div class="lbl">宏远创信</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#d69e2e,#b7791f);width:16.8%">14%</div></div><div class="val">14.49%</div></div>
+<div class="viz-bar"><div class="lbl">中复碳芯</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#805ad5,#553c9a);width:8.7%">8%</div></div><div class="val">7.51%</div></div>
+<div class="viz-bar"><div class="lbl">柯渡医学</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#dd6b20,#c05621);width:7.5%">6%</div></div><div class="val">6.46%</div></div>
+<div class="viz-bar"><div class="lbl">信鸿医疗</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#319795,#2c7a7b);width:6.2%">5%</div></div><div class="val">5.29%</div></div>
+</div>
+<div style="background:#fff5f5;border-left:3px solid #c53030;padding:12px 16px;margin:12px 0;border-radius:0 6px 6px 0;font-size:13px;color:#742a2a;line-height:1.7">
+⚠ <strong>联通云 IDC 86% 净利率口径说明</strong>：数据来自项目方 PPT（2,500 万净利 / 2,900 万营收 = 86.2%），未经独立审计。<br>
+&emsp;<strong>口径推断</strong>：①项目已运营 9 年（2017 投运），固定资产折旧基本完毕 ②0 负债结构简单 ③单项目口径，无公司层面费用分摊<br>
+&emsp;<strong>行业对照</strong>：数据港 ~10-15% / 润泽科技 ~25% / 万国数据亏损 → 86% 为行业平均的 3-5 倍<br>
+&emsp;<strong>建议</strong>：要求项目方提供第三方审计报告，并拆分 EBITDA / 折旧 / 利息 / 公司层面费用。
+</div>
+
+<h3>2.3 综合评分排名</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px">
+<div class="viz-bar"><div class="lbl">晶能光电</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#d69e2e,#b7791f);width:88%">4.4</div></div><div class="val">4.4</div></div>
+<div class="viz-bar"><div class="lbl">联通云 IDC</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#3182ce,#2c5282);width:82%">4.1</div></div><div class="val">4.1</div></div>
+<div class="viz-bar"><div class="lbl">柯渡医学</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#38a169,#2f855a);width:74%">3.7</div></div><div class="val">3.7</div></div>
+<div class="viz-bar"><div class="lbl">中复碳芯</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#805ad5,#553c9a);width:72%">3.6</div></div><div class="val">3.6</div></div>
+<div class="viz-bar"><div class="lbl">信鸿医疗</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#319795,#2c7a7b);width:72%">3.6</div></div><div class="val">3.6</div></div>
+<div class="viz-bar"><div class="lbl">迅巢科技</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#db2777,#be185d);width:72%">3.6</div></div><div class="val">3.6</div></div>
+<div class="viz-bar"><div class="lbl">宏远创信</div><div class="bar"><div class="fill" style="background:linear-gradient(90deg,#a0aec0,#718096);width:68%">3.4</div></div><div class="val">3.4</div></div>
+</div>
+
+<h3>2.4 行业赛道分布</h3>
+<table>
+<tr><th>赛道</th><th>项目数</th><th>占比</th><th>代表项目</th></tr>
+<tr><td>医疗设备/服务</td><td>2 个</td><td>25%</td><td>柯渡医学、信鸿医疗</td></tr>
+<tr><td>半导体/LED</td><td>2 个</td><td>25%</td><td>晶能光电、元旭半导体</td></tr>
+<tr><td>新材料</td><td>1 个</td><td>12.5%</td><td>中复碳芯</td></tr>
+<tr><td>能源/电力</td><td>1 个</td><td>12.5%</td><td>宏远创信</td></tr>
+<tr><td>数据中心</td><td>1 个</td><td>12.5%</td><td>联通云 IDC</td></tr>
+<tr><td>换电/出行</td><td>1 个</td><td>12.5%</td><td>迅巢科技</td></tr>
+</table>
+
+<h3>2.5 关键风险监控</h3>
+<div class="risk-grid">
+<div class="risk-card"><div class="rname">晶能光电</div><ul><li>换股并购谈判进度</li><li>3 亿基金亏损承接问题</li><li>实控人长期绑定信号</li><li>3 年 IPO 禁令倒计时（仅剩 1.5 年）</li></ul></div>
+<div class="risk-card"><div class="rname">柯渡医学</div><ul><li>财务透明度（需补审计）</li><li>应收账款规模上升</li><li>流动比率下降至 1.25</li></ul></div>
+<div class="risk-card"><div class="rname">中复碳芯</div><ul><li>兄弟公司中复神鹰亏损</li><li>资产负债率 69.2%</li><li>上市规划明确化</li></ul></div>
+<div class="risk-card"><div class="rname">宏远创信</div><ul><li>客户集中度 97.62%</li><li>其他应收款坏账 9,500 万</li></ul></div>
+<div class="risk-card"><div class="rname">联通云 IDC</div><ul><li>业主穿透核查</li><li>PUE 政策临界（≤1.25）</li><li>剩余合同期</li><li style="color:#9b2c2c;font-weight:600">⚠ 86% 净利率待审计验证（PPT 单一来源）</li><li style="color:#9b2c2c;font-weight:600">⚠ 二次 REITs 可行性：收购价控制 + 整合能力（其他IDC资产）+ 客户多元化</li></ul></div>
+<div class="risk-card"><div class="rname">信鸿医疗</div><ul><li>资产负债率 54.62%</li><li>IVD 集采压力</li><li>孵化器盈利模式</li></ul></div>
+<div class="risk-card"><div class="rname">迅巢科技</div><ul><li>换电模式盈利验证</li><li>电池资产投入重</li><li>海外试点执行风险</li></ul></div>
+<div class="risk-card"><div class="rname">元旭半导体</div><ul><li>光互联客户验证（最大风险）</li><li>利润表/现金流量表可得性</li><li>8 项 P0 级尽调待完成</li></ul></div>
+</div>
+</section>
+
+<!-- 三、上市公司标的筛选（自选筛选可被并购的） -->
+<section class="section">
+<h2 style="border-left-color:#9f1239">三、上市公司标的筛选（自选筛选可被并购的）</h2>
+
+<div class="facts-box">
+<h4>📌 一句话结论（按当前信息下的乐观度排序，不构成投资建议）</h4>
+<ul>
+<li><strong>研究框架</strong>：自选筛选 A 股中"业务可重塑性高 + 市值规模合适 + 实控人有退出意愿"的可被并购上市公司，作为后续国企资本运作/资产注入的潜在承接平台</li>
+<li><strong>当前信息下乐观度最高的 1 家</strong>：绿田机械（实控人持股集中、控制权最稳，与基建医药战略无冲突）→ **新收首选**</li>
+<li><strong>乐观度中性的 1 家</strong>：科华控股业绩承压但市值小（26 亿），需多方协调，仅适合低价筹码式介入（≤8.57 元/股）作为后续资产注入平台</li>
+<li><strong>已排除 1 家</strong>：**爱朋医疗（不首选）**——与天保基建医药主营战略冲突，乐观度信息仅作风险监控参考</li>
+</ul>
+</div>
+
+<div class="deal-grid">
+
+<div class="deal-card">
+<div class="dname">绿田机械</div>
+<div class="dcode">605259.SH · 上交所主板</div>
+<div class="drating a">🟢 A 级（信息乐观度高）</div>
+<div class="dscore">综合评分 <strong>6.4 / 10</strong>　|　市值 <strong>30.49 亿</strong>　|　股价 17.68 元</div>
+<div class="dbiz">通用动力机械 + 高压清洗机　|　海外占比 75.52%</div>
+<ul>
+<li class="ok">✓ 实控人罗昌国 56.42% 绝对控股</li>
+<li class="ok">✓ 资产负债率 32.21%（3 家最低负债）</li>
+<li class="ok">✓ 2025 PE 仅 12.4x（估值合理）</li>
+<li class="ok">✓ 2026-05 启动 8000 万-1 亿回购+激励</li>
+<li class="bad">✗ 2026 Q1 归母 -21.69%（边际放缓）</li>
+<li class="bad">✗ 实控人增持意愿强，谈判难度大</li>
+<li class="note">→ 关键洞察：罗昌国 2024 增持的 2748.79 万股浮盈 35% 为我方重点关注；邵雨田（4.05%）有减持计划为我方重点关注</li>
+</ul>
+</div>
+
+<div class="deal-card" style="opacity:0.7;border-color:#9b2c2c">
+<div class="dname">爱朋医疗 <span style="font-size:14px;color:#9b2c2c;font-weight:700">⚠ 已排除（不首选）</span></div>
+<div class="dcode">300753.SZ · 深交所创业板</div>
+<div class="drating" style="background:#fed7d7;color:#742a2a">🔴 不首选（与基建医药战略冲突）</div>
+<div class="dscore">综合评分 <strong>6.8 / 10</strong>　|　市值 <strong>24.68 亿</strong>　|　股价 19.58 元</div>
+<div class="dbiz">疼痛管理 + 鼻腔护理 + ADHD 新业务（2026-05 量产）</div>
+<ul>
+<li class="ok">✓ 2026 Q1 营收 +5.38%（3 年首次转正）</li>
+<li class="ok">✓ 归母 -439 万（同比减亏 75.12%）</li>
+<li class="ok">✓ 资产负债率 17.29%（3 家中最低）</li>
+<li class="ok">✓ ADHD 产品已量产（第二增长曲线）</li>
+<li class="bad">✗ 当前仍亏损，估值锚缺失</li>
+<li class="bad">✗ 创业板控制权变更流程 6-9 个月</li>
+<li class="bad" style="color:#9b2c2c;font-weight:700">✗ **不首选核心原因**：与天保基建医药主营战略冲突（基建医药/芯片二选一→倾向医药），收购爱朋会与柯渡/信鸿医药业务重叠</li>
+<li class="note">→ 仅作风险监控参考（业绩拐点+ADHD 量产）；不作为新收首选标的</li>
+</ul>
+</div>
+
+<div class="deal-card b">
+<div class="dname">科华控股</div>
+<div class="dcode">603161.SH · 上交所主板</div>
+<div class="drating b">🟡 B 级（信息乐观度中）</div>
+<div class="dscore">综合评分 <strong>5.4 / 10</strong>　|　市值 <strong>26.01 亿</strong>　|　股价 13.38 元</div>
+<div class="dbiz">汽车涡轮增压器壳体（传统燃油车）</div>
+<ul>
+<li class="bad">✗ 2026 Q1 归母 -38.71%（业绩拐点未现）</li>
+<li class="bad">✗ 经营性现金流转负 -9849 万</li>
+<li class="bad">✗ 短期借款环比 +26.42%</li>
+<li class="bad">✗ 历史两次控制权转让失败</li>
+<li class="ok">✓ 估值低（≤8.57 元/股可介入）</li>
+<li class="note">→ 关键洞察：业绩基数低 + 市值小（26 亿）→ 注入资产空间充足；控制权分散需多方协调；<strong>同步启动资产注入方案设计</strong></li>
+</ul>
+</div>
+
+</div>
+
+<h3 style="display:flex;align-items:center;gap:12px;padding:16px 20px;margin:32px 0 18px;background:linear-gradient(135deg,#ebf8ff,#e0f2fe);border-left:6px solid #3182ce;border-radius:0 10px 10px 0;box-shadow:0 2px 4px rgba(49,130,206,0.08);font-size:18px;width:100%;box-sizing:border-box">
+  <span style="background:#3182ce;color:#fff;min-width:38px;height:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:5px;font-size:13px;font-weight:700;letter-spacing:0.5px;flex-shrink:0">3.1</span>
+  <span style="font-weight:700;color:#1a365d;white-space:nowrap">三家公司横向对比</span>
+  <span style="font-size:12px;color:#4a5568;font-weight:400;margin-left:auto">科华 / 绿田 / 爱朋（含评级与并购方案）</span>
+</h3>
+
+<div style="display:flex;flex-direction:column;gap:14px;margin:14px 0">
+<!-- 科华控股 -->
+<div style="background:#fff;border-radius:10px;padding:18px 20px;border-top:4px solid #c53030;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:grid;grid-template-columns:200px 1fr 1fr;gap:18px;align-items:start;width:100%;box-sizing:border-box">
+<div>
+<div style="font-size:17px;font-weight:700;color:#1a365d;margin-bottom:4px">科华控股 <span style="font-size:11px;color:#718096;font-weight:400">603161.SH</span></div>
+<span style="font-size:10px;background:#fed7d7;color:#742a2a;padding:2px 7px;border-radius:8px;font-weight:600">🟡 B 级（中性）</span>
+<div style="font-size:11px;color:#4a5568;margin-top:8px"><strong>汽车涡轮增压器壳体</strong></div>
+<div style="font-size:10px;color:#9b2c2c;margin-top:6px">⚠ 控制权散乱（家族）/ 业绩拐点未现</div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.6">
+<tr><td style="padding:3px 0;color:#718096;width:88px">股价 / 市值</td><td style="padding:3px 0;text-align:right;font-weight:600">13.38 元 / 26.01 亿</td></tr>
+<tr><td style="padding:3px 0;color:#718096">实控人</td><td style="padding:3px 0;text-align:right;color:#9b2c2c;font-weight:600">25.59% 🔴 家族散乱</td></tr>
+<tr><td style="padding:3px 0;color:#718096">2025 营收 / 归母</td><td style="padding:3px 0;text-align:right;font-weight:600">22.40 亿 / 0.98 亿</td></tr>
+<tr><td style="padding:3px 0;color:#718096">资产负债率</td><td style="padding:3px 0;text-align:right;color:#9b2c2c;font-weight:600">45.22% 🔴</td></tr>
+<tr><td style="padding:3px 0;color:#718096">2026 Q1 同比</td><td style="padding:3px 0;text-align:right;color:#9b2c2c;font-weight:600">营收 -5% / 归母 -39% 🔴🔴</td></tr>
+</table>
+<div style="background:#ebf8ff;padding:10px 12px;border-radius:6px;font-size:12px;color:#2c5282;line-height:1.7;border-left:3px solid #3182ce">
+<strong>💰 收购方案</strong>：协议转让（三方协调），<strong>≤ 8.57 元/股</strong>，成本 <strong>5.0-5.8 亿</strong>，🟡 <strong>暂缓主动接触</strong>（V4.1 修正：原"立即可推进"措辞过强，与 P3 暂缓定位不一致）<br>
+<strong>评级</strong>：综合 5.4/10（业绩承压 / 控制权散乱）<br>
+<strong>关键洞察</strong>：业绩基数低 + 市值小 → 注入资产空间充足；控制权分散需多方协调；仅当张宇法拍价 ≤8.57 元时才考虑介入
+</div>
+</div>
+
+<!-- 绿田机械 -->
+<div style="background:#fff;border-radius:10px;padding:18px 20px;border-top:4px solid #22543d;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:grid;grid-template-columns:200px 1fr 1fr;gap:18px;align-items:start;width:100%;box-sizing:border-box">
+<div>
+<div style="font-size:17px;font-weight:700;color:#1a365d;margin-bottom:4px">绿田机械 <span style="font-size:11px;color:#22543d;font-weight:600">⭐ 新收首选</span> <span style="font-size:11px;color:#718096;font-weight:400">605259.SH</span></div>
+<span style="font-size:10px;background:#c6f6d5;color:#22543d;padding:2px 7px;border-radius:8px;font-weight:600">🟢 A 级（首选）</span>
+<div style="font-size:11px;color:#4a5568;margin-top:8px"><strong>通用动力机械 + 海外渠道</strong>（75.52%）</div>
+<div style="font-size:10px;color:#22543d;margin-top:6px">✓ 实控人绝对控股 / 估值合理 / 战略无冲突</div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.6">
+<tr><td style="padding:3px 0;color:#718096;width:88px">股价 / 市值</td><td style="padding:3px 0;text-align:right;font-weight:600">17.68 元 / 30.49 亿</td></tr>
+<tr><td style="padding:3px 0;color:#718096">实控人</td><td style="padding:3px 0;text-align:right;color:#22543d;font-weight:600">56.42% 🟢 绝对控股</td></tr>
+<tr><td style="padding:3px 0;color:#718096">2025 营收 / 归母</td><td style="padding:3px 0;text-align:right;font-weight:600">25.23 亿 / 2.46 亿</td></tr>
+<tr><td style="padding:3px 0;color:#718096">资产负债率</td><td style="padding:3px 0;text-align:right;color:#22543d;font-weight:600">32.21% 🟢 3 家最低</td></tr>
+<tr><td style="padding:3px 0;color:#718096">2026 Q1 同比</td><td style="padding:3px 0;text-align:right;color:#744210;font-weight:600">营收 -0.6% / 归母 -22% 🟡🟡</td></tr>
+</table>
+<div style="background:#ebf8ff;padding:10px 12px;border-radius:6px;font-size:12px;color:#2c5282;line-height:1.7;border-left:3px solid #3182ce">
+<strong>💰 收购方案</strong>：要约 / 战投，<strong>18-22 元/股</strong>，成本 <strong>9.3-11.4 亿</strong>，等 Q2-Q3 业绩明朗<br>
+<strong>评级</strong>：综合 6.4/10（控制权最稳 / 估值合理）<br>
+<strong>关键洞察</strong>：罗昌国 2024 增持的 2748.79 万股浮盈 35% 为我方关注；邵雨田（4.05%）有减持计划；双主业可承接迅巢/中复/元旭 3 项目
+</div>
+</div>
+
+<!-- 爱朋医疗 -->
+<div style="background:#fff;border-radius:10px;padding:18px 20px;border-top:4px solid #9b2c2c;box-shadow:0 1px 3px rgba(0,0,0,0.06);opacity:0.85;display:grid;grid-template-columns:200px 1fr 1fr;gap:18px;align-items:start;width:100%;box-sizing:border-box">
+<div>
+<div style="font-size:17px;font-weight:700;color:#1a365d;margin-bottom:4px">爱朋医疗 <span style="font-size:11px;color:#9b2c2c;font-weight:600">🔴 不首选</span> <span style="font-size:11px;color:#718096;font-weight:400">300753.SZ</span></div>
+<span style="font-size:10px;background:#fed7d7;color:#742a2a;padding:2px 7px;border-radius:8px;font-weight:600">🔴 排除（与基建医药冲突）</span>
+<div style="font-size:11px;color:#4a5568;margin-top:8px"><strong>疼痛管理 + ADHD 新业务</strong>（医械医药）</div>
+<div style="font-size:10px;color:#9b2c2c;margin-top:6px">✗ 与基建医药战略冲突 / 当前仍亏损</div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.6">
+<tr><td style="padding:3px 0;color:#718096;width:88px">股价 / 市值</td><td style="padding:3px 0;text-align:right;font-weight:600">19.58 元 / 24.68 亿</td></tr>
+<tr><td style="padding:3px 0;color:#718096">实控人</td><td style="padding:3px 0;text-align:right;font-weight:600">39.07% 王+张一致</td></tr>
+<tr><td style="padding:3px 0;color:#718096">2025 营收 / 归母</td><td style="padding:3px 0;text-align:right;color:#9b2c2c;font-weight:600">3.42 亿 / <strong>-0.24 亿</strong></td></tr>
+<tr><td style="padding:3px 0;color:#718096">资产负债率</td><td style="padding:3px 0;text-align:right;color:#22543d;font-weight:600">17.29% 🟢⭐ 最低</td></tr>
+<tr><td style="padding:3px 0;color:#718096">2026 Q1 同比</td><td style="padding:3px 0;text-align:right;color:#22543d;font-weight:600">营收 +5% / 归母 +75% 减亏 🟢🟢</td></tr>
+</table>
+<div style="background:#fff5f5;padding:10px 12px;border-radius:6px;font-size:12px;color:#9b2c2c;line-height:1.7;border-left:3px solid #9b2c2c">
+<strong>🚫 不入选</strong>：协议转让 <strong>22-26 元/股</strong>，成本 8.3-9.8 亿；<strong>不首选核心原因</strong>：与基建医药主营战略冲突（基建医药/芯片二选一→倾向医药），收购爱朋会与柯渡/信鸿医药业务重叠<br>
+<strong>评级</strong>：综合 6.8/10（财务恶化 / 战略冲突）<br>
+<strong>下一步</strong>：仅作风险监控参考（业绩拐点+ADHD 量产信息持续收集），不主动接触；如未来基建战略调整再重新评估
+</div>
+</div>
+
+</div>
+
+<h3 style="display:flex;align-items:center;gap:12px;padding:16px 20px;margin:32px 0 18px;background:linear-gradient(135deg,#fff5f5,#fed7d7);border-left:6px solid #c53030;border-radius:0 10px 10px 0;box-shadow:0 2px 4px rgba(197,48,48,0.08);font-size:18px;width:100%;box-sizing:border-box">
+  <span style="background:#c53030;color:#fff;min-width:38px;height:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:5px;font-size:13px;font-weight:700;letter-spacing:0.5px;flex-shrink:0">3.2</span>
+  <span style="font-weight:700;color:#1a365d;white-space:nowrap">单家风险提示</span>
+  <span style="font-size:12px;color:#4a5568;font-weight:400;margin-left:auto">按严重程度分级（🔴高 / 🟡中 / 🟢低）</span>
+</h3>
+
+<div style="display:flex;gap:10px;margin:10px 0;font-size:11px;color:#4a5568">
+<span style="background:#fed7d7;padding:2px 7px;border-radius:6px;color:#742a2a">🔴 高（立即应对）</span>
+<span style="background:#feebc8;padding:2px 7px;border-radius:6px;color:#7b341e">🟡 中（持续监控）</span>
+<span style="background:#c6f6d5;padding:2px 7px;border-radius:6px;color:#22543d">🟢 低（背景）</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;margin:14px 0">
+
+<div style="background:#fff;border-radius:10px;padding:16px 20px;border-top:4px solid #c53030;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start;width:100%;box-sizing:border-box">
+<div>
+<div style="font-size:16px;font-weight:700;color:#1a365d;margin-bottom:4px">科华控股 <span style="font-size:11px;color:#718096;font-weight:400">603161.SH</span></div>
+<span style="font-size:10px;background:#fed7d7;color:#742a2a;padding:2px 7px;border-radius:8px;font-weight:600">🔴 风险高（需立即应对）</span>
+<div style="font-size:10px;color:#9b2c2c;margin-top:6px">3 高 + 1 中 = 4 项风险</div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.7">
+<tr><td style="padding:3px 8px 3px 0;width:48px"><span style="background:#fed7d7;padding:2px 7px;border-radius:3px;color:#742a2a;font-size:10px;font-weight:600">高</span></td><td style="padding:3px 0">Q1 经营现金流 <strong>-9,849 万</strong></td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#feebc8;padding:2px 7px;border-radius:3px;color:#7b341e;font-size:10px;font-weight:600">中</span></td><td style="padding:3px 0">短期借款环比 <strong>+26.42%</strong></td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#fed7d7;padding:2px 7px;border-radius:3px;color:#742a2a;font-size:10px;font-weight:600">高</span></td><td style="padding:3px 0">陈伟涉案可能引发后续连锁</td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#fed7d7;padding:2px 7px;border-radius:3px;color:#742a2a;font-size:10px;font-weight:600">高</span></td><td style="padding:3px 0">三方股东协调失败概率高</td></tr>
+</table>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:16px 20px;border-top:4px solid #d69e2e;box-shadow:0 1px 3px rgba(0,0,0,0.06);display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start;width:100%;box-sizing:border-box">
+<div>
+<div style="font-size:16px;font-weight:700;color:#1a365d;margin-bottom:4px">绿田机械 <span style="font-size:11px;color:#718096;font-weight:400">605259.SH</span></div>
+<span style="font-size:10px;background:#feebc8;color:#7b341e;padding:2px 7px;border-radius:8px;font-weight:600">🟡 风险中（需持续监控）</span>
+<div style="font-size:10px;color:#7b341e;margin-top:6px">3 中 + 1 低 = 4 项风险</div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.7">
+<tr><td style="padding:3px 8px 3px 0;width:48px"><span style="background:#feebc8;padding:2px 7px;border-radius:3px;color:#7b341e;font-size:10px;font-weight:600">中</span></td><td style="padding:3px 0">Q1 营收 <strong>-0.61%</strong> / 归母 <strong>-21.69%</strong></td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#feebc8;padding:2px 7px;border-radius:3px;color:#7b341e;font-size:10px;font-weight:600">中</span></td><td style="padding:3px 0">罗昌国长期绑定信号增强</td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#feebc8;padding:2px 7px;border-radius:3px;color:#7b341e;font-size:10px;font-weight:600">中</span></td><td style="padding:3px 0">邵雨田徐翔系历史需核查</td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#c6f6d5;padding:2px 7px;border-radius:3px;color:#22543d;font-size:10px;font-weight:600">低</span></td><td style="padding:3px 0">海外业务受地缘政治影响</td></tr>
+</table>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:16px 20px;border-top:4px solid #9b2c2c;box-shadow:0 1px 3px rgba(0,0,0,0.06);opacity:0.85;display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start;width:100%;box-sizing:border-box">
+<div>
+<div style="font-size:16px;font-weight:700;color:#1a365d;margin-bottom:4px">爱朋医疗 <span style="font-size:10px;color:#9b2c2c;font-weight:600">（已排除）</span> <span style="font-size:11px;color:#718096;font-weight:400">300753.SZ</span></div>
+<span style="font-size:10px;background:#fed7d7;color:#742a2a;padding:2px 7px;border-radius:8px;font-weight:600">🔴 不入选（仅监控）</span>
+<div style="font-size:10px;color:#9b2c2c;margin-top:6px">2 高 + 2 中 = 4 项风险</div>
+</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.7">
+<tr><td style="padding:3px 8px 3px 0;width:48px"><span style="background:#fed7d7;padding:2px 7px;border-radius:3px;color:#742a2a;font-size:10px;font-weight:600">高</span></td><td style="padding:3px 0">当前仍亏损 <strong>-439 万</strong></td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#fed7d7;padding:2px 7px;border-radius:3px;color:#742a2a;font-size:10px;font-weight:600">高</span></td><td style="padding:3px 0">销售净利率 <strong>-7.66%</strong></td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#feebc8;padding:2px 7px;border-radius:3px;color:#7b341e;font-size:10px;font-weight:600">中</span></td><td style="padding:3px 0">医疗器械集采政策可能进一步压缩</td></tr>
+<tr><td style="padding:3px 8px 3px 0"><span style="background:#feebc8;padding:2px 7px;border-radius:3px;color:#7b341e;font-size:10px;font-weight:600">中</span></td><td style="padding:3px 0">创业板控制权变更监管流程长</td></tr>
+</table>
+</div>
+
+</div>
+</section>
+
+<!-- 四、关注优先级与下一步行动 -->
+<section class="section">
+<h2>四、关注优先级与下一步行动（按当前信息下的关注度排序，不构成投资建议）</h2>
+
+<div class="priority-card p1" style="border-left-color:#22543d">
+<div class="ptitle">P1 · 🟢 重点跟进 · 绿田机械</div>
+<div class="pdesc">
+<strong>乐观度最高的核心理由</strong>：实控人罗昌国 56.42% 绝对控股 + 资产负债率 32.21% + 估值合理（2025 PE 12.4x）+ 与天保基建医药战略无冲突。<br>
+<strong>下一步</strong>：<br>
+&emsp;<strong>主线</strong>：持续监控 2026 Q2-Q3 业绩，待业绩底确认 + 股价企稳再评估接触时机。<br>
+&emsp;<strong>副线</strong>：监控邵雨田大宗减持公告（其有减持计划）；以 <strong>18-22 元/股</strong>区间作为未来评估窗口；同步监控罗昌国 2024 增持的 2748.79 万股浮盈 35% 兑现窗口。<strong>收购后可通过双主业承接迅巢（机械+海外渠道+换电，可行性高）/ 中复（机械+新材料，可行性高）/ 元旭（机械+芯片，可行性中等）</strong>。
+</div>
+</div>
+
+<div class="priority-card p2" style="border-left-color:#9b2c2c">
+<div class="ptitle">P2 · 🔴 排除候选 · 爱朋医疗</div>
+<div class="pdesc">
+<strong>不首选的核心理由</strong>：与天保基建医药主营战略冲突（基建医药/芯片二选一→倾向医药）。爱朋医械医药方向如注入我方平台会与柯渡/信鸿医药业务重叠，违背基建医药唯一主营的约束。<br>
+<strong>下一步</strong>：<strong>不作为新收首选标的</strong>，仅作风险监控参考（业绩拐点+ADHD 量产信息持续收集），不主动接触。如未来基建战略调整（如医药/芯片均放弃，转向医械等新方向）再重新评估。
+</div>
+</div>
+
+<div class="priority-card p3">
+<div class="ptitle">P3 · 🟡 暂缓介入 · 科华控股</div>
+<div class="pdesc">
+<strong>乐观度中性的核心理由</strong>：业绩基数低 + 市值小（26 亿）→ 注入资产空间充足；但控制权分散需多方协调，且 2026 Q1 业绩拐点未现。<br>
+<strong>下一步</strong>：<strong>暂缓主动接触</strong>，仅做信息收集；如出现折价机会（受让价格 <strong>不得高于 8.57 元/股</strong>）再评估；同步研究资产注入方案设计的可行性，备而不用。
+</div>
+</div>
+
+<h3>关键观察节点（未来 12 个月）</h3>
+<table>
+<tr><th>时间点</th><th>观察事项</th><th>观察依据</th></tr>
+<tr><td>2026-Q3</td><td>绿田机械 Q2-Q3 业绩</td><td>业绩底是否确认（新收 P1 重点）</td></tr>
+<tr><td>2026-Q3</td><td>爱朋医疗 ADHD 业务进展（仅监控）</td><td>第二增长曲线是否兑现（仅作风险监控参考，不首选）</td></tr>
+<tr><td>2026-Q4</td><td>科华控股股权变化</td><td>是否出现折价机会</td></tr>
+<tr><td>2026-Q4</td><td>绿田+科华 两方案 B/C 对比最终选择</td><td>绿田🟢/科华🟡 两方案择优</td></tr>
+<tr><td>2027-Q1</td><td>爱朋医疗 2026 年报（仅监控）</td><td>业绩拐点是否持续（不首选）</td></tr>
+<tr><td>2027-Q2</td><td>绿田机械年报</td><td>业绩底确认 + 战略合作落地</td></tr>
+</table>
+
+<h3>通用风险提示</h3>
+<div class="note">
+1. <strong>监管风险</strong>：A 股借壳/控制权变更监管持续收紧，类借壳交易可能被问询<br>
+2. <strong>市场风险</strong>：A 股壳价值持续下降，2024 年以来"小市值+差业绩"标的流动性恶化<br>
+3. <strong>法律风险</strong>：拟收购方案需通过反垄断审查（如适用）、证监会合规审查<br>
+4. <strong>估值风险</strong>：A 股估值波动较大，谈判时点可能错过最佳窗口<br>
+5. <strong>整合风险</strong>：收购后管理团队整合、业务协同、文化融合均存在不确定性
+</div>
+</section>
+
+<!-- 完整报告链接 -->
+<div class="link-card">
+<h3 style="margin-bottom:14px;font-size:18px">📑 完整报告下载</h3>
+<a href="summary.html">📊 储备项目汇总（8 维度对比）</a>　|
+<a href="projects/acquisition-listed-co.html">🏢 上市公司标的筛选研究（自选筛选可被并购的）</a>　|
+<a href="index.html">🏠 主页</a>
+</div>
+
+<div style="margin-top:32px;padding:20px;background:#f7fafc;border-radius:8px;font-size:13px;color:#718096;text-align:center;line-height:1.7">
+报告日期：2026-06-30　|　数据时点：2023/2024/2025 年报 + 2026 Q1　|　方法论：8 维度筛选框架 + 纵横分析法（纵向时间线 + 横向可比公司）<br>
+本汇报为投资部项目储备库与上市公司标的筛选的简版摘要，详细 8 维度分析 + 财务详情 + 谈判方案请参见上方完整报告链接
+</div>
+
+</div>
+
+</body>
+</html>

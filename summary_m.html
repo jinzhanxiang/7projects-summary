@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+<title>储备项目汇总分析（手机版）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a202c;background:#fafaf9;line-height:1.7;font-size:15px;padding:0}
+h1{font-size:20px;color:#1a365d;margin:14px 0 10px;border-bottom:2px solid #d69e2e;padding-bottom:8px;font-weight:700}
+h2{font-size:18px;color:#1a365d;margin:18px 0 8px;font-weight:700;padding-left:8px;border-left:3px solid #d69e2e}
+h3{font-size:16px;color:#2d3748;margin:14px 0 6px;font-weight:600}
+h4{font-size:15px;color:#2d3748;margin:12px 0 4px;font-weight:600}
+p{margin-bottom:8px;font-size:14px;line-height:1.7}
+strong{color:#1a365d}
+/* 表格：横向滚动容器 */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:auto;min-width:480px}
+th{background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;padding:8px 10px;text-align:left;font-size:12px;font-weight:600;white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid #e2e8f0;font-size:13px;vertical-align:top;line-height:1.5}
+tr:nth-child(even) td{background:#fafaf9}
+/* 表格内文字允许换行（手机优先可读性） */
+table td, table th{word-break:break-word;white-space:normal}
+/* 第一列：项目名允许换行但保持高亮 */
+table td:first-child, table th:first-child{font-weight:600;color:#1a365d;min-width:80px;max-width:120px}
+blockquote{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-left:3px solid #d69e2e;padding:10px 12px;margin:10px 0;border-radius:0 6px 6px 0;color:#744210;font-size:13px;line-height:1.6}
+/* 顶部导航（横滚） */
+.nav{background:linear-gradient(135deg,#1a365d,#2c5282);padding:10px 12px;margin-bottom:12px;display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;border-radius:0 0 8px 8px;position:sticky;top:0;z-index:100}
+.nav a{color:rgba(255,255,255,0.9);text-decoration:none;font-size:13px;padding:4px 10px;border-radius:12px;flex-shrink:0}
+.nav a.home, .nav a.active{background:rgba(255,255,255,0.18);color:#fff}
+/* 内容容器 */
+.content{padding:0 12px 24px}
+ul,ol{margin:8px 0 8px 22px}
+li{margin-bottom:4px;font-size:14px;line-height:1.6}
+code{background:#f7fafc;padding:2px 6px;border-radius:3px;font-size:12px;color:#c53030}
+pre{background:#1a202c;color:#e2e8f0;padding:12px;border-radius:6px;margin:10px 0;overflow-x:auto;font-size:12px;line-height:1.5}
+a{color:#3182ce;text-decoration:none;word-break:break-all}
+a:hover{text-decoration:underline}
+hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
+/* 图片自适应 */
+img{max-width:100%;height:auto;border-radius:4px}
+/* Callout 适配 */
+strong > em, em > strong{font-style:normal}
+/* 回到顶部 */
+.to-top{position:fixed;bottom:20px;right:16px;background:linear-gradient(135deg,#1a365d,#2c5282);color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:99}
+/* 工具栏 */
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e2e8f0;padding:6px 10px;display:flex;justify-content:space-around;align-items:center;font-size:12px;box-shadow:0 -2px 8px rgba(0,0,0,0.05);z-index:99}
+.toolbar a{color:#3182ce;text-decoration:none;flex:1;text-align:center;padding:6px 0}
+.toolbar a span{display:block;font-size:18px;margin-bottom:2px}
+</style>
+</head>
+<body>
+<div class="nav">
+<a class="home" href="../index_m.html">🏠主页</a>
+<a href="../summary_m.html">📊汇总</a>
+<a href="acquisition-listed-co_m.html">🏢拟收购上市公司研究</a>
+<a href="hongyuan_m.html">宏远创信</a>
+<a href="innoshine_m.html">元旭半导体</a>
+<a href="jngd_m.html">晶能光电</a>
+<a href="kedu_m.html">柯渡医学</a>
+<a href="unicom-idc_m.html">联通云IDC</a>
+<a href="xinhong_m.html">信鸿医疗</a>
+<a href="xunchao_m.html">迅巢科技</a>
+<a href="zhongfu_m.html">中复碳芯</a>
+<a href="javascript:void(0)" onclick="window.location=window.location.pathname.replace(/_m\.html?$/, '.html')" style="margin-left:auto;background:rgba(255,255,255,0.18)">💻桌面版</a>
+</div>
+<div class="content">
+<h1>储备项目汇总分析</h1>
+<p><strong>报告版本</strong>: v1.11（第12期）
+<strong>分析日期</strong>: 2026年6月30日
+<strong>分析方法</strong>: 纵横分析法 + 多源数据交叉验证
+<strong>本期覆盖项目</strong>: 8个（晶能光电 / 上海柯渡医学 / 中复碳芯 / 宏远创信 / 联通云IDC / 信鸿医疗 / 迅巢科技 / 元旭半导体）</p>
+<blockquote>
+<p>[!TIP] ✅ 退出方向 5 层级联动 + 仅收 1 家新收约束 + 基建倾向医药 + 爱朋不首选 + 双主业承接优先 + 双主业可跨界
+总接收架构 = <strong>3 平台</strong>（我方 2 + 新收 1），<strong>新收上限 = 1 家</strong>。<strong>天保基建主营锁定医药</strong>（柯渡/信鸿已锁定注入），<strong>芯片方向项目可作为第二主业注入基建</strong>（Issue 21 放宽）；<strong>爱朋医疗与基建医药战略冲突 → 不作为首选标的</strong>。<strong>新收的上市公司可以是双主业，且可跨界承接</strong>——收购后在保留原主业基础上追加跨界新主业（基建+芯片 / 机械+新材料 / 机械+芯片）承接不匹配项目，<strong>几乎不需要扩大新收范围</strong>。各储备项目退出方向按 <strong>5 层级联动</strong>（<strong>层级 1</strong> 我方两家上市公司 → <strong>层级 2</strong> 3 家拟收购上市公司择优 1 家（排除爱朋，含双主业跨界承接）→ <strong>层级 3</strong> 双主业/三平台架构 → <strong>层级 4</strong> 扩大新收上市公司范围（极少使用兜底）→ <strong>层级 5</strong> 培育后独立上市）基于客观事实<strong>一事一议</strong>单独判断。<strong>每个项目（除晶能外）必须分析独立上市路径</strong>。通用分析工具见 <a href="./listed_companies_injection_analysis.md"><code>listed_companies_injection_analysis.md</code></a>，包含我方两家上市公司（<strong>天保基建 A 股主营医药（+芯片第二主业）/ 天保能源 港股主营能源</strong>）+ 3 家拟收购上市公司（<strong>科华 603161 / 绿田 605259 / 爱朋 300753</strong>，爱朋不首选）+ 排除爱朋后两方案对比 + 双主业跨界承接评估 + 借壳审批触发条件 + 8 项目与 3 平台匹配度分析 + 退出路径决策流程 + 各项目独立上市路径分析。各项目具体退出方向（注入路径 + 独立上市路径）已写入各自主报告 <code>reports/{slug}/report_main.md</code> § 5.4。</p>
+</blockquote>
+<hr />
+<h2>报告导读</h2>
+<p><strong>本报告用于储备项目预览、项目分析与追踪汇总</strong>，覆盖<strong>投资部项目储备库</strong>内全部项目，<strong>后续每个新增储备项目都会自动纳入本汇总，滚动更新版本历史</strong>。</p>
+<h3>框架说明</h3>
+<ul>
+<li><strong>覆盖范围</strong>：投资部项目储备库（<strong>滚动更新</strong>）</li>
+<li><strong>入库流程</strong>：新项目立项 → 单独完成纵横分析主报告 → 纳入本汇总添加为新维度行</li>
+<li><strong>更新频率</strong>：每次新项目入库后 7 个工作日内更新本汇总页</li>
+<li><strong>历史版本</strong>：参见本目录 <code>version_history/</code> 子目录（按期号归档）</li>
+</ul>
+<h3>核心结论速览</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0">
+<div style="background:linear-gradient(135deg,#fef5e7,#fdebd0);padding:18px 22px;border-radius:10px;border-left:4px solid #d69e2e">
+<div style="font-size:14px;color:#7b341e;margin-bottom:4px">📊 储备项目数</div>
+<div style="font-size:32px;font-weight:700;color:#7b341e">8 <span style="font-size:14px;color:#a0522d">个</span></div>
+<div style="font-size:13px;color:#a0522d;margin-top:4px">横跨6大行业赛道</div>
+</div>
+<div style="background:linear-gradient(135deg,#e6fffa,#b2f5ea);padding:18px 22px;border-radius:10px;border-left:4px solid #38a169">
+<div style="font-size:14px;color:#22543d;margin-bottom:4px">💎 综合评分第一</div>
+<div style="font-size:24px;font-weight:700;color:#22543d">晶能光电</div>
+<div style="font-size:13px;color:#276749;margin-top:4px">⭐ 4.4 / 5.0（净利率断层式领先）</div>
+</div>
+<div style="background:linear-gradient(135deg,#ebf8ff,#bee3f8);padding:18px 22px;border-radius:10px;border-left:4px solid #3182ce">
+<div style="font-size:14px;color:#2a4365;margin-bottom:4px">🎯 我方+拟收 A/H 上市平台</div>
+<div style="font-size:24px;font-weight:700;color:#2a4365">2 + 3 <span style="font-size:14px;color:#4a5568">家</span></div>
+<div style="font-size:13px;color:#2c5282;margin-top:4px">天保基建/天保能源 + 科华/绿田/爱朋（详见 listed_companies_injection_analysis.md）</div>
+</div>
+<div style="background:linear-gradient(135deg,#fed7d7,#feb2b2);padding:18px 22px;border-radius:10px;border-left:4px solid #c53030">
+<div style="font-size:14px;color:#742a2a;margin-bottom:4px">💰 投资规模区间</div>
+<div style="font-size:24px;font-weight:700;color:#742a2a">1-10 亿</div>
+<div style="font-size:13px;color:#9b2c2c;margin-top:4px">8 个项目合计规模约 21.5-34.5 亿元</div>
+</div>
+</div>
+<hr />
+<h2>8 维度对比仪表盘</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0">
+<div style="background:linear-gradient(135deg,#fef9e7,#fef5e7);padding:18px;border-radius:12px;border-top:4px solid #d69e2e;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#7b341e;font-weight:600">维度 1</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">项目基础信息</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">8 个项目核心定位 + 当前状态</div>
+<div style="margin-top:10px;font-size:13px;color:#a0522d">📌 详见下方完整对比表</div>
+</div>
+<div style="background:linear-gradient(135deg,#f0fff4,#c6f6d5);padding:18px;border-radius:12px;border-top:4px solid #38a169;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#22543d;font-weight:600">维度 2</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">业务结构</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">主营业务 + 细分板块 + 业务特征</div>
+<div style="margin-top:10px;font-size:13px;color:#276749">📌 三引擎协同 / 双轮驱动</div>
+</div>
+<div style="background:linear-gradient(135deg,#ebf8ff,#bee3f8);padding:18px;border-radius:12px;border-top:4px solid #3182ce;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#2a4365;font-weight:600">维度 3</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">核心竞争优势</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">3 大优势 / 项目（差异化壁垒）</div>
+<div style="margin-top:10px;font-size:13px;color:#2c5282">📌 CR2 寡头 / 央企 / 行业唯一</div>
+</div>
+<div style="background:linear-gradient(135deg,#faf5ff,#e9d8fd);padding:18px;border-radius:12px;border-top:4px solid #805ad5;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#44337a;font-weight:600">维度 4</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">财务指标</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">营收 + 净利 + 净利率 + ROE + 透明度</div>
+<div style="margin-top:10px;font-size:13px;color:#553c9a">📌 详见下方净利率/ROE 排名图</div>
+</div>
+<div style="background:linear-gradient(135deg,#fff5f5,#fed7d7);padding:18px;border-radius:12px;border-top:4px solid #c53030;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#742a2a;font-weight:600">维度 5</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">可比公司情况</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">赛道 + A股可比 + 平均 PE/PB</div>
+<div style="margin-top:10px;font-size:13px;color:#9b2c2c">📌 详见下方 PE 估值带图</div>
+</div>
+<div style="background:linear-gradient(135deg,#fffaf0,#feebc8);padding:18px;border-radius:12px;border-top:4px solid #dd6b20;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#7b341e;font-weight:600">维度 6</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">上市/退出路径</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">上市状态 + 退出路径 + 确定性</div>
+<div style="margin-top:10px;font-size:13px;color:#a0522d">📌 详见下方确定性排序</div>
+</div>
+<div style="background:linear-gradient(135deg,#f0f9ff,#bae6fd);padding:18px;border-radius:12px;border-top:4px solid #0284c7;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#075985;font-weight:600">维度 7</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">交易方案设计</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">方式 + 股权 + 规模 + 估值 + 尽调</div>
+<div style="margin-top:10px;font-size:13px;color:#0369a1">📌 详见下方 7 项目交易表</div>
+</div>
+<div style="background:linear-gradient(135deg,#fdf2f8,#fbcfe8);padding:18px;border-radius:12px;border-top:4px solid #db2777;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+<div style="font-size:13px;color:#831843;font-weight:600">维度 8</div>
+<div style="font-size:18px;font-weight:700;color:#1a202c;margin:6px 0">综合评分</div>
+<div style="font-size:14px;color:#4a5568;line-height:1.7">6 维度评分 + 综合加权</div>
+<div style="margin-top:10px;font-size:13px;color:#9d174d">📌 详见下方综合评分图</div>
+</div>
+</div>
+<hr />
+<h2>8 项目完整对比表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>核心定位</th>
+<th>综合评分</th>
+<th>净利率</th>
+<th>估值预期</th>
+<th>投资规模</th>
+<th>退出方向（详见各项目主报告 § 5.4）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>晶能光电</strong></td>
+<td>硅基氮化镓IDM一体化大功率LED</td>
+<td>4.4</td>
+<td>~22.76%</td>
+<td>整体40亿</td>
+<td>换股30%</td>
+<td>注入天保基建（换股并购谈判中，独立上市不适用）→ <a href="../jngd/report_main.md">jngd § 5.4</a></td>
+</tr>
+<tr>
+<td><strong>上海柯渡</strong></td>
+<td>医疗设备维保双寡头</td>
+<td>3.7</td>
+<td>6.46%</td>
+<td>14-20亿</td>
+<td>7-10亿</td>
+<td>注入天保基建（医药主营已锁定；独立上市：北交所 12-18 月）→ <a href="../kedu/report_main.md">kedu § 5.4</a></td>
+</tr>
+<tr>
+<td><strong>中复碳芯</strong></td>
+<td>央企碳纤维复合材料平台</td>
+<td>3.6</td>
+<td>7.51%</td>
+<td>50-80亿</td>
+<td>5-10亿</td>
+<td>注入绿田机械（方案B，双主业承接机械+新材料，可行性中等）/ 独立上市（北交所 3-5 年）→ <a href="../zhongfu/report_main.md">zhongfu § 5.4</a></td>
+</tr>
+<tr>
+<td><strong>宏远创信</strong></td>
+<td>100%民营售电龙头</td>
+<td>3.4</td>
+<td>14.49%</td>
+<td>10-15亿</td>
+<td>1-3亿</td>
+<td>注入天保能源（唯一可行；独立上市：审计限制）→ <a href="../hongyuan/report_main.md">hongyuan § 5.4</a></td>
+</tr>
+<tr>
+<td><strong>联通云IDC</strong></td>
+<td>山西1,400机柜IDC资产</td>
+<td>4.1</td>
+<td>~86% ⚠</td>
+<td>收购 2.0-3.0亿 / REITs 1-1.5亿</td>
+<td>2.0-3.0亿</td>
+<td>注入天保能源 + 二次 REITs（唯一可行）→ <a href="../unicom-idc/report_main.md">unicom-idc § 7</a></td>
+</tr>
+<tr>
+<td><strong>信鸿医疗</strong></td>
+<td>天津IVD综合服务+孵化</td>
+<td>3.6</td>
+<td>5.29%</td>
+<td>6-10亿</td>
+<td>1-3亿</td>
+<td>注入天保基建（医药主营已锁定；独立上市：北交所 12-18 月）→ <a href="../xinhong/report_main.md">xinhong § 5.4</a></td>
+</tr>
+<tr>
+<td><strong>迅巢科技</strong></td>
+<td>物流快递换电场景头部</td>
+<td>3.6</td>
+<td>17.91%</td>
+<td>12-20亿</td>
+<td>1-2亿</td>
+<td>注入绿田机械（双主业承接机械+海外渠道+换电，可行性高）/ 独立上市（北交所/创业板 24-36 月）→ <a href="../xunchao/report_main.md">xunchao § 5.4</a></td>
+</tr>
+<tr>
+<td><strong>元旭半导体</strong></td>
+<td>Micro-LED并行光引擎（AI短距光互联）</td>
+<td>3.2</td>
+<td>❌ 无经审计</td>
+<td>未披露</td>
+<td>2亿</td>
+<td>注入天保基建（医药+芯片双主业，Issue 21 放宽）/ 绿田双主业承接（机械+芯片，可行性中等）/ 独立上市（创业板 24-36 月）→ <a href="../innoshine/report_main.md">innoshine § 5.4</a></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>📌 各项目退出方向按 5 层级（我方两家 → 3 家拟收购排除爱朋后择优（含双主业跨界承接）→ 双主业/三平台架构 → 扩大新收范围（极少使用兜底）→ 独立上市）一事一议客观判断。新收的上市公司和我方天保基建都可<strong>双主业跨界承接</strong>多个项目（基建+芯片 / 机械+芯片 / 机械+新材料），<strong>几乎不需要扩大新收范围</strong>。详见各项目主报告 <code>reports/{slug}/report_main.md</code> § 5.4 最终判断（含注入路径 + 独立上市路径分析）。通用分析工具（5 家上市平台联动 + 基建倾向医药 + 爱朋不首选 + 双主业跨界承接评估 + 借壳审批 + 决策流程）见 <a href="./listed_companies_injection_analysis.md"><code>listed_companies_injection_analysis.md</code></a></p>
+</blockquote>
+<hr />
+<h2>关键可视化</h2>
+<h3>行业赛道分布（饼图）</h3>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:18px 0">
+<div style="background:#fafaf9;padding:20px;border-radius:10px">
+<div style="font-size:15px;font-weight:600;color:#1a202c;margin-bottom:14px">🏭 8 项目行业赛道分布</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">医疗设备/服务</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px;position:relative">
+<div style="background:linear-gradient(90deg,#38a169,#2f855a);height:100%;width:25%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">2</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">25%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">半导体/LED</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#3182ce,#2c5282);height:100%;width:25%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">2</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">25%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">新材料</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">能源/电力</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#dd6b20,#c05621);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">数据中心</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#805ad5,#553c9a);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">换电/出行</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#db2777,#be185d);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+</div>
+<div style="background:#fafaf9;padding:20px;border-radius:10px">
+<div style="font-size:15px;font-weight:600;color:#1a202c;margin-bottom:14px">📊 上市/退出状态分布</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">未上市</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#a0aec0,#718096);height:100%;width:62.5%;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600">5 个</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">62.5%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">换股并购谈判中</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#3182ce,#2c5282);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">新三板创新层</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#38a169,#2f855a);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+<div style="margin:8px 0">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:130px;font-size:14px;color:#4a5568">整体出售</div>
+<div style="flex:1;background:#edf2f7;border-radius:4px;height:24px">
+<div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:100%;width:12.5%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:600">1</div>
+</div>
+<div style="width:50px;font-size:13px;color:#718096;text-align:right">12.5%</div>
+</div>
+</div>
+</div>
+</div>
+<h3>净利率排名（条形图，2025数据）</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px;margin:18px 0">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>净利率</th>
+<th>可视化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>联通云IDC</strong> ⚠ <span style="font-size:11px;background:#fed7d7;color:#9b2c2c;padding:2px 8px;border-radius:10px">PPT/未审计</span></td>
+<td>~86%</td>
+<td><div style="background:linear-gradient(90deg,#c53030,#9b2c2c);height:22px;width:100%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>晶能光电</strong></td>
+<td>~22.76%</td>
+<td><div style="background:linear-gradient(90deg,#3182ce,#2c5282);height:22px;width:26.5%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>迅巢科技</strong></td>
+<td>17.91%</td>
+<td><div style="background:linear-gradient(90deg,#38a169,#2f855a);height:22px;width:20.8%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>宏远创信</strong></td>
+<td>14.49%</td>
+<td><div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:22px;width:16.8%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>中复碳芯</strong></td>
+<td>7.51%</td>
+<td><div style="background:linear-gradient(90deg,#805ad5,#553c9a);height:22px;width:8.7%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>柯渡医学</strong></td>
+<td>6.46%</td>
+<td><div style="background:linear-gradient(90deg,#dd6b20,#c05621);height:22px;width:7.5%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>信鸿医疗</strong></td>
+<td>5.29%</td>
+<td><div style="background:linear-gradient(90deg,#319795,#2c7a7b);height:22px;width:6.2%;border-radius:4px"></div></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div style="background:#fff5f5;border-left:4px solid #c53030;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;color:#742a2a;line-height:1.7">
+⚠ <strong>联通云 IDC 净利率 ~86% 口径特别说明</strong>（数据来源 PPT/未审计）<br>
+&emsp;<strong>计算依据</strong>：项目方 PPT 年营收 2,900 万 / 年净利 2,500 万 = 86.2%（数学正确）<br>
+&emsp;<strong>口径推断</strong>：①项目 2017 年投运已 9 年，固定资产折旧基本完毕 ②0 负债（无利息支出） ③单项目口径，无公司层面费用分摊<br>
+&emsp;<strong>行业对照</strong>：数据港 ~10-15% / 润泽科技 ~25% / 万国数据亏损 → 86% 为行业平均的 3-5 倍<br>
+&emsp;<strong>二次 REITs 退出影响</strong>（2026-06-30 新增）：净利率审计直接影响 REITs 估值——真实净利率若为 60%（保守假设）→ REITs 估值可能 1.5-2 亿；若 86% 真实 → REITs 估值可能 2.5-3 亿<br>
+&emsp;<strong>建议下一步</strong>：①要求项目方提供第三方审计报告 ②拆分 EBITDA / 折旧 / 利息 / 公司层面管理费用 ③评估收购价上限（≤REITs 估值）。详见 <code>reports/unicom-idc/report_main.md</code> § 6 数据可信度说明 + § 7 二次 REITs 可行性评估。
+</div>
+<h3>ROE 排名（条形图，公开数据项目）</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px;margin:18px 0">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>ROE</th>
+<th>可视化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>宏远创信</strong></td>
+<td>32.87%</td>
+<td><div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:22px;width:100%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>晶能光电</strong></td>
+<td>21.14%</td>
+<td><div style="background:linear-gradient(90deg,#3182ce,#2c5282);height:22px;width:64.3%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>柯渡医学</strong></td>
+<td>20.87%</td>
+<td><div style="background:linear-gradient(90deg,#dd6b20,#c05621);height:22px;width:63.5%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>信鸿医疗</strong></td>
+<td>5.5%</td>
+<td><div style="background:linear-gradient(90deg,#319795,#2c7a7b);height:22px;width:16.7%;border-radius:4px"></div></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h3>可比公司平均 PE 估值带（条形图）</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px;margin:18px 0">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>赛道</th>
+<th>平均 PE</th>
+<th>可视化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>换电</strong>（迅巢）</td>
+<td>20x</td>
+<td><div style="background:linear-gradient(90deg,#db2777,#be185d);height:22px;width:40%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>LED</strong>（晶能）</td>
+<td>24x</td>
+<td><div style="background:linear-gradient(90deg,#3182ce,#2c5282);height:22px;width:48%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>售电</strong>（宏远）</td>
+<td>25x</td>
+<td><div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:22px;width:50%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>IVD</strong>（信鸿）</td>
+<td>25x</td>
+<td><div style="background:linear-gradient(90deg,#319795,#2c7a7b);height:22px;width:50%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>IDC REITs</strong>（联通）</td>
+<td>27x</td>
+<td><div style="background:linear-gradient(90deg,#805ad5,#553c9a);height:22px;width:54%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>医疗器械</strong>（柯渡）</td>
+<td>36x</td>
+<td><div style="background:linear-gradient(90deg,#dd6b20,#c05621);height:22px;width:72%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>碳纤维</strong>（中复）</td>
+<td>50x</td>
+<td><div style="background:linear-gradient(90deg,#c53030,#9b2c2c);height:22px;width:100%;border-radius:4px"></div></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h3>综合评分排名（5分制条形图）</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px;margin:18px 0">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>综合评分</th>
+<th>可视化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>晶能光电</strong></td>
+<td>4.4</td>
+<td><div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:22px;width:88%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>联通云IDC</strong></td>
+<td>4.1</td>
+<td><div style="background:linear-gradient(90deg,#3182ce,#2c5282);height:22px;width:82%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>柯渡医学</strong></td>
+<td>3.7</td>
+<td><div style="background:linear-gradient(90deg,#38a169,#2f855a);height:22px;width:74%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>中复碳芯</strong></td>
+<td>3.6</td>
+<td><div style="background:linear-gradient(90deg,#805ad5,#553c9a);height:22px;width:72%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>信鸿医疗</strong></td>
+<td>3.6</td>
+<td><div style="background:linear-gradient(90deg,#319795,#2c7a7b);height:22px;width:72%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>迅巢科技</strong></td>
+<td>3.6</td>
+<td><div style="background:linear-gradient(90deg,#db2777,#be185d);height:22px;width:72%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>宏远创信</strong></td>
+<td>3.4</td>
+<td><div style="background:linear-gradient(90deg,#a0aec0,#718096);height:22px;width:68%;border-radius:4px"></div></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<h3>退出方向（按 5 层级联动分析 + 仅收 1 家新收约束 + 基建倾向医药 + 爱朋不首选 + 双主业承接优先 + 双主业可跨界 + 一事一议原则）</h3>
+<p>各储备项目退出方向按 <strong>5 层级联动</strong>（<strong>层级 1</strong> 我方两家上市公司 → <strong>层级 2</strong> 3 家拟收购上市公司择优 1 家（<strong>排除爱朋，含双主业跨界承接</strong>）→ <strong>层级 3</strong> 双主业/三平台架构 → <strong>层级 4</strong> 扩大新收上市公司范围（<strong>极少使用兜底</strong>）→ <strong>层级 5</strong> 培育后独立上市）基于客观事实单独判断。<strong>新收上限 = 1 家</strong>，<strong>总接收架构 = 3 平台</strong>（我方 2 + 新收 1），<strong>天保基建主营锁定医药</strong>（芯片可作为第二主业承接元旭），<strong>爱朋冲突不首选</strong>，<strong>新收的上市公司和我方天保基建都可双主业跨界承接多项目，几乎不需要扩大新收范围</strong>。通用分析工具：</p>
+<ul>
+<li><strong>层级 1 我方两家上市公司</strong>：天保基建（<strong>主营锁定医药</strong>，柯渡/信鸿已锁定；<strong>芯片可作为第二主业承接元旭</strong>）+ 天保能源（主营能源，宏远/联通云IDC 已锁定）</li>
+<li><strong>层级 2 3 家拟收购上市公司择优 1 家（排除爱朋，含双主业跨界承接）</strong>：科华控股（汽车涡轮增压器零部件）+ 绿田机械（通用动力机械 + 海外渠道）—— <strong>两方案 B/C 对比</strong>；收购后可<strong>双主业跨界承接</strong>（绿田+换电=可行性高承接迅巢 / 绿田+新材料=高承接中复 / 绿田+芯片=中等承接元旭）</li>
+<li><strong>层级 3 双主业/三平台架构</strong>：天保基建 + 天保能源 + 新收 1 家（共 3 平台承担双主业/三主业，降低交易复杂度；天保基建可双主业承接医药+芯片）</li>
+<li><strong>层级 4 扩大新收上市公司范围（极少使用兜底）</strong>：仅当双主业跨界承接均不可行时启动（Issue 21 后几乎不使用）</li>
+<li><strong>层级 5 培育后独立上市</strong>：北交所 / 创业板 / 港股 —— <strong>每个项目必走分析路径</strong>（晶能除外，对方诉求被并购退出）</li>
+<li><strong>借壳审批触发条件</strong>：A 股《重大资产重组管理办法》+ 港股《HKEX 上市规则》第 14.06B 条</li>
+<li><strong>8 项目与 3 平台匹配度总表</strong>：见 <a href="./listed_companies_injection_analysis.md"><code>listed_companies_injection_analysis.md</code></a> § 6</li>
+<li><strong>排除爱朋后两方案 B/C 客观对比 + 双主业跨界承接评估</strong>：见 <a href="./listed_companies_injection_analysis.md"><code>listed_companies_injection_analysis.md</code></a> § 4.2/§ 5</li>
+<li><strong>退出路径决策流程</strong>：见 <a href="./listed_companies_injection_analysis.md"><code>listed_companies_injection_analysis.md</code></a> § 7</li>
+<li><strong>各项目独立上市路径分析</strong>：见 <a href="./listed_companies_injection_analysis.md"><code>listed_companies_injection_analysis.md</code></a> § 8</li>
+</ul>
+<h3>资产负债率（仅含数据项目）</h3>
+<div style="background:#fafaf9;padding:20px;border-radius:10px;margin:18px 0">
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>资产负债率</th>
+<th>可视化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>联通云IDC</strong></td>
+<td>0%（0负债）</td>
+<td><div style="background:linear-gradient(90deg,#38a169,#2f855a);height:22px;width:1%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>信鸿医疗</strong></td>
+<td>54.62%</td>
+<td><div style="background:linear-gradient(90deg,#d69e2e,#b7791f);height:22px;width:54.6%;border-radius:4px"></div></td>
+</tr>
+<tr>
+<td><strong>中复碳芯</strong></td>
+<td>69.20%</td>
+<td><div style="background:linear-gradient(90deg,#dd6b20,#c05621);height:22px;width:69.2%;border-radius:4px"></div></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>注：晶能光电、柯渡医学、宏远创信、迅巢科技暂无完整资产负债数据</p>
+</blockquote>
+</div>
+<h3>财务数据透明度</h3>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0">
+<div style="background:linear-gradient(135deg,#c6f6d5,#9ae6b4);padding:16px;border-radius:8px;text-align:center">
+<div style="font-size:13px;color:#22543d;font-weight:600">⭐⭐⭐⭐⭐ 审计级</div>
+<div style="font-size:14px;color:#1a202c;margin-top:8px;font-weight:600">3 个项目</div>
+<div style="font-size:12px;color:#276749;margin-top:4px">晶能光电 / 宏远创信 / 信鸿医疗</div>
+</div>
+<div style="background:linear-gradient(135deg,#fefcbf,#faf089);padding:16px;border-radius:8px;text-align:center">
+<div style="font-size:13px;color:#744210;font-weight:600">⭐⭐⭐⭐ PPT 5年完整</div>
+<div style="font-size:14px;color:#1a202c;margin-top:8px;font-weight:600">1 个项目</div>
+<div style="font-size:12px;color:#975a16;margin-top:4px">中复碳芯</div>
+</div>
+<div style="background:linear-gradient(135deg,#fbd38d,#f6ad55);padding:16px;border-radius:8px;text-align:center">
+<div style="font-size:13px;color:#7b341e;font-weight:600">⭐⭐⭐⭐ PPT+BP 预测</div>
+<div style="font-size:14px;color:#1a202c;margin-top:8px;font-weight:600">2 个项目</div>
+<div style="font-size:12px;color:#a0522d;margin-top:4px">柯渡医学 / 迅巢科技</div>
+</div>
+<div style="background:linear-gradient(135deg,#e2e8f0,#cbd5e0);padding:16px;border-radius:8px;text-align:center">
+<div style="font-size:13px;color:#2d3748;font-weight:600">⭐⭐⭐⭐ 项目方披露</div>
+<div style="font-size:14px;color:#1a202c;margin-top:8px;font-weight:600">1 个项目</div>
+<div style="font-size:12px;color:#4a5568;margin-top:4px">联通云IDC</div>
+</div>
+<div style="background:linear-gradient(135deg,#fed7d7,#feb2b2);padding:16px;border-radius:8px;text-align:center">
+<div style="font-size:13px;color:#742a2a;font-weight:600">⭐⭐ 早期半导体，财务不透明</div>
+<div style="font-size:14px;color:#1a202c;margin-top:8px;font-weight:600">1 个项目</div>
+<div style="font-size:12px;color:#9b2c2c;margin-top:4px">元旭半导体（无经审计数据）</div>
+</div>
+</div>
+<hr />
+<h2>综合决策概览</h2>
+<h3>决策优先级</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>关注优先级</th>
+<th>关注理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>晶能光电</strong></td>
+<td><strong>P1</strong></td>
+<td>盈利能力断层式领先（2025净利率~22.76% vs 同行2.01%）+硅基氮化镓技术差异化+换股并购谈判中（整体估值40亿）。退出方向详见 <a href="../jngd/report_main.md">→ jngd § 5.4</a>。</td>
+</tr>
+<tr>
+<td><strong>联通云IDC</strong></td>
+<td><strong>P1</strong></td>
+<td>资产质量高（100% 上架 + 0 负债 + PUE 1.26）。退出方向详见 <a href="../unicom-idc/report_main.md">→ unicom-idc § 7</a>。<strong>优先补充材料</strong>：①第三方审计报告（验证 86% 净利率）②业主穿透核查③我方 IDC 资产盘点。</td>
+</tr>
+<tr>
+<td><strong>柯渡医学</strong></td>
+<td><strong>P1</strong></td>
+<td>医疗设备维保CR2龙头（市场地位）+ROE 20.87%（行业2.4倍）+收购方明确</td>
+</tr>
+<tr>
+<td><strong>中复碳芯</strong></td>
+<td><strong>P2</strong></td>
+<td>央企背景（中国建材集团合计48.54%）+3-5年北交所预期+特高压+风电+光伏三引擎</td>
+</tr>
+<tr>
+<td><strong>信鸿医疗</strong></td>
+<td><strong>P2</strong></td>
+<td>天津IVD区域龙头+新三板挂牌+25年IVD积累+四级孵化</td>
+</tr>
+<tr>
+<td><strong>迅巢科技</strong></td>
+<td><strong>P2</strong></td>
+<td>物流快递场景头部（市占率90%+）+全自研自产+EBITDA拐点2026E 12.9%</td>
+</tr>
+<tr>
+<td><strong>宏远创信</strong></td>
+<td><strong>P2</strong></td>
+<td>业绩爆发增长（营收+150.5%/净利+386.3%）但客户集中度97.62%风险</td>
+</tr>
+<tr>
+<td><strong>元旭半导体</strong></td>
+<td><strong>P3</strong>（信息待补）</td>
+<td>NPSS+MOG+GaN三合一壁垒真实+罗毅院士背书；但商业化零验证+财务黑箱+控制权法律基础不明确，需先完成8项P0级尽调</td>
+</tr>
+</tbody>
+</table></div>
+<h3>关键风险监控指标</h3>
+<ol>
+<li><strong>晶能光电</strong>：换股并购谈判进度（核心节点）+ <strong>3 年 IPO 禁令倒计时</strong>（仅剩 1.5 年）+ 3 亿基金亏损承接问题 + 对方担忧我方地产估值拖累</li>
+<li><strong>柯渡医学</strong>：财务透明度（要求补充完整审计报告）、应收账款规模上升（BP披露）+ 流动比率下降至 1.25、创始团队与老股退出稳定性</li>
+<li><strong>中复碳芯</strong>：兄弟公司中复神鹰亏损拖累（2024年-1.24亿）、资产负债率 69.2%、上市规划明确化</li>
+<li><strong>宏远创信</strong>：客户集中度（97.62%国网系）、其他应收款坏账（9,500万元）、审计报告限制（明文不得用于上市）</li>
+<li><strong>联通云IDC</strong>：业主穿透核查（山西伽峰民营）、PUE政策临界（≤1.25）、剩余合同期、<strong>86% 净利率数据可信度（PPT/未审计，待第三方审计）</strong>、<strong>二次 REITs 可行性（收购价控制+整合能力+客户多元化）</strong></li>
+<li><strong>信鸿医疗</strong>：资产负债率 54.62%+短期借款 1.92 亿+应收账款 3.58 亿+IVD 集采压力+孵化器盈利模式</li>
+<li><strong>迅巢科技</strong>：换电模式盈利模式验证（已显现 2025E 净利率 17.91%）、电池资产投入重、海外试点执行风险</li>
+<li><strong>元旭半导体</strong>：光互联客户验证进度（最大风险）+利润表/现金流量表可得性+席光义一致行动协议+席光兴股权冻结解决方案+CSO 刘暐湘学历证明+启迪汇/屹唐华创退出安排</li>
+</ol>
+<hr />
+<h2>版本历史与扩展机制</h2>
+<h3>版本历史</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>期号</th>
+<th>发布时间</th>
+<th>项目数</th>
+<th>新增项目</th>
+<th>主要变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第1期</strong></td>
+<td>2026-06-29</td>
+<td><strong>7</strong></td>
+<td>（初始）</td>
+<td>首次建立储备项目汇总分析框架，覆盖晶能/柯渡/中复/宏远/联通/信鸿/迅巢</td>
+</tr>
+<tr>
+<td><strong>第2期</strong></td>
+<td>2026-06-29</td>
+<td><strong>7</strong></td>
+<td>—</td>
+<td>部署架构 V2.0（增加手机版 _m.html + UA 嗅探跳转）</td>
+</tr>
+<tr>
+<td><strong>第3期</strong></td>
+<td>2026-06-29</td>
+<td><strong>8</strong></td>
+<td><strong>元旭半导体</strong></td>
+<td>纳入元旭（Micro-LED 并行光引擎/AI 短距光互联）；仪表盘 7→8；财务透明度新增&quot;早期半导体，财务不透明&quot;分级；行业赛道分布新增半导体/LED 第 2 个项目；退出确定性新增元旭条目；决策表新增&quot;暂缓（待尽调）&quot;</td>
+</tr>
+<tr>
+<td><strong>第4期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td>晶能光电退出路径更新（科创板 IPO → 换股并购谈判中）；估值口径更新（投前27.5亿 → 整体40亿）；财务数据更新（2025营收12.3亿 / 净利2.8亿，2026E 净利2.6-2.7亿）；退出确定性依据更新；净利率排名更新（21.02% → ~22.76%）；决策理由更新；关键风险监控新增&quot;3亿基金亏损承接问题&quot;</td>
+</tr>
+<tr>
+<td><strong>第5期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>联通云IDC 86% 净利率数据可信度核注</strong>：净利率排名处加&quot;PPT/未审计&quot;标注；新增&quot;联通云 IDC 净利率口径特别说明&quot;红色提示框（计算依据/口径推断/行业对照/建议下一步）；8项目对比表联通行加 ⚠；决策表标记&quot;建议投（净利率待审计）&quot;；关键风险监控新增&quot;86% 净利率数据可信度&quot;；详 § 第六部分 数据可信度说明 in unicom-idc/report_main.md</td>
+</tr>
+<tr>
+<td><strong>第6期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>口径重大调整</strong>（详见 briefing_report.html V1.3）：① 晶能光电不再作为上市公司反向案例，回到储备项目层面（IPO 禁令约束在 § 2.6 风险监控中提示）② 上市公司标的筛选方向从&quot;我方收购&quot;调整为&quot;自选筛选可被并购的上市公司&quot; ③ 决策标签从&quot;建议投/谨慎评估/暂缓&quot;统一改为&quot;关注优先级 P1/P2/P3&quot;，明确不构成投资建议 ④ 8 项目关注优先级排序：P1(4)晶能/联通/柯渡/中复 · P2(3)信鸿/迅巢/宏远 · P3(1)元旭 ⑤ briefing_report.html 同步升级到 V1.3</td>
+</tr>
+<tr>
+<td><strong>第7期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>退出方向四层级联动框架</strong>（详见 Issue 16）：① listed_companies_injection_analysis.md 升级到 V2.0（新增 3 家拟收购上市公司 + 借壳审批触发条件 + 8 项目与 5 平台匹配度分析 + 决策流程）② 8 项目 § 5.4 退出方向均按四层级客观判断 ③ 顶部 NOTE 块更新为&quot;四层级联动 + 一事一议&quot;</td>
+</tr>
+<tr>
+<td><strong>第8期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>爱朋医疗医药方向冲突标注 + 横向对比表优化</strong>（详见 Issue 17）：① listed_companies_injection_analysis.md V2.1 + acquisition-listed-co/report_main.md § 四顶部新增 ⚠ 医药方向冲突提示 ② 3 家上市公司 21 行对比表拆分为两个较窄表格 ③ 单价风险红线脚注 ④ § 6.2 合并风险与后续行动为统一公司视图（科华/绿田/爱朋 各一张表）</td>
+</tr>
+<tr>
+<td><strong>第9期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>退出方向5层级联动 + 仅收1家新收约束</strong>（详见 Issue 18）：① listed_companies_injection_analysis.md 升级到 V2.2（新增约束：新收上限=1家、总接收架构=3 平台、三方案 A/B/C 择优对比、5 层级决策树）② 8 项目 § 5.4 退出方向均按 5 层级客观判断（中复碳芯/迅巢科技标注&quot;三方案对比 - 方案A/方案B/方案C&quot;）③ 顶部 NOTE 块更新为&quot;退出方向5层级联动 + 仅收1家新收约束&quot; ④ § 退出方向中部小节升级为 5 层级框架</td>
+</tr>
+<tr>
+<td><strong>第10期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>基建医药/芯片二选一→倾向医药 + 爱朋不首选 + 每项目独立上市路径</strong>（详见 Issue 19）：① listed_companies_injection_analysis.md 升级到 V2.3（基建主营锁定医药、排除爱朋后两方案 B/C 对比、新增 § 八 各项目独立上市路径分析除晶能外）② 8 项目 § 5.4 增加&quot;独立上市路径&quot;分析（柯渡北交所 12-18 月、信鸿北交所 12-18 月、元旭创业板 24-36 月、中复北交所 3-5 年、迅巢北交所/创业板 24-36 月；晶能除外；宏远/联通云 IDC 不适用）③ 元旭退出方向调整（基建已倾向医药→需评估跨界或扩大新收范围找芯片标的）④ briefing_report.html § 2.4 + § 2.4.1 表格更新（标注基建倾向医药 + 爱朋不首选）⑤ 顶部 NOTE 块更新为&quot;退出方向5层级联动 + 仅收1家新收约束 + 基建倾向医药 + 爱朋不首选&quot; ⑥ § 退出方向中部小节升级（明确排除爱朋 + 列出 3 个需扩大范围的项目）⑦ Word V1.7 同步更新</td>
+</tr>
+<tr>
+<td><strong>第11期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>拟收购上市公司可双主业承接，未必需扩大新收范围</strong>（详见 Issue 20）：① listed_companies_injection_analysis.md 升级到 V2.4（新增 § 4.2 双主业承接评估表：绿田+换电承接迅巢=可行性高 / 绿田+新材料承接中复=中等 / 跨界芯片承接元旭=低；5 层级决策树调整为&quot;3 家拟定择优（含双主业承接）→ 双主业/三平台架构 → 扩大新收范围（兜底）&quot;，扩大范围降级为兜底）② 中复 § 5.4 调整为&quot;注入绿田双主业承接（机械+新材料，中等）&quot;、迅巢 § 5.4 调整为&quot;注入绿田双主业承接（机械+海外渠道+换电，可行性高）/ 科华双主业承接（配送车辆，边缘）&quot;、元旭 § 5.4 保留&quot;双主业跨界可行性低→仍需扩大新收范围（兜底）&quot;③ briefing_report.html § 2.4 + § 2.4.1 表格更新（双主业承接优先 + 扩大范围降为兜底；迅巢卡片退出方向改为&quot;绿田双主业承接/独立上市&quot;）④ 顶部 NOTE 块增加&quot;双主业承接优先&quot;⑤ 8 项目对比表退出方向列更新（中复/迅巢双主业承接，元旭双主业跨界可行性低）⑥ Word V1.8 同步更新</td>
+</tr>
+<tr>
+<td><strong>第12期</strong></td>
+<td>2026-06-30</td>
+<td><strong>8</strong></td>
+<td>—</td>
+<td><strong>双主业可跨界承接，基建/机械也能并购芯片</strong>（详见 Issue 21）：① listed_companies_injection_analysis.md 升级到 V2.5（§ 4.2 双主业承接评估整体放宽：原&quot;跨界可行性低&quot;升级为&quot;中等可行&quot;；元旭退出方向从&quot;扩大新收范围（兜底）&quot;升级为&quot;注入天保基建（医药+芯片双主业）/ 注入绿田机械（机械+芯片双主业）&quot;；天保基建主营锁定医药但芯片可作为第二主业；绿田覆盖能力从 2 个项目升级为 3 个项目）② 元旭 § 5.4 升级：首选注入天保基建（医药+芯片双主业）/ 次选注入绿田机械（机械+芯片），不再需扩大新收范围，独立上市降级为最终兜底③ briefing_report.html § 2.4 + § 2.4.1 表格更新（元旭行：基建+芯片双主业承接 / 扩大范围极少启动）；元旭项目卡退出方向改为&quot;注入天保基建（医药+芯片双主业，Issue 21）&quot;；中复项目卡退出方向改为&quot;绿田双主业承接/独立上市&quot; ④ 顶部 NOTE 块增加&quot;双主业可跨界&quot; ⑤ 8 项目对比表元旭退出方向列更新 ⑥ Word V1.9 同步更新</td>
+</tr>
+</tbody>
+</table></div>
+<h3>扩展机制（后续项目入库流程）</h3>
+<p>当投资部新增储备项目立项时，按以下流程纳入本汇总：</p>
+<ol>
+<li><strong>新项目立项</strong>：项目方提交立项材料</li>
+<li><strong>单独完成纵横分析</strong>：新建 <code>reports/{project_name}/report_main.md</code></li>
+<li><strong>纳入本汇总</strong>：在本汇总页 8 个维度表格中添加新增项目行</li>
+<li><strong>更新版本号</strong>：第 2 期 → 第 3 期... 项目数从 7 → N</li>
+<li><strong>归档历史版本</strong>：保存至 <code>_reserved-projects/version_history/</code> 子目录</li>
+<li><strong>重新部署</strong>：通过部署脚本推送至 GitHub Pages</li>
+</ol>
+<h3>数据来源</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>数据来源</th>
+<th>文件</th>
+<th>可靠性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本期 8 份项目主报告</td>
+<td>晶能/柯渡/中复/宏远/联通/信鸿/迅巢/元旭</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>公开行业数据交叉验证</td>
+<td>行业研究与公开数据综合验证（2026.6.29）</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>AKShare A股年报库</td>
+<td>各项目对应可比公司年报</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>项目方一手材料</td>
+<td>各项目PPT/审计报告/合同（<strong>元旭：BP自述+天眼查工商穿透，财务数据未审计</strong>）</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table></div>
+
+</div>
+<div class="toolbar">
+<a href="../index_m.html"><span>🏠</span>主页</a>
+<a href="../summary_m.html"><span>📊</span>汇总</a>
+<a href="javascript:void(0)" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>⬆️</span>顶部</a>
+<a href="javascript:void(0)" onclick="window.location=window.location.pathname.replace(/_m\.html?$/, '.html')"><span>💻</span>桌面</a>
+</div>
+</body>
+</html>
