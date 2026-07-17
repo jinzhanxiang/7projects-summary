@@ -3,172 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7项目汇总 · 天保控股储备项目库</title>
+<title>7 个储备项目对比汇总 · 项目报告中心</title>
 <link rel="stylesheet" href="https://jinzhanxiang.github.io/tianbao-projects/assets/report.css">
+<style>
+:root {
+  --primary: #1a365d;
+  --accent: #c53030;
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #2d3748;
+  --muted: #718096;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.nav { background: var(--primary); color: white; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+.nav a { color: white; text-decoration: none; opacity: 0.85; margin-left: 18px; font-size: 14px; }
+.nav a:hover { opacity: 1; }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%); color: white; padding: 40px 32px; border-radius: 12px; margin-bottom: 28px; }
+.hero h1 { font-size: 28px; margin-bottom: 8px; }
+.hero p { opacity: 0.9; font-size: 15px; margin-bottom: 24px; }
+.hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.hero-stat { background: rgba(255,255,255,0.15); padding: 12px 20px; border-radius: 8px; min-width: 110px; }
+.hero-stat .num { font-size: 28px; font-weight: 700; }
+.hero-stat .lbl { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+.tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+.tab { padding: 14px 24px; cursor: pointer; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab:hover { color: var(--primary); }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+.tab-count { background: var(--primary); color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; margin-left: 6px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 28px; padding-left: 20px; }
+.tl-item::before { content: ''; position: absolute; left: -28px; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary); }
+.tl-item.tl-main::before { background: var(--primary); }
+.tl-item.tl-thirdparty::before { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.tl-item.tl-meeting::before { background: #d69e2e; box-shadow: 0 0 0 2px #d69e2e; }
+.tl-item.tl-first::before { background: #38a169; box-shadow: 0 0 0 2px #38a169; }
+.tl-date { color: var(--muted); font-size: 13px; margin-bottom: 4px; }
+.tl-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+.tl-desc { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+.tl-link { display: inline-block; padding: 6px 14px; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; font-size: 14px; }
+.tl-link:hover { background: #2c5282; }
+.report-group { margin-bottom: 32px; }
+.rg-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+.r-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+.r-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(26,54,93,0.1); }
+.r-emoji { font-size: 24px; }
+.r-body { flex: 1; }
+.r-name { font-weight: 600; margin-bottom: 4px; }
+.r-meta { font-size: 13px; color: var(--muted); }
+.r-arrow { color: var(--muted); font-size: 18px; }
+.archived { opacity: 0.7; border-style: dashed; }
+.archived-note { background: #fef5e7; border-left: 4px solid #d69e2e; padding: 12px 16px; border-radius: 4px; margin-bottom: 20px; font-size: 14px; color: #744210; }
+@media (max-width: 768px) {
+  .hero { padding: 24px 20px; }
+  .hero h1 { font-size: 22px; }
+  .hero-stats { gap: 16px; }
+  .tab { padding: 12px 16px; font-size: 14px; }
+}
+</style>
 </head>
 <body>
-
-<div class="hero">
-  <h1>📊 7项目汇总 · 储备项目中心</h1>
-  <p>主公指示：删除重复报告 / 改为跳转入口 — 2026.07.09</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="num">11</div><div class="lbl">总链接（含跳转）</div></div>
-    <div class="hero-stat"><div class="num">3</div><div class="lbl">内部报告</div></div>
-    <div class="hero-stat"><div class="num">8</div><div class="lbl">项目入口跳转</div></div>
+<div class="nav">
+  <div>📊 7 个储备项目对比汇总</div>
+  <div>
+    <a href="https://jinzhanxiang.github.io/tianbao-projects/">← 返回主中心</a>
   </div>
 </div>
 
-<div class="tabs">
-  <div class="tab active" data-tab="reports">📋 报告总览 <span class="tab-count">11</span></div>
-  <div class="tab" data-tab="timeline">📅 时间线 <span class="tab-count">5</span></div>
-</div>
-
-<div class="tab-panel active" id="panel-reports">
-
-  <div class="notice">
-    <strong>📌 主公指示（2026-07-09）</strong>：
-    删除 7projects-summary/projects/ 下与独立仓库重复的报告，dashboard.html 改为跳转入口。
-    已删除 16 个文件（8 项目 × 桌面/手机 双版本），保留 acquisition-listed-co（收购上市公司研究）。
+<div class="container">
+  <div class="hero">
+    <h1>7 个储备项目对比汇总</h1>
+    <p>投资部整体汇报 · 8 维度对比 · 中心·入口 · 3 份有效报告 · 主报告V3 · 部署 2026-07-17</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">3</div><div class="lbl">有效报告</div></div>
+      <div class="hero-stat"><div class="num">0</div><div class="lbl">已归档</div></div>
+      <div class="hero-stat"><div class="num">V3</div><div class="lbl">主报告版本</div></div>
+      <div class="hero-stat"><div class="num">7 个项目</div><div class="lbl">储备项目汇总</div></div>
+    </div>
   </div>
 
-  <div class="report-group">
-    <div class="rg-title">📊 内部报告（汇总库核心产出）</div>
-    <div class="rg-grid">
-      <a class="r-card" href="https://jinzhanxiang.github.io/7projects-summary/summary.html" target="_blank">
+  <div class="tabs">
+    <div class="tab active" data-tab="timeline">📅 时间线视图<span class="tab-count">3</span></div>
+    <div class="tab" data-tab="reports">📋 全部报告总览<span class="tab-count">3</span></div>
+  </div>
+
+  <div class="tab-panel active" id="panel-timeline">
+    <div class="timeline">
+      <div class="tl-item ">
+        <div class="tl-date">待补</div>
+        <div class="tl-title">📜 公司汇报稿</div>
+        <div class="tl-desc">投资部整体汇报专用稿</div>
+        <a class="tl-link" href="briefing_report.html">📊 查看报告</a>
+      </div>
+      <div class="tl-item ">
+        <div class="tl-date">待补</div>
+        <div class="tl-title">📜 8 维度对比仪表盘</div>
+        <div class="tl-desc">8 个项目 × 8 个关键维度交叉对比</div>
+        <a class="tl-link" href="summary.html">📊 查看报告</a>
+      </div>
+      <div class="tl-item ">
+        <div class="tl-date">待补</div>
+        <div class="tl-title">📜 拟收购上市公司研究</div>
+        <div class="tl-desc">唯一保留的项目级报告（无独立仓库）</div>
+        <a class="tl-link" href="projects/acquisition-listed-co.html">📊 查看报告</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-reports">
+    <div class="report-group">
+      <div class="rg-title">📊 主报告</div>
+      <a class="r-card" href="summary.html" target="_blank">
         <div class="r-emoji">📊</div>
         <div class="r-body">
-          <div class="r-name">储备项目汇总仪表盘（8维度对比） <span class="r-badge">主报告</span></div>
-          <div class="r-sub">8个储备项目 × 8个维度横向对比分析</div>
+          <div class="r-name">8 维度对比仪表盘</div>
+          <div class="r-meta">待补 · 对比, 仪表盘</div>
         </div>
         <div class="r-arrow">→</div>
       </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/7projects-summary/briefing_report.html" target="_blank">
-        <div class="r-emoji">🎤</div>
+    </div>
+    <div class="report-group">
+      <div class="rg-title">📑 其他有效报告</div>
+      <a class="r-card" href="briefing_report.html" target="_blank">
+        <div class="r-emoji">📑</div>
         <div class="r-body">
-          <div class="r-name">公司汇报稿 · 投资部储备库与上市标的池 <span class="r-badge">汇报稿</span></div>
-          <div class="r-sub">面向公司领导的综合汇报稿</div>
+          <div class="r-name">公司汇报稿</div>
+          <div class="r-meta">待补 · 汇报</div>
         </div>
         <div class="r-arrow">→</div>
       </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/7projects-summary/projects/acquisition-listed-co.html" target="_blank">
-        <div class="r-emoji">🏢</div>
+      <a class="r-card" href="projects/acquisition-listed-co.html" target="_blank">
+        <div class="r-emoji">📑</div>
         <div class="r-body">
-          <div class="r-name">收购上市公司标的研究 <span class="r-badge">专题</span></div>
-          <div class="r-sub">绿田机械 / 科华控股 等候选上市公司分析</div>
+          <div class="r-name">拟收购上市公司研究</div>
+          <div class="r-meta">待补 · 上市公司</div>
         </div>
         <div class="r-arrow">→</div>
       </a>
     </div>
   </div>
 
-  <div class="report-group">
-    <div class="rg-title">🔗 独立项目入口（已有独立仓库）</div>
-    <div class="rg-grid">
-      <a class="r-card" href="https://jinzhanxiang.github.io/jngd-report/dashboard.html" target="_blank">
-        <div class="r-emoji">💎</div>
-        <div class="r-body">
-          <div class="r-name">晶能光电（江西） <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">硬科技·新材料</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/kedu-report/" target="_blank">
-        <div class="r-emoji">🏥</div>
-        <div class="r-body">
-          <div class="r-name">上海柯渡医学 <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">医疗健康</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/zhongfu-report/" target="_blank">
-        <div class="r-emoji">⚡</div>
-        <div class="r-body">
-          <div class="r-name">中复碳芯 <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">碳纤维芯电缆</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/xinhong-report/" target="_blank">
-        <div class="r-emoji">💊</div>
-        <div class="r-body">
-          <div class="r-name">信鸿医疗 <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">IVD 综合服务</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/xunchao-report/" target="_blank">
-        <div class="r-emoji">🚀</div>
-        <div class="r-body">
-          <div class="r-name">迅巢科技 <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">两轮/三轮换电</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/unicom-idc-report/" target="_blank">
-        <div class="r-emoji">☁️</div>
-        <div class="r-body">
-          <div class="r-name">联通云 IDC <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">REITs · 数据中心</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/hongyuan-report/" target="_blank">
-        <div class="r-emoji">🧪</div>
-        <div class="r-body">
-          <div class="r-name">宏远创信 <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">综合智慧能源</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-      <a class="r-card" href="https://jinzhanxiang.github.io/innoshine-report/dashboard.html" target="_blank">
-        <div class="r-emoji">💡</div>
-        <div class="r-body">
-          <div class="r-name">元旭半导体 <span class="r-badge">跳转独立仓库</span></div>
-          <div class="r-sub">Micro-LED 芯片</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-    </div>
-  </div>
-
-  <div style="margin-top:32px;padding:20px;background:#edf2f7;border-radius:10px;text-align:center;color:#4a5568;font-size:14px">
-    📚 项目报告中心：<a href="https://jinzhanxiang.github.io/tianbao-projects/" style="color:#1a365d;font-weight:600">天保项目报告中心</a> ·
-    🏠 重大并购：<a href="https://jinzhanxiang.github.io/xingheng-report/dashboard.html" style="color:#1a365d;font-weight:600">星恒电源</a>
-  </div>
-</div>
-
-<div class="tab-panel" id="panel-timeline">
-  <div class="timeline">
-    <div class="tl-item tl-first">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026-07-09 · 清理</div>
-      <div class="tl-title">✨ 重复报告清理</div>
-      <div class="tl-desc">删除 8 个重复报告（16 个文件），dashboard.html 改为跳转入口</div>
-    </div>
-    <div class="tl-item tl-main">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026-07-09 · 汇总</div>
-      <div class="tl-title">📊 双视图部署</div>
-      <div class="tl-desc">dashboard.html 含 3 个内部报告 + 8 个项目跳转入口</div>
-    </div>
-    <div class="tl-item tl-main">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026-07-04 · 部署</div>
-      <div class="tl-title">🎤 公司汇报稿</div>
-      <div class="tl-desc">briefing_report.html 完成</div>
-    </div>
-    <div class="tl-item tl-thirdparty">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026-07-01 · 主报告</div>
-      <div class="tl-title">📐 8 维度对比仪表盘</div>
-      <div class="tl-desc">summary.html 完成（含 8 个储备项目横向对比）</div>
-    </div>
-    <div class="tl-item tl-meeting">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2026-06-30 · 立项</div>
-      <div class="tl-title">📄 投资部储备库汇报</div>
-      <div class="tl-desc">投资部项目储备库与上市公司标的研究</div>
-    </div>
+  <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center;">
+    📅 主报告V3 更新：2026-07-17 · 双视图 dashboard 自动生成（manifest 派生）<br>
+    🔗 <a href="https://jinzhanxiang.github.io/tianbao-projects/" style="color: var(--primary);">天保控股项目中心</a> · 仓库 jinzhanxiang/7projects-summary
   </div>
 </div>
 
@@ -179,10 +161,9 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
+    window.scrollTo({top: 0, behavior: 'smooth'});
   });
 });
 </script>
-
 </body>
 </html>
