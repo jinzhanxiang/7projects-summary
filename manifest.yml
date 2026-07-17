@@ -1,0 +1,56 @@
+# 📋 manifest.yml — 7 个项目汇总
+# ========================================================
+# 主公 2026-07-17 v12 跨项目推广 · 小仓库示范
+
+project: 7projects-summary
+title: 7 个储备项目对比汇总
+subtitle: 投资部整体汇报 · 8 维度对比
+stage: 中心·入口
+report_version: V3
+last_update: 2026-07-17
+
+hero:
+  category: 储备项目汇总
+  amount: 7 个项目
+  highlight: 8 维度对比仪表盘
+
+# 有效报告（dashboard 展示）
+reports:
+  - file: briefing_report.html
+    title: 公司汇报稿
+    date: 待补
+    status: active
+    tags: [汇报]
+    desc: 投资部整体汇报专用稿
+    color: meeting
+
+  - file: summary.html
+    title: 8 维度对比仪表盘
+    date: 待补
+    status: active
+    tags: [对比, 仪表盘]
+    desc: 8 个项目 × 8 个关键维度交叉对比
+    color: main
+
+  - file: projects/acquisition-listed-co.html
+    title: 拟收购上市公司研究
+    date: 待补
+    status: active
+    tags: [上市公司]
+    desc: 唯一保留的项目级报告（无独立仓库）
+    color: default
+
+# 已归档 / 隐藏（手机版 _m）
+deprecated:
+  - file: index_m.html
+    title: 首页（手机版）
+    removed: 2026-07-17
+    note: 手机版 · PC 版 index.html 自动跳转
+  - file: summary_m.html
+    title: 对比仪表盘（手机版）
+    removed: 2026-07-17
+    note: 手机版 · PC 版 summary.html 自动跳转
+  - file: projects/acquisition-listed-co_m.html
+    title: 上市公司研究（手机版）
+    removed: 2026-07-17
+    note: 手机版 · PC 版自动跳转
