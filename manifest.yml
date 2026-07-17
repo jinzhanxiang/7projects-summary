@@ -1,6 +1,7 @@
 # 📋 manifest.yml — 7 个项目汇总
 # ========================================================
 # 主公 2026-07-17 v12 跨项目推广 · 小仓库示范
+# _m.html 手机版豁免（v12.1 · 见 manifest.py）
 
 project: 7projects-summary
 title: 7 个储备项目对比汇总
@@ -40,17 +41,5 @@ reports:
     desc: 唯一保留的项目级报告（无独立仓库）
     color: default
 
-# 已归档 / 隐藏（手机版 _m）
-deprecated:
-  - file: index_m.html
-    title: 首页（手机版）
-    removed: 2026-07-17
-    note: 手机版 · PC 版 index.html 自动跳转
-  - file: summary_m.html
-    title: 对比仪表盘（手机版）
-    removed: 2026-07-17
-    note: 手机版 · PC 版 summary.html 自动跳转
-  - file: projects/acquisition-listed-co_m.html
-    title: 上市公司研究（手机版）
-    removed: 2026-07-17
-    note: 手机版 · PC 版自动跳转
+# 已归档 / 隐藏（不含 _m.html）
+deprecated: []  # 暂无归档报告
